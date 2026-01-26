@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – Demo AI</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-hero:#1F2428;
+      --primary-blue:#3b82f6;
+      --primary-blue-hover:#2563eb;
+      --text-white:#ffffff;
+      --text-gray:#6b7280;
+      --text-dark:#111827;
+
+      --field-bg:#f9fafb;
+      --field-border:#e5e7eb;
+      --field-focus:#2563eb;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family:'Inter', sans-serif;
+      background:#fff;
+      color:#111;
+      min-height:100vh;
+    }
+    img{ display:block; max-width:100%; height:auto; }
+
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px;
+      width:100%;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:nowrap;
+    }
+    .nav-links a{
+      color:var(--text-white);
+      text-decoration:none;
+      font-size:14px;
+      opacity:.9;
+      white-space:nowrap;
+    }
+    .nav-links a:hover{ opacity:1; }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--primary-blue);
+      color:var(--text-white);
+      padding:10px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      border:0;
+      cursor:pointer;
+      white-space:nowrap;
+      transition:background .2s ease;
+    }
+    .btn:hover{ background:var(--primary-blue-hover); }
+
+    /* NAVBAR */
+    nav{
+      background:var(--bg-hero);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    nav .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      min-height:64px;
+      padding:14px 20px;
+    }
+
+    .nav-left,.nav-right{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .logo{ height:36px; display:flex; align-items:center; }
+    .logo img{ height:100%; width:auto; object-fit:contain; }
+
+    .phone-number{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#fff;
+      font-size:14px;
+      opacity:.95;
+    }
+    .phone-number img{ width:18px; height:18px; }
+
+    .nav-separator{
+      border-top:2px dashed rgba(255,255,255,0.18);
+      opacity:.8;
+      width:100%;
+    }
+
+    /* CONTENT */
+    .page{
+      display:flex;
+      justify-content:center;
+      gap:80px;
+      max-width:1400px;
+      margin:0 auto;
+      padding:60px 20px;
+    }
+
+    .left-side{ width:560px; max-width:100%; }
+
+    .small-header{
+      color:var(--field-focus);
+      font-weight:600;
+      font-size:14px;
+      margin-bottom:14px;
+    }
+
+    h1{
+      font-size:48px;
+      line-height:1.05;
+      margin-bottom:16px;
+      font-weight:700;
+      letter-spacing:-0.02em;
+    }
+
+    .description{
+      color:#4b5563;
+      font-size:16px;
+      line-height:1.6;
+      margin-bottom:26px;
+      max-width:520px;
+    }
+
+    form{ max-width:520px; }
+
+    .form-group{ margin-bottom:14px; }
+
+    input, textarea{
+      width:100%;
+      padding:14px 16px;
+      border:1px solid var(--field-border);
+      background:var(--field-bg);
+      border-radius:12px;
+      font-size:15px;
+      color:#111827;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+      font-family: 'Inter', sans-serif;  
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    input:focus, textarea:focus{
+      border-color:var(--field-focus);
+      background:#fff;
+      box-shadow:0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea{ min-height:110px; resize:vertical; }
+
+    .submit-btn{
+      background:var(--field-focus);
+      color:#fff;
+      border:none;
+      padding:14px 28px;
+      border-radius:999px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      margin-top:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .submit-btn:hover{ background:#1d4ed8; }
+
+    /* STATS */
+    .right-side{ display:flex; align-items:center; }
+
+    .side-stats{
+      display:flex;
+      flex-direction:column;
+      border-left:1px solid #111;
+      padding-left:22px;
+      max-width:320px;
+    }
+
+    .stat-item{
+      display:flex;
+      gap:18px;
+      padding:22px 0;
+      border-bottom:1px solid #111;
+    }
+    .stat-item:last-child{ border-bottom:none; }
+
+    .stat-value{
+      font-size:42px;
+      font-weight:700;
+      min-width:72px;
+    }
+
+    .stat-text{
+      font-size:14px;
+      color:#4b5563;
+      line-height:1.35;
+    }
+
+    .privacy-note {
+        font-size: 13px;
+        color: #6b7280;
+        margin: 10px 0 14px;
+        line-height: 1.5;
+    }
+
+    .privacy-note a {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+
+    .privacy-note a:hover {
+        opacity: 0.85;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:900px){
+      .page{ flex-direction:column; gap:40px; }
+      h1{ font-size:34px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-left">
+      <a class="logo" href="index.html">
+        <img src="LogoStrona4.png" alt="biztech ai">
+      </a>
+          <div class="nav-links">
+          <a href="index.html">Strona główna</a>
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+    </div>
+    <div class="nav-right">
+      <div class="phone-number">
+        <img src="telefon.png" alt="">
+        <span>+48 000 000 000</span>
+      </div>
+      <a href="kontakt.html" class="btn">Kontakt</a>
+    </div>
+  </div>
+  <div class="nav-separator"></div>
+</nav>
+
+<div class="page">
+  <div class="left-side">
+    <div class="small-header">Skontaktuj się z działem sprzedaży</div>
+    <h1>Odkryj możliwości<br>automatyzacji z AI</h1>
+
+    <p class="description">
+      Skontaktuj się z nami i sprawdź, jak AI może wesprzeć rozwój Twojej firmy.
+    </p>
+
+    <form>
+      <div class="form-group">
+        <input type="text" placeholder="Imię i nazwisko">
+      </div>
+
+      <div class="form-group">
+        <input type="email" placeholder="Adres e-mail *" required>
+      </div>
+
+      <div class="form-group">
+        <input type="tel" placeholder="Numer telefonu *" required>
+      </div>
+
+      <div class="form-group">
+        <textarea placeholder="Wiadomość"></textarea>
+      </div>
+
+      <p class="privacy-note">
+        Klikając przycisk „Wyślij”, wyrażasz zgodę na przetwarzanie danych osobowych
+        zgodnie z naszą <a href="privacy.html" target="_blank">polityką prywatności</a>.
+        </p>
+
+      <button class="submit-btn">
+        Wyślij →
+      </button>
+    </form>
+  </div>
+
+  <div class="right-side">
+    <div class="side-stats">
+      <div class="stat-item">
+        <div class="stat-value">70%</div>
+        <div class="stat-text">redukcji<br>kosztów</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">85%</div>
+        <div class="stat-text">wyższa<br>efektywność</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">24/7</div>
+        <div class="stat-text">AI działa<br>bez przerw</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">40h</div>
+        <div class="stat-text">odzyskane<br>miesięcznie</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
