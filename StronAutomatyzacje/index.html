@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platforma AI Automation</title>
+
+  <style>
+    /* RESET I PODSTAWY */
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    img{
+      max-width:100%;
+      height:auto;
+      display:block;
+    }
+
+    body{
+      line-height:1.6;
+      overflow-x:hidden;
+      background:#fff;
+    }
+
+    /* ZMIENNE */
+    :root{
+      --bg-dark:#1a1b21;
+      --bg-hero:#1F2428;
+      --bg-card-dark:#25262c;
+      --primary-blue:#3b82f6;
+      --primary-blue-hover:#2563eb;
+      --text-white:#ffffff;
+      --text-gray:#9ca3af;
+      --bg-light:#f9fafb;
+      --text-dark:#111827;
+      --subhead-gray:#9B9B9D;
+    }
+
+    /* KLASY UŻYTKOWE */
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px;
+      width:100%;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background-color:var(--primary-blue);
+      color:white;
+      padding:10px 24px;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .2s ease;
+      border:none;
+      white-space:nowrap;
+    }
+    .btn:hover{ background-color:var(--primary-blue-hover); }
+
+    /* =========================
+       NAVBAR (naprawione)
+    ========================== */
+    nav{
+      background-color:var(--bg-hero);
+      color:var(--text-white);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* flex TYLKO dla nav */
+    nav .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      min-height:64px;
+      padding-top:12px;
+      padding-bottom:12px;
+    }
+
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      min-width:0;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      height:36px;
+      flex:0 0 auto;
+    }
+    .logo img{
+      height:100%;
+      width:auto;
+      object-fit:contain;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:nowrap;
+    }
+    .nav-links a{
+      color:var(--text-white);
+      text-decoration:none;
+      font-size:14px;
+      opacity:.9;
+      white-space:nowrap;
+    }
+    .nav-links a:hover{ opacity:1; }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex:0 0 auto;
+      white-space:nowrap;
+    }
+
+    .phone-number{
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      opacity:.95;
+      white-space:nowrap;
+    }
+    .phone-number img{
+      width:18px;
+      height:18px;
+      object-fit:contain;
+    }
+
+    /* separator POD nav, pełna szerokość */
+    .nav-separator{
+      border-top:2px dashed rgba(255,255,255,0.18);
+      opacity:.8;
+      width:100%;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+    .hero{
+      background-color:var(--bg-hero);
+      color:var(--text-white);
+      padding:80px 0;
+      position:relative;
+    }
+
+    .hero .container{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:48px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      color:var(--text-gray);
+      margin-bottom:30px;
+      font-size:18px;
+      max-width:520px;
+    }
+
+    .hero-image-placeholder{
+      width:100%;
+      height:400px;
+      border-radius:12px;
+      position:relative;
+      overflow:hidden;
+      background:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-image-placeholder img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    /* DARK CARDS SECTION */
+    .dark-cards-section{
+      background-color:#ffffff;
+      padding:60px 0 80px;
+    }
+
+    .section-header-center{
+      text-align:center;
+      color:var(--text-dark);
+      margin-bottom:50px;
+    }
+    .section-header-center h2{
+      color:var(--text-dark);
+      margin-bottom:10px;
+      font-size:32px;
+    }
+    .section-header-center p{
+      color:var(--text-gray);
+      font-size:14px;
+      max-width:820px;
+      margin:0 auto;
+    }
+
+    .separator{
+      border-top:1px dashed #1F2428;
+      margin:40px 0;
+    }
+
+    .dark-cards-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:30px;
+      margin-top:30px;
+    }
+    .dark-card{
+      background-color:var(--bg-hero);
+      border-radius:12px;
+      padding:30px;
+      color:var(--text-white);
+      display:flex;
+      flex-direction:column;
+      min-height:420px;
+      position:relative;
+      overflow:hidden;
+    }
+    .dark-card h3{
+      font-size:18px;
+      margin-bottom:10px;
+    }
+    .dark-card p{
+      font-size:13px;
+      color:var(--text-gray);
+      margin-bottom:20px;
+    }
+    .dark-card-img{
+      margin-top:auto;
+      width:100%;
+      height:240px;
+      border-radius:12px;
+      overflow:hidden;
+      background:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .dark-card-img img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    /* WHITE FEATURES SECTION */
+    .features-section{
+      background-color:#ffffff;
+      padding:80px 0;
+      text-align:center;
+    }
+    .features-section h2{
+      color:#000;
+      font-size:32px;
+      margin-bottom:10px;
+    }
+    .features-section .subhead{
+      color:var(--subhead-gray);
+      margin-bottom:50px;
+      max-width:700px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:40px;
+    }
+    .feature-card{
+      background:#f3f4f6;
+      padding:30px;
+      border-radius:16px;
+      text-align:left;
+    }
+
+    .feature-img{
+      width:100%;
+      height:260px;
+      overflow:hidden;
+      border-radius:12px;
+      background-color:#F3F4F6;
+      margin-bottom:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .feature-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .feature-card h3{
+      font-size:18px;
+      margin-bottom:10px;
+      color:var(--text-dark);
+    }
+    .feature-card p{
+      font-size:14px;
+      color:#4b5563;
+    }
+
+    /* BLUE AUDIO SECTION */
+    .audio-section{
+      background-color:#5865F2;
+      padding:80px 0;
+      color:white;
+      text-align:center;
+    }
+    .audio-section h2{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+    .audio-section p{
+      margin-bottom:40px;
+      opacity:0.9;
+    }
+
+    .audio-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:20px;
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .audio-card{
+      background:rgba(255,255,255,0.15);
+      padding:15px;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      text-align:left;
+    }
+
+    .avatar{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      overflow:hidden;
+      background:transparent;
+      flex-shrink:0;
+    }
+
+    .audio-content h4{
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .audio-content span{
+      font-size:12px;
+      opacity:0.9;
+      display:block;
+    }
+
+    .play-btn{
+      margin-left:auto;
+      width:30px;
+      height:30px;
+      background:rgba(255,255,255,0.3);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      border:none;
+      color:white;
+    }
+
+    .audio-call{
+      margin-top:70px;
+      font-size:32px;
+      font-weight:700;
+      line-height:1.2;
+      color:#ffffff;
+    }
+
+    .audio-call span{
+      display:block;
+      margin-top:12px;
+      font-size:48px;
+      font-weight:900;
+      color:#ffffff;
+    }
+
+    /* FAQ SECTION */
+    .faq-section{
+      background-color:#fff;
+      padding:80px 0;
+    }
+    .faq-section h2{
+      text-align:center;
+      font-size:32px;
+      margin-bottom:10px;
+      color:var(--text-dark);
+    }
+    .faq-sub{
+      text-align:center;
+      margin-bottom:40px;
+      color:#6b7280;
+      font-size:14px;
+    }
+    .faq-sub a{
+      color:var(--primary-blue);
+      text-decoration:none;
+    }
+    .faq-container{
+      max-width:800px;
+      margin:0 auto;
+    }
+    details{
+      margin-bottom:10px;
+      background-color:#f9fafb;
+      border-radius:8px;
+      overflow:hidden;
+    }
+    summary{
+      padding:20px;
+      cursor:pointer;
+      font-weight:500;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    summary:after{ content:'+'; font-weight:bold; }
+    details[open] summary:after{ content:'-'; }
+    .faq-answer{
+      padding:0 20px 20px 20px;
+      color:#4b5563;
+      font-size:14px;
+    }
+
+    /* FOOTER */
+    footer{
+      background-color:#fff;
+      border-top:1px solid #e5e7eb;
+      padding:40px 0;
+      font-size:14px;
+      color:#4b5563;
+    }
+    footer .container{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:20px;
+    }
+    .footer-center{ text-align:center; }
+    .footer-center div{ margin:5px 0; }
+    .social-icons{ display:flex; gap:15px; }
+    .social-icon{
+      width:20px;
+      height:20px;
+      background:#ccc;
+      display:inline-block;
+      cursor:pointer;
+      border-radius:4px;
+    }
+
+    /* RESPONSYWNOŚĆ */
+    @media (max-width: 900px){
+      .dark-cards-grid{ grid-template-columns:1fr; }
+      .features-grid{ grid-template-columns:1fr; }
+      .audio-grid{ grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 768px){
+      nav .container{
+        flex-direction:column;
+        min-height:unset;
+        gap:10px;
+      }
+      .nav-left, .nav-right{
+        width:100%;
+        justify-content:space-between;
+      }
+      .logo{ height:52px; }
+      .hero .container{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+      .hero p{
+        margin-left:auto;
+        margin-right:auto;
+      }
+      .hero-image-placeholder{ height:300px; }
+      footer .container{
+        flex-direction:column;
+        align-items:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="container">
+      <div class="nav-left">
+        <div class="logo">
+          <img src="LogoStrona4.png" alt="RizTech AI - logo">
+        </div>
+
+        <div class="nav-links">
+          <a href="index.html">Strona główna</a>
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <div class="phone-number">
+            <img src="telefon.png" alt="Telefon">
+            <span>+48 000 000 000</span>
+        </div>
+        <a href="kontakt.html" class="btn">Kontakt</a>
+      </div>
+    </div>
+              <div class="nav-separator"></div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Automatyzujemy procesy w firmach</h1>
+        <p>Automatyzacja procesów, która oszczędza czas i pieniądze, zwiększa efektywność oraz pomaga wyprzedzić konkurencję.</p>
+        <a href="kontakt.html" class="btn">Kontakt</a>
+      </div>
+
+      <div class="hero-image-placeholder">
+        <img src="HeroObrazek.png" alt="Podgląd dashboardu aplikacji">
+      </div>
+    </div>
+  </header>
+
+  <!-- DARK CARDS SECTION -->
+  <section class="dark-cards-section">
+    <div class="container">
+
+      <div class="section-header-center">
+        <h2>Jak pomagamy firmom</h2>
+        <p>Poniżej przedstawiamy przykładowe obszary, w których wspieramy firmy. Każde wdrożenie dopasowujemy indywidualnie, automatyzując także inne procesy zgodnie z potrzebami Twojego biznesu.</p>
+      </div>
+
+      <!-- (jeśli nie chcesz kreski – usuń separator albo zostaw zakomentowany) -->
+      <!-- <div class="separator"></div> -->
+
+      <div class="dark-cards-grid">
+        <div class="dark-card">
+          <h3>AI do obsługi połączeń telefonicznych</h3>
+          <p>Automatyczna obsługa połączeń, która odbiera telefony 24/7, skraca czas oczekiwania, umawia terminy, zbiera potrzebne informacje i odciąża zespół.</p>
+          <div class="dark-card-img">
+            <img src="obrazek2.png" alt="Obsługa połączeń telefonicznych">
+          </div>
+        </div>
+
+        <div class="dark-card">
+          <h3>AI do rozmów na czacie</h3>
+          <p>Natychmiastowe odpowiedzi na czacie, które usprawniają kontakt z klientami.</p>
+          <div class="dark-card-img">
+            <img src="obrazek3.png" alt="Rozmowy na czacie">
+          </div>
+        </div>
+
+        <div class="dark-card">
+          <h3>Strony internetowe</h3>
+          <p>Nowoczesne i czytelne strony firmowe w dobrej cenie, które budują wizerunek i ułatwiają kontakt z klientami.</p>
+          <div class="dark-card-img">
+            <img src="obrazek4.png" alt="Strony internetowe">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHITE FEATURES SECTION -->
+  <section class="features-section">
+    <div class="container">
+      <h2>Dlaczego warto mieć recepcjonistkę AI w firmie</h2>
+      <p class="subhead">To realna oszczędność, płacisz tylko za faktyczny czas rozmów, oszczędzasz czas i zwiększasz dochody. Dowiedz się, dlaczego firmy każdej wielkości decydują się na recepcjonistkę AI.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-img">
+            <img src="zdjecie2.png" alt="Diagram połączeń">
+          </div>
+          <h3>Nieodebrane połączenia = utracone przychody</h3>
+          <p>80% osób nie zadzwoni ponownie, jeśli pierwsze połączenie pozostanie bez odpowiedzi. Recepcjonistka dba o to, by każde zapytanie zostało obsłużone, zwiększając liczbę konwersji.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-img">
+         <img src="zdjecie3.png" alt="Diagram połączeń">
+          </div>
+          <h3>Przestań tracić czas na nieistotne połączenia</h3>
+          <p>Nie każde połączenie wymaga Twojej uwagi. Recepcjonistka oddziela wartościowe zapytania od reszty.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-img">
+         <img src="zdjecie4.png" alt="Diagram połączeń">
+          </div>
+          <h3>Pracuj efektywnie bez ciągłych przerw</h3>
+          <p>Skup się na pracy, a nie na telefonach. Recepcjonistka zadba o rozmowy, rezerwacje i odpowiedne przekierowanie.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-img">
+        <img src="zdjecie5.png" alt="Diagram połączeń">
+          </div>
+          <h3>Zawsze dostępny, nawet na urlopie</h3>
+          <p>Dostępność 24/7, nawet gdy nie pracujesz. Recepcjonistka odbiera połączenia za Ciebie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- BLUE AUDIO SECTION -->
+<section class="audio-section">
+  <div class="container">
+
+    <h2>
+      Jak wirtualna recepcja AI<br>
+      zwiększa liczbę obsłużonych połączeń
+    </h2>
+
+    <p>
+      Każde połączenie odebrane. Każdy lead zapisany.
+      Wizyty umawiane automatycznie. Nigdy więcej utraconych klientów.
+    </p>
+
+    <div class="audio-grid">
+
+      <!-- CARD 1 -->
+      <div class="audio-card">
+        <div class="avatar">
+          <img src="profilowe1.png" alt="Profil">
+        </div>
+        <div class="audio-content">
+          <h4>Marek Kowalski</h4>
+          <span>Dzwoni, aby umówić się na obejrzenie mieszkania</span>
+        </div>
+        <button
+          class="play-btn"
+          type="button"
+          onclick="toggleAudio(this)"
+          data-audio="3mp1.mp3"
+        >▶</button>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="audio-card">
+        <div class="avatar">
+          <img src="profilowe2.png" alt="Profil">
+        </div>
+        <div class="audio-content">
+          <h4>Adam Nowak</h4>
+          <span>Dzwoni, bo pilnie potrzebuje hydraulika.</span>
+        </div>
+        <button
+          class="play-btn"
+          type="button"
+          onclick="toggleAudio(this)"
+          data-audio="3mp3.mp3"
+        >▶</button>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="audio-card">
+        <div class="avatar">
+          <img src="profilowe3.png" alt="Profil">
+        </div>
+        <div class="audio-content">
+          <h4>Katarzyna Dąbrowska</h4>
+          <span>Chce przełożyć termin oglądania mieszkania</span>
+        </div>
+        <button
+          class="play-btn"
+          type="button"
+          onclick="toggleAudio(this)"
+          data-audio="3mp2.mp3"
+        >▶</button>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="audio-card">
+        <div class="avatar">
+          <img src="profilowe4.png" alt="Profil">
+        </div>
+        <div class="audio-content">
+          <h4>Anna Zielińska</h4>
+          <span>Dzwoni do hydraulika w celu umówienia wizyty.</span>
+        </div>
+        <button
+          class="play-btn"
+          type="button"
+          onclick="toggleAudio(this)"
+          data-audio="3mp4.mp3"
+        >▶</button>
+      </div>
+
+    </div>
+
+    <!-- CTA NA DOLE -->
+    <div class="audio-call">
+      Przetestuj sam i zadzwoń<br>
+      <span>+48 91 819 99 81</span>
+    </div>
+
+    <!-- WSPÓLNY PLAYER -->
+    <audio id="audio-player"></audio>
+
+  </div>
+</section>
+<script>
+  const audio = document.getElementById("audio-player");
+  let currentButton = null;
+  let currentSrc = null;
+
+  function setBtn(btn, playing) {
+    btn.textContent = playing ? "❚❚" : "▶";
+  }
+
+  function toggleAudio(button) {
+    const src = button.getAttribute("data-audio");
+
+    // Kliknięto INNY przycisk niż aktualny
+    if (currentButton && currentButton !== button) {
+      setBtn(currentButton, false);
+      audio.pause();
+      audio.currentTime = 0; // resetujemy poprzednie nagranie
+    }
+
+    // Jeśli zmienia się źródło audio → ustaw nowe i start od początku
+    if (currentSrc !== src) {
+      audio.src = src;
+      audio.currentTime = 0;
+      currentSrc = src;
+    }
+
+    // Pauza / wznowienie (bez resetu czasu)
+    if (audio.paused) {
+      audio.play();
+      setBtn(button, true);
+      currentButton = button;
+    } else {
+      audio.pause();          // PAUZA (bez currentTime = 0)
+      setBtn(button, false);
+      // currentButton zostaje — żeby kolejne kliknięcie wznowiło
+    }
+  }
+
+  // Gdy audio się skończy — reset ikony
+  audio.addEventListener("ended", () => {
+    if (currentButton) setBtn(currentButton, false);
+    currentButton = null;
+    currentSrc = null;
+  });
+</script>
+
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <div class="container">
+    <h2>Najczęściej zadawane pytania</h2>
+    <p class="faq-sub">
+      Nie znalazłeś odpowiedzi? Skontaktuj się z naszym
+      <a href="#">zespołem wsparcia</a>.
+    </p>
+
+    <div class="faq-container">
+      <details>
+        <summary>Jak działa automatyczna obsługa połączeń?</summary>
+        <div class="faq-answer">
+          System odbiera połączenia przez całą dobę, prowadzi rozmowę w naturalny sposób,
+          zbiera potrzebne informacje i wykonuje ustalone działania, takie jak umawianie wizyt
+          czy przekazywanie danych do systemu.
+        </div>
+      </details>
+
+      <details>
+        <summary>Czy rozwiązanie można dopasować do mojej firmy?</summary>
+        <div class="faq-answer">
+          Tak. Każde wdrożenie jest indywidualnie dopasowane do branży, procesów
+          i realnych potrzeb Twojego biznesu.
+        </div>
+      </details>
+
+      <details>
+        <summary>Ile kosztuje taka usługa?</summary>
+        <div class="faq-answer">
+          Koszt zależy od zakresu wdrożenia i liczby obsługiwanych rozmów.
+          Płacisz za faktyczny czas rozmów, a nie za cały etat,
+          co pozwala znacząco obniżyć koszty. Ceny automatyzacji zaczynają się już od 200 zł.
+        </div>
+      </details>
+
+      <details>
+        <summary>Czy system działa przez całą dobę?</summary>
+        <div class="faq-answer">
+          Tak. Obsługa połączeń i czatu może działać 24/7,
+          również w weekendy i dni wolne.
+        </div>
+      </details>
+
+      <details>
+        <summary>Czy dane klientów są bezpieczne?</summary>
+        <div class="faq-answer">
+          Dbamy o bezpieczeństwo danych. Informacje są przetwarzane zgodnie
+          z obowiązującymi przepisami i wykorzystywane wyłącznie
+          do realizacji ustalonych procesów.
+        </div>
+      </details>
+
+      <details>
+        <summary>Czy mogę później rozbudować automatyzację o inne procesy?</summary>
+        <div class="faq-answer">
+          Oczywiście. Poza obsługą połączeń i czatu pomagamy również
+          automatyzować inne procesy biznesowe,
+          dopasowane do rozwoju Twojej firmy.
+        </div>
+      </details>
+
+      <details>
+  <summary>Czy system może przekierować rozmowę do pracownika?</summary>
+  <div class="faq-answer">
+    Tak. W określonych sytuacjach połączenie może zostać automatycznie
+    przekierowane do wybranego pracownika lub działu.
+  </div>
+</details>
+
+<details>
+  <summary>Czy mogę odsłuchiwać lub analizować rozmowy?</summary>
+  <div class="faq-answer">
+    Tak. Możesz mieć dostęp do zapisów rozmów, podsumowań oraz statystyk,
+    które pomagają analizować kontakt z klientami i usprawniać procesy.
+  </div>
+</details>
+
+<details>
+  <summary>W jakich branżach sprawdzają się te rozwiązania?</summary>
+  <div class="faq-answer">
+    Rozwiązania sprawdzają się m.in. w nieruchomościach, usługach,
+    medycynie, e-commerce, serwisach oraz wszędzie tam,
+    gdzie klienci często dzwonią lub piszą.
+  </div>
+</details>
+
+<details>
+  <summary>Czy mogę zmienić sposób działania systemu po wdrożeniu?</summary>
+  <div class="faq-answer">
+    Tak. System można modyfikować i rozwijać w dowolnym momencie,
+    dostosowując go do zmieniających się potrzeb firmy.
+  </div>
+</details>
+
+<details>
+  <summary>Czy oferujecie również tworzenie stron internetowych?</summary>
+  <div class="faq-answer">
+    Tak. Tworzymy nowoczesne strony internetowe, które wspierają
+    automatyzację procesów i ułatwiają kontakt z klientami. A to wszystko w bardzo atrakcyjnej cenie [już od 400zł]!
+  </div>
+</details>
+
+<details>
+  <summary>Jak rozpocząć współpracę?</summary>
+  <div class="faq-answer">
+    Wystarczy skontaktować się z nami. Omówimy Twoje potrzeby,
+    zaproponujemy rozwiązanie i przeprowadzimy Cię przez cały proces wdrożenia.
+  </div>
+</details>
+    </div>
+  </div>
+</section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="copyright">
+        &copy; 2026 Voiceflow, Inc.
+      </div>
+
+      <div class="footer-center">
+        <div>email@gmail.com</div>
+        <div>+48000000000</div>
+      </div>
+
+      <div class="social-icons">
+        <span class="social-icon" title="X / Twitter"></span>
+        <span class="social-icon" title="LinkedIn"></span>
+        <span class="social-icon" title="Discord"></span>
+        <span class="social-icon" title="YouTube"></span>
+        <span class="social-icon" title="GitHub"></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
