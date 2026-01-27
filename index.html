@@ -505,6 +505,42 @@
     }
 
     /* =========================
+   MOBILE MENU – DOMYŚLNIE UKRYTE
+========================= */
+.mobile-menu{
+  display: none;
+}
+
+/* =========================
+   MOBILE MENU – TYLKO TELEFON
+========================= */
+@media (max-width: 768px){
+
+  .mobile-menu{
+    background: #1F2428;
+    padding: 16px 20px;
+    flex-direction: column;
+  }
+
+  .mobile-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .mobile-menu a:last-child{
+    border-bottom: none;
+  }
+
+  /* OTWARTE MENU */
+  .mobile-menu.is-open{
+    display: flex;
+  }
+}
+
+    /* =========================
        MOBILE NAVBAR (ONLY PHONE)
        - jeden rząd
        - ukryj .nav-links
@@ -584,6 +620,8 @@
         flex-direction:column;
         align-items:center;
       }
+
+      
     }
   </style>
 </head>
@@ -1014,6 +1052,7 @@
 
 </body>
 </html>
+
 
 
 
