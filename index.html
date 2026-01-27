@@ -7,48 +7,82 @@
 
   <style>
 
-    /* HAMBURGER */
-.nav-burger{
-  display:none;
-  background:none;
-  border:none;
-  font-size:26px;
-  color:white;
-  cursor:pointer;
-}
+    /* =========================
+   MOBILE NAVBAR (ONLY PHONE)
+========================= */
+@media (max-width: 768px){
 
-/* MOBILE MENU */
-.mobile-menu{
-  display:none;
-  flex-direction:column;
-  background:#1F2428;
-  border-top:1px solid rgba(255,255,255,0.1);
-}
+  /* navbar = jeden rząd */
+  nav .container{
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 12px;
+    min-height: 56px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 
-.mobile-menu a{
-  color:white;
-  text-decoration:none;
-  padding:16px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  font-size:16px;
-}
+  /* LEWA STRONA */
+  .nav-left{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
 
-/* TELEFON */
-@media (max-width:768px){
-  .nav-links,
-  .phone-number,
+  /* logo mniejsze */
+  .logo{
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  /* chowamy linki (Strona główna / Kontakt) */
+  .nav-links{
+    display: none !important;
+  }
+
+  /* PRAWA STRONA */
+  .nav-right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  /* numer ma zostać */
+  .phone-number{
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: 13px;
+    opacity: 0.95;
+  }
+
+  /* chowamy przycisk Kontakt */
   .nav-right .btn{
-    display:none;
+    display: none !important;
   }
 
+  /* hamburger */
   .nav-burger{
-    display:block;
-  }
-
-  .mobile-menu.is-open{
-    display:flex;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
   }
 }
+
     /* RESET I PODSTAWY */
     *{
       margin:0;
@@ -993,6 +1027,7 @@ function toggleMobileMenu(){
 
 </body>
 </html>
+
 
 
 
