@@ -6,6 +6,49 @@
   <title>Platforma AI Automation</title>
 
   <style>
+
+    /* HAMBURGER */
+.nav-burger{
+  display:none;
+  background:none;
+  border:none;
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+.mobile-menu{
+  display:none;
+  flex-direction:column;
+  background:#1F2428;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-menu a{
+  color:white;
+  text-decoration:none;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  font-size:16px;
+}
+
+/* TELEFON */
+@media (max-width:768px){
+  .nav-links,
+  .phone-number,
+  .nav-right .btn{
+    display:none;
+  }
+
+  .nav-burger{
+    display:block;
+  }
+
+  .mobile-menu.is-open{
+    display:flex;
+  }
+}
     /* RESET I PODSTAWY */
     *{
       margin:0;
@@ -517,30 +560,59 @@
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <div class="container">
-      <div class="nav-left">
-        <div class="logo">
-          <img src="LogoStrona4.png" alt="RizTech AI - logo">
-        </div>
-
-        <div class="nav-links">
-          <a href="index.html">Strona główna</a>
-          <a href="kontakt.html">Kontakt</a>
-        </div>
+  
+<!-- NAVBAR -->
+<nav>
+  <div class="container">
+    <div class="nav-left">
+      <div class="logo">
+        <img src="LogoStrona4.png" alt="BizTech AI - logo">
       </div>
 
-      <div class="nav-right">
-        <div class="phone-number">
-            <img src="telefon.png" alt="Telefon">
-            <span>+48 000 000 000</span>
-        </div>
-        <a href="kontakt.html" class="btn">Kontakt</a>
+      <!-- LINKI DESKTOP -->
+      <div class="nav-links">
+        <a href="index.html">Strona główna</a>
+        <a href="kontakt.html">Kontakt</a>
       </div>
     </div>
-              <div class="nav-separator"></div>
-  </nav>
+
+    <div class="nav-right">
+      <div class="phone-number">
+        <img src="telefon.png" alt="Telefon">
+        <span>+48 000 000 000</span>
+      </div>
+
+      <a href="kontakt.html" class="btn">Kontakt</a>
+
+      <!-- HAMBURGER (TYLKO MOBILE) -->
+      <button
+        class="nav-burger"
+        type="button"
+        aria-label="Menu"
+        onclick="toggleMobileMenu()"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <script>
+function toggleMobileMenu(){
+  document
+    .getElementById("mobileMenu")
+    .classList.toggle("is-open");
+}
+</script>
+
+  <!-- MENU MOBILE -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Strona główna</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="privacy.html">Polityka prywatności</a>
+  </div>
+
+  <div class="nav-separator"></div>
+</nav>
 
   <!-- HERO SECTION -->
   <header class="hero">
@@ -921,6 +993,7 @@
 
 </body>
 </html>
+
 
 
 
