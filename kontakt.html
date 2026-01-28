@@ -170,6 +170,103 @@
       width:100%;
     }
 
+     /* =========================
+       MOBILE MENU – DOMYŚLNIE UKRYTE
+    ========================= */
+    .mobile-menu{
+      display: none;
+    }
+
+    /* =========================
+       MOBILE MENU – TYLKO TELEFON
+    ========================= */
+    @media (max-width: 768px){
+
+      .mobile-menu{
+        background: #1F2428;
+        padding: 16px 20px;
+        flex-direction: column;
+      }
+
+      .mobile-menu a{
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .mobile-menu a:last-child{
+        border-bottom: none;
+      }
+
+      /* OTWARTE MENU */
+      .mobile-menu.is-open{
+        display: flex;
+      }
+    }
+
+    /* =========================
+       MOBILE NAVBAR (ONLY PHONE)
+    ========================== */
+    @media (max-width: 768px){
+
+      /* navbar = jeden rząd */
+      nav .container{
+        flex-direction:row !important;
+        align-items:center;
+        justify-content:space-between;
+        flex-wrap:nowrap;
+        gap:12px;
+        min-height:56px;
+        padding-top:10px;
+        padding-bottom:10px;
+      }
+
+      .nav-left{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      .logo{
+        height:28px;
+        flex-shrink:0;
+      }
+
+      /* chowamy linki */
+      .nav-links{
+        display:none !important;
+      }
+
+      .nav-right{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      /* numer ma zostać */
+      .phone-number{
+        display:flex !important;
+        align-items:center;
+        gap:6px;
+        white-space:nowrap;
+        font-size:13px;
+        opacity:0.95;
+      }
+
+      /* chowamy przycisk Kontakt */
+      .nav-right .btn{
+        display:none !important;
+      }
+
+      /* hamburger */
+      .nav-burger{
+        display:inline-flex !important;
+      }
+
     .footer-separator{
       /* ZMIANA: Zamiast białego (255,255,255), dajemy szary (160,160,160) */
       border-top:1px dashed rgba(160, 160, 160, 0.6);
@@ -397,5 +494,6 @@
 
 </body>
 </html>
+
 
 
