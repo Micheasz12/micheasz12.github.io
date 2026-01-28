@@ -26,22 +26,35 @@
       background:#fff;
     }
 
-    /* --- POPRAWIONA LINA PIONOWA --- */
-    .vertical-line {
+    /* --- NOWE LINIE BOCZNE --- */
+    .side-line {
         position: fixed;
         top: 0;
         bottom: 0;
-        left: 50%; 
-        width: 0; 
+        width: 0;
         
-        /* ZMIANA: Ciemny kolor, bo większość tła strony jest biała */
-        border-left: 1px dashed rgba(0, 0, 0, 0.15); 
+        /* Styl linii: przerywana, szara (widoczna na jasnym i w miare na ciemnym) */
+        border-left: 1px dashed rgba(100, 100, 100, 0.25); 
         
-        /* ZMIANA: Linia na wierzch, aby nie była przykryta przez białe sekcje */
         z-index: 9999; 
-        
-        /* WAŻNE: Dzięki temu linia nie blokuje klikania w przyciski pod nią */
-        pointer-events: none; 
+        pointer-events: none; /* Klikanie przelatuje przez linię */
+    }
+
+    .side-line.left {
+        /* Środek ekranu (50%) minus połowa szerokości kontenera (600px) */
+        left: calc(50% - 600px); 
+    }
+
+    .side-line.right {
+        /* Środek ekranu (50%) plus połowa szerokości kontenera (600px) */
+        left: calc(50% + 600px); 
+    }
+
+    /* Na bardzo małych ekranach (telefony) chowamy linie, bo wchodzą na tekst */
+    @media (max-width: 1250px) {
+        .side-line {
+            display: none;
+        }
     }
 
     /* ZMIENNE */
@@ -60,7 +73,7 @@
 
     /* KLASY UŻYTKOWE */
     .container{
-      max-width:1200px;
+      max-width:1200px; /* To jest kluczowe dla pozycji linii */
       margin:0 auto;
       padding:0 20px;
       width:100%;
@@ -116,7 +129,7 @@
       color:var(--text-white);
       border-bottom:1px solid rgba(255,255,255,0.08);
       position: relative; 
-      z-index: 100; /* Navbar nad resztą */
+      z-index: 100;
     }
 
     nav .container{
@@ -673,8 +686,9 @@
 </head>
 <body>
 
-  <!-- ELEMENT TWORZĄCY LINIĘ (TERAZ NA WIERZCHU I CIEMNA) -->
-  <div class="vertical-line"></div>
+  <!-- ELEMENTY TWORZĄCE LINIE PO BOKACH -->
+  <div class="side-line left"></div>
+  <div class="side-line right"></div>
 
   <!-- NAVBAR -->
   <nav>
@@ -1099,21 +1113,6 @@
   </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
