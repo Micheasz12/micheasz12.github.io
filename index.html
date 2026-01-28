@@ -223,16 +223,18 @@
 
     /* separator POD nav, pełna szerokość */
     .nav-separator{
-      border-top:1px dashed rgba(255,255,255,0.18);
+      border-top:1px dashed rgba(160, 160, 160, 0.6);
       opacity:.8;
       width:100%;
     }
 
     .footer-separator{
-      border-top:2px dashed rgba(255,255,255,0.18);
-      opacity:.8;
-      width:100%;
-      background-color: #e5e7eb;
+      /* ZMIANA: Zamiast białego (255,255,255), dajemy szary (160,160,160) */
+      border-top:1px dashed rgba(160, 160, 160, 0.6);
+      opacity: .8;
+      width: 100%;
+      /* Opcjonalnie: usuń background-color jeśli tam był, żeby była tylko kreska */
+      background-color: transparent; 
     }
 
     /* =========================
@@ -1120,6 +1122,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
