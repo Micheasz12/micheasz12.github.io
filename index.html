@@ -26,6 +26,21 @@
       background:#fff;
     }
 
+            /* Stylizacja Linii */
+    .vertical-line {
+            /* Pozycjonowanie */
+            position: fixed; /* 'fixed' sprawia, że linia zostaje w miejscu podczas scrollowania */
+            top: 0;
+            bottom: 0;
+            left: 50%; /* 50% ustawia ją na środku strony. Zmień np. na 100px, żeby była z boku */
+            
+            /* Wygląd linii */
+            width: 0; /* Sama szerokość elementu to 0, bo rysujemy krawędź */
+            border-left: 1px dashed rgba(255, 255, 255, 0.2); /* 1px grubości, przerywana, półprzezroczysta biała */
+            
+            z-index: -1; /* Dzięki temu linia będzie POD tekstem/treścią */
+        }
+
     /* ZMIENNE */
     :root{
       --bg-dark:#1a1b21;
@@ -659,6 +674,9 @@
 </head>
 <body>
 
+      <!-- Element tworzący linię -->
+  <div class="vertical-line"></div>
+
   <!-- NAVBAR -->
   <nav>
     <div class="container">
@@ -1090,6 +1108,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
