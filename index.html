@@ -27,23 +27,21 @@
     }
 
     /* --- POPRAWIONE LINIE BOCZNE --- */
-    /* Zastosowałem mix-blend-mode: difference. 
-       Dzięki temu linia na górze (ciemne tło) będzie jasna, 
-       a na dole (białe tło) zrobi się ciemna. Będzie ciągła. */
     .side-line {
         position: fixed;
         top: 0;
         bottom: 0;
         width: 0;
         
-        /* Musi być czysta biel, aby efekt odwrócenia kolorów zadziałał najlepiej */
-        border-left: 1px dashed #ffffff; 
-        
-        /* To jest kluczowe - odwraca kolory tła pod linią */
-        mix-blend-mode: difference;
-        
-        /* Ustawiamy przezroczystość na 50%, żeby linia była subtelna */
-        opacity: 0.5;
+        /* 
+           TU JEST ZMIANA KOLORU:
+           Używamy rgba(160, 160, 160, 0.6).
+           To jest średni szary (srebrny).
+           - Na białym tle będzie wyglądał jak ciemniejszy szary.
+           - Na czarnym tle będzie wyglądał jak jasny szary.
+           Będzie widoczny wszędzie.
+        */
+        border-left: 1px dashed rgba(160, 160, 160, 0.6);
         
         z-index: 9999; 
         pointer-events: none; /* Klikanie przelatuje przez linię */
@@ -1122,7 +1120,6 @@
   </footer>
 </body>
 </html>
-
 
 
 
