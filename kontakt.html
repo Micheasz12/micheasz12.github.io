@@ -5,367 +5,253 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kontakt – Demo AI</title>
 
-  <!-- Fonty: Inter -->
+  <!-- Fonty -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      /* Kolory */
-      --bg-hero: #1F2428;
-      --bg-body: #ffffff;
+    :root{
+      --bg-hero:#1F2428;
+      --bg-body:#ffffff;
 
-      --primary-blue: #3b82f6;
-      --primary-blue-hover: #2563eb;
+      --primary-blue:#3b82f6;
+      --primary-blue-hover:#2563eb;
 
-      --text-white: #ffffff;
-      --text-dark: #111827;
-      --text-gray: #6b7280;
+      --text-white:#ffffff;
+      --text-dark:#111827;
+      --text-gray:#6b7280;
 
-      --field-bg: #f9fafb;
-      --field-border: #e5e7eb;
-      --field-focus-ring: rgba(37, 99, 235, 0.15);
+      --field-bg:#f9fafb;
+      --field-border:#e5e7eb;
+      --field-focus-ring:rgba(37,99,235,.15);
 
-      --divider-light: #e5e7eb;
-      --divider-dark: rgba(255, 255, 255, 0.1);
-
-      /* Separator (jak w 1 kodzie) */
-      --dash-gray: rgba(160, 160, 160, 0.6);
+      --divider-light:#e5e7eb;
+      --divider-dark:rgba(255,255,255,.1);
+      --dash-gray:rgba(160,160,160,.6);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-body);
-      color: var(--text-dark);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--bg-body);
+      color:var(--text-dark);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow-x:hidden;
     }
 
-    img { display: block; max-width: 100%; height: auto; }
-    a { text-decoration: none; transition: opacity 0.2s; }
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
 
     /* =========================
-       LINIE BOCZNE (jak w 1 kodzie)
+       LINIE BOCZNE
     ========================== */
-    .side-line {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 0;
-      border-left: 1px dashed var(--dash-gray);
-      z-index: 9999;
-      pointer-events: none;
+    .side-line{
+      position:fixed;
+      top:0;
+      bottom:0;
+      width:0;
+      border-left:1px dashed var(--dash-gray);
+      z-index:9999;
+      pointer-events:none;
     }
-    .side-line.left { left: calc(50% - 600px); }
-    .side-line.right { left: calc(50% + 600px); }
+    .side-line.left{left:calc(50% - 600px)}
+    .side-line.right{left:calc(50% + 600px)}
+    @media(max-width:1250px){.side-line{display:none}}
 
-    @media (max-width: 1250px) {
-      .side-line { display: none; }
-    }
-
-    /* UI ELEMENTS */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      width: 100%;
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 24px;
+      width:100%;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary-blue);
-      color: var(--text-white);
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.2s ease, transform 0.1s ease;
+    /* =========================
+       BUTTONS – JAK W 1 KODZIE
+    ========================== */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background-color:var(--primary-blue);
+      color:#fff;
+      padding:10px 20px;
+      border-radius:16px;
+      font-weight:700;
+      font-size:12px;
+      border:none;
+      cursor:pointer;
+      white-space:nowrap;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      transition:background .2s ease,transform .1s ease;
     }
-    .btn:hover { background: var(--primary-blue-hover); }
-    .btn:active { transform: scale(0.98); }
+    .btn:hover{
+      background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 100%);
+    }
+    .btn:active{transform:scale(.98)}
 
     /* =========================
        NAVBAR
     ========================== */
-    nav {
-      background-color: var(--bg-hero);
-      color: var(--text-white);
-      position: relative;
-      z-index: 100;
+    nav{
+      background:var(--bg-hero);
+      color:#fff;
+      position:relative;
+      z-index:100;
     }
 
-    .nav-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
+    .nav-content{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:72px;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 40px;
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:40px;
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 20px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .logo img { height: 32px; width: auto; }
+    .logo img{height:32px}
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
+    .nav-links{
+      display:flex;
+      gap:24px;
     }
-    .nav-links a {
-      color: rgba(255,255,255,0.85);
-      font-size: 14px;
-      font-weight: 500;
+    .nav-links a{
+      color:rgba(255,255,255,.85);
+      font-size:14px;
+      font-weight:500;
     }
-    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover{color:#fff}
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:20px;
     }
 
-    .phone-number {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
+    .phone-number{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      font-weight:500;
+      color:rgba(255,255,255,.9);
     }
-    .phone-number svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+    .phone-number svg{
+      width:18px;
+      height:18px;
+      fill:currentColor;
     }
 
-    /* BURGER ICON (Mobile) */
-    .nav-burger {
-      display: none;
-      background: rgba(255,255,255,0.1);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #fff;
-      transition: background 0.2s;
+    .nav-burger{
+      display:none;
+      background:rgba(255,255,255,.1);
+      border:none;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      color:#fff;
     }
-    .nav-burger:hover { background: rgba(255,255,255,0.2); }
-    .nav-burger svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; }
+    .nav-burger svg{
+      width:24px;
+      height:24px;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:2;
+    }
 
-    /* Separator pod Nav (jak w 1 kodzie) */
-    .nav-separator {
-      border-top: 1px dashed var(--dash-gray);
-      opacity: .8;
-      width: 100%;
+    .nav-separator{
+      border-top:1px dashed var(--dash-gray);
+      opacity:.8;
+    }
+
+    /* MOBILE MENU */
+    .mobile-menu{
+      display:none;
+      background:var(--bg-hero);
+      flex-direction:column;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    .mobile-menu.is-open{
+      display:flex;
+      max-height:300px;
+      padding-bottom:20px;
+    }
+    .mobile-menu a{
+      color:#fff;
+      padding:16px 24px;
+      border-bottom:1px solid rgba(255,255,255,.05);
     }
 
     /* =========================
-       MOBILE MENU
+       CONTENT
     ========================== */
-    .mobile-menu {
-      display: none;
-      background: var(--bg-hero);
-      padding: 0;
-      flex-direction: column;
-      border-bottom: 1px solid var(--divider-dark);
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.3s ease-in-out;
+    .page-wrapper{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:60px 0;
     }
 
-    .mobile-menu.is-open {
-      display: flex;
-      max-height: 300px;
-      padding-bottom: 20px;
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:80px;
+      max-width:1100px;
+      width:100%;
     }
 
-    .mobile-menu a {
-      color: #fff;
-      padding: 16px 24px;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .mobile-menu a:hover { background: rgba(255,255,255,0.05); }
-
-    /* =========================
-       PAGE CONTENT
-    ========================== */
-    .page-wrapper {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 60px 0;
+    h1{
+      font-size:42px;
+      font-weight:800;
+      margin-bottom:16px;
     }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 80px;
-      width: 100%;
-      max-width: 1100px;
+    .description{
+      color:var(--text-gray);
+      margin-bottom:32px;
+      max-width:480px;
     }
 
-    .small-header {
-      color: var(--primary-blue);
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
+    input,textarea{
+      width:100%;
+      padding:14px 16px;
+      background:var(--field-bg);
+      border:1px solid var(--field-border);
+      border-radius:10px;
+      font-size:15px;
+      margin-bottom:16px;
     }
 
-    h1 {
-      font-size: 42px;
-      line-height: 1.1;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-
-    .description {
-      font-size: 16px;
-      color: var(--text-gray);
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 480px;
-    }
-
-    .contact-form { max-width: 480px; }
-
-    .form-group { margin-bottom: 16px; }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 16px;
-      background: var(--field-bg);
-      border: 1px solid var(--field-border);
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      color: var(--text-dark);
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    input::placeholder, textarea::placeholder { color: #9ca3af; }
-
-    input:focus, textarea:focus {
-      background: #fff;
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 4px var(--field-focus-ring);
-    }
-
-    textarea { min-height: 120px; resize: vertical; }
-
-    .privacy-note {
-      font-size: 12px;
-      color: var(--text-gray);
-      margin: 12px 0 20px;
-      line-height: 1.5;
-    }
-    .privacy-note a {
-      color: var(--primary-blue);
-      text-decoration: underline;
-    }
-    .privacy-note a:hover { color: var(--primary-blue-hover); }
-
-    .submit-btn {
-      background: var(--primary-blue);
-      color: #fff;
-      border: none;
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.2s;
-    }
-    .submit-btn:hover { background: var(--primary-blue-hover); }
-
-    .right-side {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .stats-container {
-      display: flex;
-      flex-direction: column;
-      border-left: 2px solid var(--divider-light);
-      padding-left: 40px;
-    }
-
-    .stat-item {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--divider-light);
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-    }
-    .stat-item:first-child { padding-top: 0; }
-    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .stat-value {
-      font-size: 40px;
-      font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1;
-      min-width: 90px;
-    }
-
-    .stat-text {
-      font-size: 14px;
-      color: var(--text-gray);
-      line-height: 1.4;
-      font-weight: 500;
+    .submit-btn{
+      composes: btn;
     }
 
     /* =========================
-       FOOTER (jak w 1 kodzie)
+       FOOTER
     ========================== */
     .footer-separator{
       border-top:1px dashed var(--dash-gray);
-      opacity: .8;
-      width: 100%;
-      background-color: transparent;
+      opacity:.8;
     }
 
     footer{
-      background-color:#1F2428;
-      border-top:1px solid #e5e7eb;
+      background:#1F2428;
       padding:40px 0;
+      color:#fff;
       font-size:14px;
-      color:#FFFFFF;
     }
 
     footer .container{
@@ -375,231 +261,118 @@
       gap:20px;
     }
 
-    .footer-center{ text-align:center; }
-    .footer-center div{ margin:5px 0; }
+    .footer-center{text-align:center}
+    .footer-center div{margin:5px 0}
 
     .social-icons{
       display:flex;
       gap:15px;
-      align-items:center;
     }
-
-    .social-icons .icon{
-      width:28px;
-      height:28px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .social-icons img{
-      max-width:20px;
-      max-height:20px;
-      object-fit:contain;
-      opacity:.8;
-    }
-
-    .social-icons a:hover img{ opacity:1; }
+    .social-icons img{width:20px;opacity:.8}
+    .social-icons a:hover img{opacity:1}
 
     /* =========================
        RESPONSIVE
     ========================== */
-    @media (max-width: 960px) {
-      .content-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-
-      .right-side { justify-content: flex-start; }
-
-      .stats-container {
-        border-left: none;
-        border-top: 2px solid var(--divider-light);
-        padding-left: 0;
-        padding-top: 30px;
-        width: 100%;
-        max-width: 480px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links, .nav-right .btn { display: none; }
-      .nav-burger { display: flex; }
-      .nav-content { height: 60px; }
-
-      h1 { font-size: 32px; }
-      .page-wrapper { padding: 40px 0; }
-      .content-grid { gap: 40px; }
-
-      footer .container{
-        flex-direction:column;
-        align-items:center;
-      }
+    @media(max-width:768px){
+      .nav-links,.nav-right .btn{display:none}
+      .nav-burger{display:flex}
+      .content-grid{grid-template-columns:1fr;gap:40px}
+      h1{font-size:32px}
+      footer .container{flex-direction:column;align-items:center}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- LINIE PO BOKACH -->
-  <div class="side-line left"></div>
-  <div class="side-line right"></div>
+<div class="side-line left"></div>
+<div class="side-line right"></div>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="container">
-      <div class="nav-content">
-
-        <div class="nav-left">
-          <a class="logo" href="index.html">
-            <img src="LogoStrona4.png" alt="BizTech AI - logo">
-          </a>
-
-          <div class="nav-links">
-            <a href="index.html">Strona główna</a>
-            <a href="kontakt.html" style="color:#fff; opacity:1;">Kontakt</a>
-          </div>
+<nav>
+  <div class="container">
+    <div class="nav-content">
+      <div class="nav-left">
+        <a class="logo" href="index.html">
+          <img src="LogoStrona4.png" alt="BizTech AI">
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Strona główna</a>
+          <a href="kontakt.html" style="color:#fff">Kontakt</a>
         </div>
-
-        <div class="nav-right">
-          <div class="phone-number">
-            <svg viewBox="0 0 24 24">
-              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.28 1.12.27 2.33.42 3.57.42.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.15 2.45.42 3.57.08.35-.01.74-.27 1.02l-2.2 2.2z"/>
-            </svg>
-            <span>+48 537 695 493</span>
-          </div>
-
-          <a href="kontakt.html" class="btn">Kontakt</a>
-
-          <button class="nav-burger" aria-label="Menu">
-            <svg viewBox="0 0 24 24">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-
       </div>
-    </div>
 
-    <!-- Separator pod nav (jak w 1 kodzie) -->
-    <div class="nav-separator"></div>
-
-    <!-- Menu mobilne -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Strona główna</a>
-      <a href="kontakt.html">Kontakt</a>
-    </div>
-  </nav>
-
-  <!-- MAIN CONTENT -->
-  <div class="page-wrapper">
-    <div class="container">
-      <div class="content-grid">
-
-        <!-- Left Column: Form -->
-        <div class="left-side">
-          <div class="small-header">Dział sprzedaży</div>
-          <h1>Odkryj moc<br>automatyzacji AI</h1>
-          <p class="description">
-            Wypełnij formularz, a nasz ekspert skontaktuje się z Tobą w ciągu 24h, aby omówić, jak możemy usprawnić Twoje procesy.
-          </p>
-
-          <form class="contact-form">
-            <div class="form-group">
-              <input type="text" placeholder="Imię i nazwisko" required>
-            </div>
-
-            <div class="form-group">
-              <input type="email" placeholder="Służbowy adres e-mail *" required>
-            </div>
-
-            <div class="form-group">
-              <input type="tel" placeholder="Numer telefonu" required>
-            </div>
-
-            <div class="form-group">
-              <textarea placeholder="W czym możemy Ci pomóc?"></textarea>
-            </div>
-
-            <p class="privacy-note">
-              Wysyłając wiadomość, akceptujesz naszą <a href="#">Politykę Prywatności</a>. Twoje dane są u nas bezpieczne.
-            </p>
-
-            <button type="submit" class="submit-btn">
-              Wyślij wiadomość <span>&rarr;</span>
-            </button>
-          </form>
+      <div class="nav-right">
+        <div class="phone-number">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053..."/></svg>
+          <span>+48 537 695 493</span>
         </div>
-
-        <!-- Right Column: Stats -->
-        <div class="right-side">
-          <div class="stats-container">
-            <div class="stat-item">
-              <div class="stat-value">70%</div>
-              <div class="stat-text">Redukcji kosztów<br>operacyjnych</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">3x</div>
-              <div class="stat-text">Szybsza obsługa<br>zgłoszeń klienta</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">24/7</div>
-              <div class="stat-text">Dostępność usług<br>dzięki botom AI</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">40h+</div>
-              <div class="stat-text">Zaoszczędzone<br>tygodniowo</div>
-            </div>
-          </div>
-        </div>
-
+        <a href="kontakt.html" class="btn">Kontakt</a>
+        <button class="nav-burger">
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- FOOTER SEPARATOR + FOOTER (jak w 1 kodzie) -->
-  <div class="footer-separator"></div>
+  <div class="nav-separator"></div>
 
-  <footer>
-    <div class="container">
-      <div class="copyright">
-        &copy; 2026 BizTech AI. Wszelkie prawa zastrzeżone.
-      </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Strona główna</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</nav>
 
-      <div class="footer-center">
-        <div>kontakt@biztechai.pl</div>
-        <div>+48 537 695 493</div>
-      </div>
-
-      <div class="social-icons">
-        <a href="#" class="icon">
-          <img src="tiktok.png" alt="TikTok">
-        </a>
-        <a href="#" class="icon">
-          <img src="facebook.png" alt="Facebook">
-        </a>
-        <a href="#" class="icon">
-          <img src="instagram2.png" alt="Instagram">
-        </a>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="content-grid">
+      <div>
+        <h1>Odkryj moc<br>automatyzacji AI</h1>
+        <p class="description">
+          Wypełnij formularz, a nasz ekspert skontaktuje się z Tobą w ciągu 24h.
+        </p>
+        <form>
+          <input placeholder="Imię i nazwisko">
+          <input placeholder="Email">
+          <input placeholder="Telefon">
+          <textarea placeholder="W czym możemy pomóc?"></textarea>
+          <button class="btn">Wyślij wiadomość</button>
+        </form>
       </div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <!-- Scripts -->
-  <script>
-    // Menu mobilne
-    const burger = document.querySelector('.nav-burger');
-    const mobileMenu = document.getElementById('mobileMenu');
+<div class="footer-separator"></div>
 
-    burger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('is-open');
-    });
-  </script>
+<footer>
+  <div class="container">
+    <div>&copy; 2026 BizTech AI</div>
+    <div class="footer-center">
+      <div>kontakt@biztechai.pl</div>
+      <div>+48 537 695 493</div>
+    </div>
+    <div class="social-icons">
+      <a href="#"><img src="tiktok.png"></a>
+      <a href="#"><img src="facebook.png"></a>
+      <a href="#"><img src="instagram2.png"></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger=document.querySelector('.nav-burger');
+  const menu=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>menu.classList.toggle('is-open'));
+</script>
 
 </body>
 </html>
+
 
 
 
