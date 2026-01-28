@@ -26,20 +26,23 @@
       background:#fff;
     }
 
-            /* Stylizacja Linii */
+    /* --- POPRAWIONA LINA PIONOWA --- */
     .vertical-line {
-            /* Pozycjonowanie */
-            position: fixed; /* 'fixed' sprawia, że linia zostaje w miejscu podczas scrollowania */
-            top: 0;
-            bottom: 0;
-            left: 50%; /* 50% ustawia ją na środku strony. Zmień np. na 100px, żeby była z boku */
-            
-            /* Wygląd linii */
-            width: 0; /* Sama szerokość elementu to 0, bo rysujemy krawędź */
-            border-left: 1px dashed rgba(255, 255, 255, 0.2); /* 1px grubości, przerywana, półprzezroczysta biała */
-            
-            z-index: -1; /* Dzięki temu linia będzie POD tekstem/treścią */
-        }
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 50%; 
+        width: 0; 
+        
+        /* ZMIANA: Ciemny kolor, bo większość tła strony jest biała */
+        border-left: 1px dashed rgba(0, 0, 0, 0.15); 
+        
+        /* ZMIANA: Linia na wierzch, aby nie była przykryta przez białe sekcje */
+        z-index: 9999; 
+        
+        /* WAŻNE: Dzięki temu linia nie blokuje klikania w przyciski pod nią */
+        pointer-events: none; 
+    }
 
     /* ZMIENNE */
     :root{
@@ -80,30 +83,30 @@
     }
     .btn:hover{ background-color:var(--primary-blue-hover); }
 
-.social-icons{
-  display:flex;
-  gap:16px;
-  align-items:center;
-}
+    .social-icons{
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
 
-.social-icons .icon{
-  width:28px;
-  height:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+    .social-icons .icon{
+      width:28px;
+      height:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-.social-icons img{
-  max-width:20px;
-  max-height:20px;
-  object-fit:contain;
-  opacity:.8;
-}
+    .social-icons img{
+      max-width:20px;
+      max-height:20px;
+      object-fit:contain;
+      opacity:.8;
+    }
 
-.social-icons a:hover img{
-  opacity:1;
-}
+    .social-icons a:hover img{
+      opacity:1;
+    }
 
     /* =========================
        NAVBAR (DESKTOP DEFAULT)
@@ -112,6 +115,8 @@
       background-color:var(--bg-hero);
       color:var(--text-white);
       border-bottom:1px solid rgba(255,255,255,0.08);
+      position: relative; 
+      z-index: 100; /* Navbar nad resztą */
     }
 
     nav .container{
@@ -552,47 +557,43 @@
     }
 
     /* =========================
-   MOBILE MENU – DOMYŚLNIE UKRYTE
-========================= */
-.mobile-menu{
-  display: none;
-}
+       MOBILE MENU – DOMYŚLNIE UKRYTE
+    ========================= */
+    .mobile-menu{
+      display: none;
+    }
 
-/* =========================
-   MOBILE MENU – TYLKO TELEFON
-========================= */
-@media (max-width: 768px){
+    /* =========================
+       MOBILE MENU – TYLKO TELEFON
+    ========================= */
+    @media (max-width: 768px){
 
-  .mobile-menu{
-    background: #1F2428;
-    padding: 16px 20px;
-    flex-direction: column;
-  }
+      .mobile-menu{
+        background: #1F2428;
+        padding: 16px 20px;
+        flex-direction: column;
+      }
 
-  .mobile-menu a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
+      .mobile-menu a{
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
 
-  .mobile-menu a:last-child{
-    border-bottom: none;
-  }
+      .mobile-menu a:last-child{
+        border-bottom: none;
+      }
 
-  /* OTWARTE MENU */
-  .mobile-menu.is-open{
-    display: flex;
-  }
-}
+      /* OTWARTE MENU */
+      .mobile-menu.is-open{
+        display: flex;
+      }
+    }
 
     /* =========================
        MOBILE NAVBAR (ONLY PHONE)
-       - jeden rząd
-       - ukryj .nav-links
-       - ukryj przycisk .btn
-       - pokaż hamburger
     ========================== */
     @media (max-width: 768px){
 
@@ -620,7 +621,7 @@
         flex-shrink:0;
       }
 
-      /* chowamy linki (Strona główna / Kontakt) */
+      /* chowamy linki */
       .nav-links{
         display:none !important;
       }
@@ -652,7 +653,7 @@
         display:inline-flex !important;
       }
 
-      /* reszta Twoich mobile zmian (hero/footer) — bez psucia navbaru */
+      /* reszta zmian mobile */
       .hero .container{
         grid-template-columns:1fr;
         text-align:center;
@@ -667,14 +668,12 @@
         flex-direction:column;
         align-items:center;
       }
-
-      
     }
   </style>
 </head>
 <body>
 
-      <!-- Element tworzący linię -->
+  <!-- ELEMENT TWORZĄCY LINIĘ (TERAZ NA WIERZCHU I CIEMNA) -->
   <div class="vertical-line"></div>
 
   <!-- NAVBAR -->
@@ -746,9 +745,6 @@
         <h2>Jak pomagamy firmom</h2>
         <p>Poniżej przedstawiamy przykładowe obszary, w których wspieramy firmy. Każde wdrożenie dopasowujemy indywidualnie, automatyzując także inne procesy zgodnie z potrzebami Twojego biznesu.</p>
       </div>
-
-      <!-- (jeśli nie chcesz kreski – usuń separator albo zostaw zakomentowany) -->
-      <!-- <div class="separator"></div> -->
 
       <div class="dark-cards-grid">
         <div class="dark-card">
@@ -929,33 +925,28 @@
   function toggleAudio(button) {
     const src = button.getAttribute("data-audio");
 
-    // Kliknięto INNY przycisk niż aktualny
     if (currentButton && currentButton !== button) {
       setBtn(currentButton, false);
       audio.pause();
-      audio.currentTime = 0; // resetujemy poprzednie nagranie
+      audio.currentTime = 0;
     }
 
-    // Jeśli zmienia się źródło audio → ustaw nowe i start od początku
     if (currentSrc !== src) {
       audio.src = src;
       audio.currentTime = 0;
       currentSrc = src;
     }
 
-    // Pauza / wznowienie (bez resetu czasu)
     if (audio.paused) {
       audio.play();
       setBtn(button, true);
       currentButton = button;
     } else {
-      audio.pause();          // PAUZA (bez currentTime = 0)
+      audio.pause();
       setBtn(button, false);
-      // currentButton zostaje — żeby kolejne kliknięcie wznowiło
     }
   }
 
-  // Gdy audio się skończy — reset ikony
   audio.addEventListener("ended", () => {
     if (currentButton) setBtn(currentButton, false);
     currentButton = null;
@@ -1108,7 +1099,6 @@
   </footer>
 </body>
 </html>
-
 
 
 
