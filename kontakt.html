@@ -5,33 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kontakt – Demo AI</title>
 
-  <!-- Fonty -->
+  <!-- Fonty: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --bg-hero:#1F2428;
       --bg-body:#ffffff;
-
       --primary-blue:#3b82f6;
       --primary-blue-hover:#2563eb;
-
       --text-white:#ffffff;
       --text-dark:#111827;
       --text-gray:#6b7280;
-
       --field-bg:#f9fafb;
       --field-border:#e5e7eb;
       --field-focus-ring:rgba(37,99,235,.15);
-
       --divider-light:#e5e7eb;
       --divider-dark:rgba(255,255,255,.1);
       --dash-gray:rgba(160,160,160,.6);
     }
 
-    *{margin:0;padding:0;box-sizing:border-box}
+    *{box-sizing:border-box;margin:0;padding:0}
+
     body{
       font-family:'Inter',sans-serif;
       background:var(--bg-body);
@@ -42,7 +39,7 @@
       overflow-x:hidden;
     }
 
-    img{max-width:100%;display:block}
+    img{display:block;max-width:100%}
     a{text-decoration:none}
 
     /* =========================
@@ -71,12 +68,13 @@
     /* =========================
        BUTTONS – JAK W 1 KODZIE
     ========================== */
-    .btn{
+    .btn,
+    .submit-btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       background-color:var(--primary-blue);
-      color:#fff;
+      color:white;
       padding:10px 20px;
       border-radius:16px;
       font-weight:700;
@@ -88,16 +86,22 @@
       letter-spacing:1px;
       transition:background .2s ease,transform .1s ease;
     }
-    .btn:hover{
+
+    .btn:hover,
+    .submit-btn:hover{
       background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 100%);
     }
-    .btn:active{transform:scale(.98)}
+
+    .btn:active,
+    .submit-btn:active{
+      transform:scale(.98);
+    }
 
     /* =========================
        NAVBAR
     ========================== */
     nav{
-      background:var(--bg-hero);
+      background-color:var(--bg-hero);
       color:#fff;
       position:relative;
       z-index:100;
@@ -122,11 +126,13 @@
       display:flex;
       gap:24px;
     }
+
     .nav-links a{
       color:rgba(255,255,255,.85);
       font-size:14px;
       font-weight:500;
     }
+
     .nav-links a:hover{color:#fff}
 
     .nav-right{
@@ -143,6 +149,7 @@
       font-weight:500;
       color:rgba(255,255,255,.9);
     }
+
     .phone-number svg{
       width:18px;
       height:18px;
@@ -161,6 +168,7 @@
       cursor:pointer;
       color:#fff;
     }
+
     .nav-burger svg{
       width:24px;
       height:24px;
@@ -183,11 +191,13 @@
       overflow:hidden;
       transition:max-height .3s ease;
     }
+
     .mobile-menu.is-open{
       display:flex;
       max-height:300px;
       padding-bottom:20px;
     }
+
     .mobile-menu a{
       color:#fff;
       padding:16px 24px;
@@ -209,21 +219,36 @@
       display:grid;
       grid-template-columns:1.2fr .8fr;
       gap:80px;
-      max-width:1100px;
       width:100%;
+      max-width:1100px;
+    }
+
+    .small-header{
+      color:var(--primary-blue);
+      text-transform:uppercase;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.05em;
+      margin-bottom:12px;
     }
 
     h1{
       font-size:42px;
+      line-height:1.1;
       font-weight:800;
       margin-bottom:16px;
     }
 
     .description{
+      font-size:16px;
       color:var(--text-gray);
       margin-bottom:32px;
       max-width:480px;
     }
+
+    .contact-form{max-width:480px}
+
+    .form-group{margin-bottom:16px}
 
     input,textarea{
       width:100%;
@@ -232,11 +257,58 @@
       border:1px solid var(--field-border);
       border-radius:10px;
       font-size:15px;
-      margin-bottom:16px;
+      color:var(--text-dark);
+      outline:none;
     }
 
-    .submit-btn{
-      composes: btn;
+    textarea{min-height:120px;resize:vertical}
+
+    .privacy-note{
+      font-size:12px;
+      color:var(--text-gray);
+      margin:12px 0 20px;
+      line-height:1.5;
+    }
+
+    .privacy-note a{
+      color:var(--primary-blue);
+      text-decoration:underline;
+    }
+
+    /* RIGHT SIDE STATS */
+    .right-side{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+    }
+
+    .stats-container{
+      display:flex;
+      flex-direction:column;
+      border-left:2px solid var(--divider-light);
+      padding-left:40px;
+    }
+
+    .stat-item{
+      padding:24px 0;
+      border-bottom:1px solid var(--divider-light);
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
+
+    .stat-item:last-child{border-bottom:none}
+
+    .stat-value{
+      font-size:40px;
+      font-weight:800;
+      min-width:90px;
+    }
+
+    .stat-text{
+      font-size:14px;
+      color:var(--text-gray);
+      font-weight:500;
     }
 
     /* =========================
@@ -268,16 +340,31 @@
       display:flex;
       gap:15px;
     }
-    .social-icons img{width:20px;opacity:.8}
+
+    .social-icons img{
+      width:20px;
+      opacity:.8;
+    }
+
     .social-icons a:hover img{opacity:1}
 
-    /* =========================
-       RESPONSIVE
-    ========================== */
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .content-grid{
+        grid-template-columns:1fr;
+        gap:60px;
+      }
+      .stats-container{
+        border-left:none;
+        border-top:2px solid var(--divider-light);
+        padding-left:0;
+        padding-top:30px;
+      }
+    }
+
     @media(max-width:768px){
       .nav-links,.nav-right .btn{display:none}
       .nav-burger{display:flex}
-      .content-grid{grid-template-columns:1fr;gap:40px}
       h1{font-size:32px}
       footer .container{flex-direction:column;align-items:center}
     }
@@ -292,6 +379,7 @@
 <nav>
   <div class="container">
     <div class="nav-content">
+
       <div class="nav-left">
         <a class="logo" href="index.html">
           <img src="LogoStrona4.png" alt="BizTech AI">
@@ -304,10 +392,14 @@
 
       <div class="nav-right">
         <div class="phone-number">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053..."/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.28 1.12.27 2.33.42 3.57.42.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.15 2.45.42 3.57.08.35-.01.74-.27 1.02l-2.2 2.2z"/>
+          </svg>
           <span>+48 537 695 493</span>
         </div>
+
         <a href="kontakt.html" class="btn">Kontakt</a>
+
         <button class="nav-burger">
           <svg viewBox="0 0 24 24">
             <line x1="3" y1="12" x2="21" y2="12"/>
@@ -316,6 +408,7 @@
           </svg>
         </button>
       </div>
+
     </div>
   </div>
 
@@ -330,19 +423,59 @@
 <div class="page-wrapper">
   <div class="container">
     <div class="content-grid">
-      <div>
+
+      <div class="left-side">
+        <div class="small-header">Dział sprzedaży</div>
         <h1>Odkryj moc<br>automatyzacji AI</h1>
         <p class="description">
           Wypełnij formularz, a nasz ekspert skontaktuje się z Tobą w ciągu 24h.
         </p>
-        <form>
-          <input placeholder="Imię i nazwisko">
-          <input placeholder="Email">
-          <input placeholder="Telefon">
-          <textarea placeholder="W czym możemy pomóc?"></textarea>
-          <button class="btn">Wyślij wiadomość</button>
+
+        <form class="contact-form">
+          <div class="form-group">
+            <input placeholder="Imię i nazwisko">
+          </div>
+          <div class="form-group">
+            <input placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input placeholder="Telefon">
+          </div>
+          <div class="form-group">
+            <textarea placeholder="W czym możemy pomóc?"></textarea>
+          </div>
+
+          <p class="privacy-note">
+            Wysyłając wiadomość, akceptujesz <a href="#">Politykę Prywatności</a>.
+          </p>
+
+          <button type="submit" class="submit-btn">
+            Wyślij wiadomość →
+          </button>
         </form>
       </div>
+
+      <div class="right-side">
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-value">70%</div>
+            <div class="stat-text">Redukcji kosztów<br>operacyjnych</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">3x</div>
+            <div class="stat-text">Szybsza obsługa<br>zgłoszeń klienta</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-text">Dostępność usług<br>dzięki botom AI</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">40h+</div>
+            <div class="stat-text">Zaoszczędzone<br>tygodniowo</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -372,6 +505,7 @@
 
 </body>
 </html>
+
 
 
 
