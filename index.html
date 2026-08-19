@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>THE GOLDEN OAK | Fine Dining & Luxury Menu</title>
-  <meta name="description" content="Ekskluzywne menu restauracji The Golden Oak - kuchnia autorska, świeże składniki i wykwintne smaki." />
+  <meta name="description" content="Ekskluzywne menu restauracji The Golden Oak - kuchnia autorska, świeże składniki i wykwintne smaki z podglądem dań w 3D / AR." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,11 +17,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Canvas Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
-  <script
-  type="module"
-  src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
-</script>
+  <!-- Google Model Viewer (3D & AR for .glb on Phones and Web) -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -62,6 +59,18 @@
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
+    }
+    model-viewer {
+      --poster-color: transparent;
+      --progress-bar-color: #f59e0b;
+      --progress-bar-height: 3px;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.8); }
+    }
+    .pulse-gold {
+      animation: pulseGlow 2.5s infinite;
     }
   </style>
 </head>
@@ -169,7 +178,7 @@
       <div class="flex items-center justify-center gap-3 text-amber-500/60 my-1">
         <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-500/50"></div>
         <span class="text-[10px] uppercase font-cinzel tracking-[0.25em] text-amber-200/75">
-          Fine Dining & Bar
+          Fine Dining & Bar • 3D / AR Menu
         </span>
         <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-amber-500/50"></div>
       </div>
@@ -253,19 +262,19 @@
     <footer class="mt-14 pt-8 border-t border-neutral-800/80 text-center space-y-4 text-xs text-neutral-400">
       <div class="flex flex-wrap items-center justify-center gap-6 text-amber-400/80 font-cinzel">
         <span class="flex items-center gap-1.5">
-          <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
-          Michelin Guide 2026 Recommended
+          <i data-lucide="box" class="w-4 h-4 text-amber-400"></i>
+          Podgląd 3D & Rozszerzona Rzeczywistość (AR)
         </span>
         <span class="flex items-center gap-1.5">
-          <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
-          Chef's Organic Sourcing
+          <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+          Michelin Guide 2026 Recommended
         </span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto pt-2 text-[11px] text-neutral-400">
         <div class="flex items-center justify-center gap-1.5 bg-neutral-900/50 p-2.5 rounded-xl border border-neutral-800/60">
           <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>12:00 – 23:30 (Daily)</span>
+          <span>12:00 – 23:30 (Codziennie)</span>
         </div>
         <div class="flex items-center justify-center gap-1.5 bg-neutral-900/50 p-2.5 rounded-xl border border-neutral-800/60">
           <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
@@ -319,6 +328,128 @@
     </button>
   </div>
 
+  <!-- ==================== MODAL: 3D / AR .GLB VIEWER ==================== -->
+  <div id="model3dModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-lg">
+    <div class="fixed inset-0" onclick="close3dModal()"></div>
+    <div class="relative z-10 w-full max-w-xl max-h-[95vh] bg-[#121218] border border-amber-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden text-neutral-100">
+      
+      <!-- Top Bar -->
+      <div class="p-4 sm:p-5 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/80">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm">
+            <i data-lucide="box" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 id="model3dTitle" class="font-serif text-lg sm:text-xl font-bold text-neutral-100">Podgląd Dania 3D</h3>
+              <span class="px-2 py-0.5 text-[9px] font-extrabold uppercase rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">.GLB / AR</span>
+            </div>
+            <p id="model3dSub" class="text-xs text-neutral-400 font-medium">Obracaj palcem 360° lub wyświetl w AR na swoim stole</p>
+          </div>
+        </div>
+        <button onclick="close3dModal()" class="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white border border-neutral-700 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- 3D Viewport with <model-viewer> -->
+      <div class="relative flex-1 w-full min-h-[360px] sm:min-h-[420px] bg-gradient-to-b from-[#181822] via-[#101015] to-[#0c0c10] flex items-center justify-center overflow-hidden">
+        
+        <!-- Background Lighting Grid Accent -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <!-- Google Model Viewer -->
+        <model-viewer
+          id="activeModelViewer"
+          src=""
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          camera-controls
+          auto-rotate
+          rotation-per-second="25deg"
+          shadow-intensity="1.5"
+          shadow-softness="0.8"
+          exposure="1.1"
+          environment-image="neutral"
+          interaction-prompt="auto"
+          class="w-full h-full min-h-[360px] sm:min-h-[420px] cursor-grab active:cursor-grabbing"
+        >
+          <!-- Custom AR Launch Button inside model-viewer -->
+          <button
+            slot="ar-button"
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-black font-bold text-xs flex items-center gap-2 shadow-xl shadow-amber-500/30 border border-yellow-200 active:scale-95 transition-transform"
+          >
+            <i data-lucide="view" class="w-4 h-4"></i>
+            <span id="arPromptText">Wyświetl na stole (AR)</span>
+          </button>
+
+          <!-- Loading Indicator -->
+          <div slot="progress-bar" class="absolute inset-x-0 bottom-0 h-1 bg-amber-500 animate-pulse"></div>
+        </model-viewer>
+
+        <!-- Floating 3D Instructions Badge -->
+        <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-neutral-800 text-[11px] text-amber-200/90 flex items-center gap-2 pointer-events-none">
+          <i data-lucide="move-3d" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Dotknij i przesuwaj palcem, aby obrócić</span>
+        </div>
+
+        <!-- Reset Camera & Auto-Rotate Toggle Buttons -->
+        <div class="absolute top-3 right-3 flex flex-col gap-1.5 z-20">
+          <button
+            onclick="toggleAutoRotate()"
+            id="toggleRotateBtn"
+            title="Włącz / wyłącz obracanie"
+            class="p-2 rounded-xl bg-neutral-900/80 backdrop-blur-md text-amber-300 hover:bg-neutral-800 border border-neutral-700/80 transition-colors"
+          >
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+          </button>
+          <button
+            onclick="reset3dCamera()"
+            title="Zresetuj kamerę"
+            class="p-2 rounded-xl bg-neutral-900/80 backdrop-blur-md text-neutral-300 hover:text-white hover:bg-neutral-800 border border-neutral-700/80 transition-colors"
+          >
+            <i data-lucide="focus" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer / Dish Info & Actions -->
+      <div class="p-4 bg-[#0d0d12] border-t border-neutral-800/80 space-y-3">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-xs text-neutral-300">
+            <span class="text-amber-400 font-bold font-serif text-base" id="model3dPrice">$0.00</span>
+            <span>•</span>
+            <span id="model3dCalories" class="text-neutral-400">0 kcal</span>
+          </div>
+
+          <div class="text-[11px] text-neutral-400 flex items-center gap-1">
+            <i data-lucide="file-code" class="w-3 h-3 text-amber-400"></i>
+            <span id="model3dFileName" class="font-mono text-amber-200/90">model.glb</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <button
+            onclick="triggerArMode()"
+            class="flex-1 py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-black font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-98 transition-transform"
+          >
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+            <span id="openArBtnText">Zobacz w AR na telefonie</span>
+          </button>
+          
+          <button
+            id="modelAddToCartBtn"
+            onclick="addModelDishToCart()"
+            class="py-3 px-4 rounded-2xl bg-neutral-800 hover:bg-neutral-700 text-amber-300 border border-amber-500/30 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors"
+          >
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span id="addFromModelBtnText">Zamów danie</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== MODAL: DISH DETAIL ==================== -->
   <div id="dishModal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-md">
     <div class="fixed inset-0" onclick="closeDishModal()"></div>
@@ -332,6 +463,15 @@
           <img id="modalDishImg" src="" alt="" class="w-full h-full object-cover rounded-full" />
         </div>
         <div id="modalDishBadge" class="absolute bottom-4 left-4"></div>
+
+        <!-- 3D Preview floating trigger button on photo -->
+        <button
+          onclick="open3dModalFromActive()"
+          class="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-amber-500/50 text-amber-300 hover:bg-amber-500 hover:text-black text-xs font-bold flex items-center gap-1.5 shadow-lg transition-all"
+        >
+          <i data-lucide="box" class="w-3.5 h-3.5"></i>
+          <span>Model 3D / AR</span>
+        </button>
       </div>
 
       <div class="p-6 space-y-5">
@@ -430,11 +570,11 @@
           </div>
           <div class="flex items-center gap-2">
             <button onclick="changeSplit(-1)" class="p-1 rounded-md bg-neutral-800 text-neutral-300 hover:text-white">
-              <i data-lucide="minus" class="w-3 h-3"></i>
+              <i data-lucide="minus" class="w-3.5 h-3.5"></i>
             </button>
             <span id="splitDisplay" class="font-bold text-amber-300 min-w-[20px] text-center">1 os.</span>
             <button onclick="changeSplit(1)" class="p-1 rounded-md bg-neutral-800 text-neutral-300 hover:text-white">
-              <i data-lucide="plus" class="w-3 h-3"></i>
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
             </button>
           </div>
         </div>
@@ -526,7 +666,7 @@
       { id: 'chef', name: "CHEF'S TABLE", namePl: 'SPECJALNOŚCI SZEFA', icon: 'sparkles' },
     ];
 
-    // Dishes Data
+    // Dishes Data with specific .GLB files mapped to ./models/
     const DISHES = [
       {
         id: 'starter-1',
@@ -541,6 +681,7 @@
         dietary: 'non-veg',
         badge: 'NEW',
         image: 'https://images.unsplash.com/photo-1592417817098-8f3d6910985c?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/burrata-prosciutto.glb',
         ingredients: ['Italian Burrata', 'Prosciutto San Daniele', 'Heirloom Tomatoes', 'Fig Balsamic Glaze', 'Fresh Basil'],
         ingredientsPl: ['Włoska Burrata', 'Szynka San Daniele', 'Pomidorki Heirloom', 'Figowa redukcja balsamiczna', 'Świeża bazylia'],
         prepTime: '10-12 min',
@@ -557,6 +698,7 @@
         calories: 380,
         dietary: 'veg',
         image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/truffle-dumplings.glb',
         ingredients: ['Forest Chanterelles', 'Black Winter Truffle', 'Parmigiano Reggiano 24m', 'Sage Butter'],
         ingredientsPl: ['Leśne Kurki', 'Czarna Trufla Zimowa', 'Parmigiano Reggiano 24 m-ce', 'Masło szałwiowe'],
         prepTime: '12-15 min',
@@ -574,6 +716,7 @@
         dietary: 'seafood',
         badge: 'CHEF',
         image: 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/lobster-thermidor.glb',
         ingredients: ['Atlantic Lobster', 'French Cognac', 'Dijon Mustard', 'Gruyère Cheese', 'Fresh Herbs'],
         ingredientsPl: ['Homar Atlantycki', 'Koniak Francuski', 'Musztarda Dijon', 'Ser Gruyère', 'Świeże zioła'],
         prepTime: '15-18 min',
@@ -592,48 +735,31 @@
         dietary: 'non-veg',
         badge: 'STAR',
         image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/beef-tartare.glb',
         ingredients: ['Black Angus Tenderloin', 'Cured Egg Yolk', 'Cornichons & Shallots', 'Dijon Capers', '24k Edible Gold Leaf'],
         ingredientsPl: ['Polędwica Black Angus', 'Żółtko marynowane', 'Korniszony i szalotka', 'Kapary Dijon', '24k Złoto jadalne'],
         prepTime: '10 min',
         winePairing: 'Chianti Classico Gran Selezione'
       },
-{
-  id: 'main-1',
-  name: 'A5 Miyazaki Wagyu Ribeye',
-  namePl: 'Miyazaki Wagyu A5 Ribeye',
-  categoryId: 'mains',
-
-  description: 'Pure Japanese A5 Wagyu with extraordinary marbling, served with smoked parsnip mousseline and roasted bone marrow demi-glace.',
-  descriptionPl: 'Japońska wołowina Wagyu klasy A5 o idealnym marmurkowaniu, mus z pasternaku i sos demi-glace na pieczonym szpiku.',
-
-  price: 98.00,
-  originalPrice: 110.00,
-  calories: 780,
-  dietary: 'non-veg',
-  badge: 'CHEF',
-
-  image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80',
-
-  // ⭐ MODEL 3D
-  model: './models/miyazaki-wagyu.glb',
-
-  ingredients: [
-    'Miyazaki Wagyu Ribeye A5',
-    'Smoked Parsnip Puree',
-    'Roasted Bone Marrow Jus',
-    'Maldon Smoked Salt'
-  ],
-
-  ingredientsPl: [
-    'Stek Wagyu A5',
-    'Puree z pasternaku',
-    'Sos demi-glace ze szpiku',
-    'Sól wędzona Maldon'
-  ],
-
-  prepTime: '20-25 min',
-  winePairing: 'Château Margaux Grand Cru Classé 2018'
-},
+      {
+        id: 'main-1',
+        name: 'A5 Miyazaki Wagyu Ribeye',
+        namePl: 'Miyazaki Wagyu A5 Ribeye',
+        categoryId: 'mains',
+        description: 'Pure Japanese A5 Wagyu with extraordinary marbling, served with smoked parsnip mousseline and roasted bone marrow demi-glace.',
+        descriptionPl: 'Japońska wołowina Wagyu klasy A5 o idealnym marmurkowaniu, mus z pasternaku i sos demi-glace na pieczonym szpiku.',
+        price: 98.00,
+        originalPrice: 110.00,
+        calories: 780,
+        dietary: 'non-veg',
+        badge: 'CHEF',
+        image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/wagyu-ribeye.glb',
+        ingredients: ['Miyazaki Wagyu Ribeye A5', 'Smoked Parsnip Puree', 'Roasted Bone Marrow Jus', 'Maldon Smoked Salt'],
+        ingredientsPl: ['Stek Wagyu A5', 'Puree z pasternaku', 'Sos demi-glace ze szpiku', 'Sól wędzona Maldon'],
+        prepTime: '20-25 min',
+        winePairing: 'Château Margaux Grand Cru Classé 2018'
+      },
       {
         id: 'burger-1',
         name: 'The Golden Oak Wagyu Truffle Burger',
@@ -647,6 +773,7 @@
         dietary: 'non-veg',
         badge: 'STAR',
         image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/wagyu-burger.glb',
         ingredients: ['Wagyu Beef Patty (220g)', 'Aged Comte Cheese', 'Truffle Mayo', 'Caramelized Onion Jam'],
         ingredientsPl: ['Wołowina Wagyu (220g)', 'Dojrzały Ser Comte', 'Sos truflowy', 'Konfitura z cebuli'],
         prepTime: '15 min',
@@ -664,6 +791,7 @@
         dietary: 'veg',
         badge: 'STAR',
         image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=80',
+        modelGlb: './models/golden-sphere-tiramisu.glb',
         ingredients: ['Valrhona 70% Chocolate', 'Italian Mascarpone', 'Illy Espresso', '24K Gold Leaf'],
         ingredientsPl: ['Czekolada Valrhona 70%', 'Włoskie Mascarpone', 'Espresso Illy', 'Złoto 24K'],
         prepTime: '8 min',
@@ -681,9 +809,11 @@
     let viewMode = 'list';
     let cart = [];
     let activeModalDish = null;
+    let active3dDish = null;
     let modalQty = 1;
     let selectedTip = 10;
     let splitGuests = 1;
+    let isAutoRotating = true;
 
     // Currency Formatting
     function formatPrice(amount) {
@@ -803,19 +933,32 @@
               </div>
 
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="font-serif text-base sm:text-lg font-bold text-neutral-100 group-hover:text-amber-300 transition-colors leading-snug">
-                  ${title} <span class="text-sm font-normal ml-0.5">${emoji}</span>
-                </h3>
+                <div class="flex items-center gap-1.5">
+                  <h3 class="font-serif text-base sm:text-lg font-bold text-neutral-100 group-hover:text-amber-300 transition-colors leading-snug truncate">
+                    ${title}
+                  </h3>
+                  <span class="text-sm font-normal">${emoji}</span>
+                </div>
                 <p class="text-xs text-neutral-400 font-medium mt-0.5">${dish.calories} ${currentLang === 'pl' ? 'Kalorii' : 'Calories'} • ${dish.prepTime}</p>
                 <p class="text-[11px] text-neutral-400 line-clamp-1 mt-1 font-normal">${desc}</p>
-                <div class="flex items-center gap-2 mt-2">
+                
+                <div class="flex items-center gap-2.5 mt-2 flex-wrap">
                   ${dish.originalPrice ? `<span class="text-xs sm:text-sm text-neutral-400 line-through font-serif">${formatPrice(dish.originalPrice)}</span>` : ''}
                   <span class="font-serif text-base sm:text-lg font-bold text-amber-300 tracking-wide">${formatPrice(dish.price)}</span>
+                  
+                  <!-- 3D / AR Button -->
+                  <button
+                    onclick="open3dModal('${dish.id}', event)"
+                    class="ml-auto sm:ml-2 px-2.5 py-1 rounded-full bg-neutral-800 hover:bg-amber-500 hover:text-black border border-amber-500/40 text-amber-300 text-[10px] font-bold flex items-center gap-1 shadow-sm transition-all active:scale-95"
+                  >
+                    <i data-lucide="box" class="w-3 h-3 stroke-[2.5]"></i>
+                    <span>3D / AR</span>
+                  </button>
                 </div>
               </div>
 
-              <div class="flex-shrink-0">
-                <button onclick="quickAddToCart('${dish.id}', event)" class="p-2.5 rounded-full bg-neutral-800/90 text-amber-300 hover:bg-amber-500 hover:text-black border border-amber-500/30 transition-all">
+              <div class="flex-shrink-0 ml-1">
+                <button onclick="quickAddToCart('${dish.id}', event)" class="p-2.5 rounded-full bg-neutral-800/90 text-amber-300 hover:bg-amber-500 hover:text-black border border-amber-500/30 transition-all shadow-sm">
                   <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
                 </button>
               </div>
@@ -836,12 +979,23 @@
                   <span class="px-2 py-0.5 text-[9px] font-extrabold uppercase rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/40">${dish.badge}</span>
                 </div>
               ` : ''}
+
+              <!-- 3D AR Pill on Top Right -->
+              <button
+                onclick="open3dModal('${dish.id}', event)"
+                class="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-full bg-black/70 hover:bg-amber-500 hover:text-black border border-amber-500/40 text-amber-300 text-[10px] font-bold flex items-center gap-1 transition-all"
+              >
+                <i data-lucide="box" class="w-3 h-3"></i>
+                <span>3D</span>
+              </button>
+
               <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden p-1.5 bg-gradient-to-br from-neutral-800 via-neutral-900 to-black border border-neutral-700/60 shadow-lg mx-auto my-2 group-hover:border-amber-500/50">
                 <img src="${dish.image}" alt="${title}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h3 class="font-serif text-base font-bold text-neutral-100 group-hover:text-amber-300 line-clamp-1">${title} <span>${emoji}</span></h3>
               <p class="text-xs text-neutral-400 font-medium mt-0.5">${dish.calories} kcal</p>
               <p class="text-[11px] text-neutral-400 line-clamp-2 mt-1.5">${desc}</p>
+              
               <div class="flex items-center justify-between mt-3 pt-2 border-t border-neutral-800/60">
                 <span class="font-serif text-base font-bold text-amber-300">${formatPrice(dish.price)}</span>
                 <button onclick="quickAddToCart('${dish.id}', event)" class="p-2 rounded-full bg-neutral-800 text-amber-300 hover:bg-amber-500 hover:text-black border border-amber-500/30">
@@ -855,77 +1009,83 @@
 
       lucide.createIcons();
     }
-    <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-gradient-to-b from-neutral-900 to-[#121217]">
 
-  <!-- ZDJĘCIE -->
-  <div
-    id="modalImageContainer"
-    class="absolute inset-0 flex items-center justify-center p-4"
-  >
-    <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden p-2 bg-gradient-to-tr from-neutral-800 via-neutral-900 to-black border-2 border-amber-500/40 shadow-2xl">
-      <img
-        id="modalDishImg"
-        src=""
-        alt=""
-        class="w-full h-full object-cover rounded-full"
-      />
-    </div>
-  </div>
+    // ==================== 3D & AR MODAL HANDLERS ====================
+    function open3dModal(id, e) {
+      if (e) e.stopPropagation();
+      const dish = DISHES.find(d => d.id === id);
+      if (!dish) return;
+      active3dDish = dish;
 
-  <!-- MODEL 3D -->
-  <model-viewer
-    id="dish3DModel"
-    class="hidden w-full h-full"
-    src=""
-    alt="Model 3D dania"
-    camera-controls
-    auto-rotate
-    rotation-per-second="25deg"
-    shadow-intensity="1"
-    exposure="1"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    ar-placement="floor">
+      const title = currentLang === 'pl' ? dish.namePl : dish.name;
+      document.getElementById('model3dTitle').textContent = title;
+      document.getElementById('model3dPrice').textContent = formatPrice(dish.price);
+      document.getElementById('model3dCalories').textContent = `${dish.calories} kcal`;
 
-    <!-- PRZYCISK AR -->
-    <button
-      slot="ar-button"
-      class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20
-             px-6 py-3.5 rounded-2xl
-             bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500
-             text-black font-bold text-sm
-             shadow-xl shadow-amber-500/30
-             border border-yellow-200
-             active:scale-95 transition-transform">
+      // Extract filename from model path
+      const filename = dish.modelGlb.split('/').pop();
+      document.getElementById('model3dFileName').textContent = filename;
 
-      📱 Zobacz na swoim stole
+      const viewer = document.getElementById('activeModelViewer');
+      // Set the .glb model URL
+      viewer.setAttribute('src', dish.modelGlb);
+      viewer.setAttribute('alt', `Model 3D ${title}`);
 
-    </button>
+      // Reset camera
+      isAutoRotating = true;
+      viewer.setAttribute('auto-rotate', '');
 
-  </model-viewer>
+      document.getElementById('model3dModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
 
-  <!-- PRZYCISK 3D -->
-  <button
-    id="show3DButton"
-    onclick="showDish3D()"
-    class="hidden absolute bottom-5 left-1/2 -translate-x-1/2 z-20
-           px-6 py-3.5 rounded-2xl
-           bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500
-           text-black font-bold text-sm
-           shadow-xl shadow-amber-500/30
-           border border-yellow-200
-           active:scale-95 transition-transform">
+    function open3dModalFromActive() {
+      if (activeModalDish) {
+        open3dModal(activeModalDish.id);
+      }
+    }
 
-    ✨ Zobacz danie w 3D
+    function close3dModal() {
+      document.getElementById('model3dModal').classList.add('hidden');
+      const viewer = document.getElementById('activeModelViewer');
+      viewer.removeAttribute('src'); // unload to free memory
+    }
 
-  </button>
+    function toggleAutoRotate() {
+      const viewer = document.getElementById('activeModelViewer');
+      isAutoRotating = !isAutoRotating;
+      if (isAutoRotating) {
+        viewer.setAttribute('auto-rotate', '');
+        document.getElementById('toggleRotateBtn').classList.add('text-amber-300');
+        document.getElementById('toggleRotateBtn').classList.remove('text-neutral-400');
+      } else {
+        viewer.removeAttribute('auto-rotate');
+        document.getElementById('toggleRotateBtn').classList.remove('text-amber-300');
+        document.getElementById('toggleRotateBtn').classList.add('text-neutral-400');
+      }
+    }
 
-  <div
-    id="modalDishBadge"
-    class="absolute bottom-4 left-4 z-30">
-  </div>
+    function reset3dCamera() {
+      const viewer = document.getElementById('activeModelViewer');
+      viewer.cameraOrbit = '0deg 75deg 105%';
+      viewer.resetTurntableRotation();
+    }
 
-</div>
+    function triggerArMode() {
+      const viewer = document.getElementById('activeModelViewer');
+      if (viewer && typeof viewer.activateAR === 'function') {
+        viewer.activateAR();
+      } else {
+        alert(currentLang === 'pl' ? 'Funkcja AR (Augmented Reality) jest dostępna na telefonach iPhone i Android z obsługą aparatu AR.' : 'AR mode is available on mobile phones supporting WebXR/QuickLook.');
+      }
+    }
+
+    function addModelDishToCart() {
+      if (active3dDish) {
+        addToCart(active3dDish, 1);
+        close3dModal();
+      }
+    }
 
     // Modal Details
     function openDishModal(id) {
