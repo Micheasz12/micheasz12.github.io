@@ -18,6 +18,11 @@
   <!-- Canvas Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
+  <script
+  type="module"
+  src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
+</script>
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -592,24 +597,43 @@
         prepTime: '10 min',
         winePairing: 'Chianti Classico Gran Selezione'
       },
-      {
-        id: 'main-1',
-        name: 'A5 Miyazaki Wagyu Ribeye',
-        namePl: 'Miyazaki Wagyu A5 Ribeye',
-        categoryId: 'mains',
-        description: 'Pure Japanese A5 Wagyu with extraordinary marbling, served with smoked parsnip mousseline and roasted bone marrow demi-glace.',
-        descriptionPl: 'Japońska wołowina Wagyu klasy A5 o idealnym marmurkowaniu, mus z pasternaku i sos demi-glace na pieczonym szpiku.',
-        price: 98.00,
-        originalPrice: 110.00,
-        calories: 780,
-        dietary: 'non-veg',
-        badge: 'CHEF',
-        image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80',
-        ingredients: ['Miyazaki Wagyu Ribeye A5', 'Smoked Parsnip Puree', 'Roasted Bone Marrow Jus', 'Maldon Smoked Salt'],
-        ingredientsPl: ['Stek Wagyu A5', 'Puree z pasternaku', 'Sos demi-glace ze szpiku', 'Sól wędzona Maldon'],
-        prepTime: '20-25 min',
-        winePairing: 'Château Margaux Grand Cru Classé 2018'
-      },
+{
+  id: 'main-1',
+  name: 'A5 Miyazaki Wagyu Ribeye',
+  namePl: 'Miyazaki Wagyu A5 Ribeye',
+  categoryId: 'mains',
+
+  description: 'Pure Japanese A5 Wagyu with extraordinary marbling, served with smoked parsnip mousseline and roasted bone marrow demi-glace.',
+  descriptionPl: 'Japońska wołowina Wagyu klasy A5 o idealnym marmurkowaniu, mus z pasternaku i sos demi-glace na pieczonym szpiku.',
+
+  price: 98.00,
+  originalPrice: 110.00,
+  calories: 780,
+  dietary: 'non-veg',
+  badge: 'CHEF',
+
+  image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80',
+
+  // ⭐ MODEL 3D
+  model: './models/miyazaki-wagyu.glb',
+
+  ingredients: [
+    'Miyazaki Wagyu Ribeye A5',
+    'Smoked Parsnip Puree',
+    'Roasted Bone Marrow Jus',
+    'Maldon Smoked Salt'
+  ],
+
+  ingredientsPl: [
+    'Stek Wagyu A5',
+    'Puree z pasternaku',
+    'Sos demi-glace ze szpiku',
+    'Sól wędzona Maldon'
+  ],
+
+  prepTime: '20-25 min',
+  winePairing: 'Château Margaux Grand Cru Classé 2018'
+},
       {
         id: 'burger-1',
         name: 'The Golden Oak Wagyu Truffle Burger',
@@ -831,6 +855,77 @@
 
       lucide.createIcons();
     }
+    <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-gradient-to-b from-neutral-900 to-[#121217]">
+
+  <!-- ZDJĘCIE -->
+  <div
+    id="modalImageContainer"
+    class="absolute inset-0 flex items-center justify-center p-4"
+  >
+    <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden p-2 bg-gradient-to-tr from-neutral-800 via-neutral-900 to-black border-2 border-amber-500/40 shadow-2xl">
+      <img
+        id="modalDishImg"
+        src=""
+        alt=""
+        class="w-full h-full object-cover rounded-full"
+      />
+    </div>
+  </div>
+
+  <!-- MODEL 3D -->
+  <model-viewer
+    id="dish3DModel"
+    class="hidden w-full h-full"
+    src=""
+    alt="Model 3D dania"
+    camera-controls
+    auto-rotate
+    rotation-per-second="25deg"
+    shadow-intensity="1"
+    exposure="1"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    ar-placement="floor">
+
+    <!-- PRZYCISK AR -->
+    <button
+      slot="ar-button"
+      class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20
+             px-6 py-3.5 rounded-2xl
+             bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500
+             text-black font-bold text-sm
+             shadow-xl shadow-amber-500/30
+             border border-yellow-200
+             active:scale-95 transition-transform">
+
+      📱 Zobacz na swoim stole
+
+    </button>
+
+  </model-viewer>
+
+  <!-- PRZYCISK 3D -->
+  <button
+    id="show3DButton"
+    onclick="showDish3D()"
+    class="hidden absolute bottom-5 left-1/2 -translate-x-1/2 z-20
+           px-6 py-3.5 rounded-2xl
+           bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500
+           text-black font-bold text-sm
+           shadow-xl shadow-amber-500/30
+           border border-yellow-200
+           active:scale-95 transition-transform">
+
+    ✨ Zobacz danie w 3D
+
+  </button>
+
+  <div
+    id="modalDishBadge"
+    class="absolute bottom-4 left-4 z-30">
+  </div>
+
+</div>
 
     // Modal Details
     function openDishModal(id) {
