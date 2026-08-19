@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="pl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>THE GOLDEN OAK | Fine Dining & Luxury Menu</title>
+  <meta name="description" content="Ekskluzywne menu restauracji The Golden Oak - kuchnia autorska, świeże składniki i wykwintne smaki." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            cinzel: ['Cinzel', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #09090b;
+      color: #f4f4f5;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#09090b] text-[#f4f4f5] antialiased selection:bg-[#f59e0b] selection:text-black pb-28">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="relative pt-6 pb-4 px-4 overflow-hidden border-b border-amber-950/40 bg-gradient-to-b from-[#121118] via-[#0d0c10] to-[#09090b]">
+    <!-- Left Botanical Ornament -->
+    <div class="absolute top-0 left-0 pointer-events-none z-10 w-28 sm:w-36 md:w-44 opacity-85 select-none">
+      <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+        <defs>
+          <linearGradient id="goldGrad-left" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fef08a" stopOpacity="0.95" />
+            <stop offset="40%" stopColor="#eab308" stopOpacity="0.85" />
+            <stop offset="80%" stopColor="#ca8a04" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#854d0e" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+        <g stroke="url(#goldGrad-left)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 0 0 C 30 15, 75 25, 120 15 C 135 12, 148 7, 155 2" />
+          <path d="M 0 15 C 40 30, 85 45, 130 35 C 145 30, 152 24, 158 18" stroke-width="0.9" opacity="0.8" />
+          <path d="M 0 35 C 35 55, 70 70, 110 65 C 130 62, 145 50, 150 40" stroke-width="0.8" opacity="0.6" />
+          <path d="M 25 12 C 28 5, 36 6, 38 15 C 34 20, 26 18, 25 12 Z" fill="url(#goldGrad-left)" fill-opacity="0.3" />
+          <path d="M 45 18 C 50 10, 58 12, 60 22 C 55 26, 47 24, 45 18 Z" fill="url(#goldGrad-left)" fill-opacity="0.35" />
+          <path d="M 70 20 C 76 11, 86 14, 88 24 C 82 28, 73 26, 70 20 Z" fill="url(#goldGrad-left)" fill-opacity="0.4" />
+          <path d="M 95 18 C 102 8, 112 12, 113 22 C 107 26, 98 25, 95 18 Z" fill="url(#goldGrad-left)" fill-opacity="0.4" />
+          <circle cx="40" cy="8" r="2" fill="url(#goldGrad-left)" />
+          <circle cx="63" cy="14" r="2.2" fill="url(#goldGrad-left)" />
+          <circle cx="91" cy="15" r="2" fill="url(#goldGrad-left)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Right Botanical Ornament -->
+    <div class="absolute top-0 right-0 pointer-events-none z-10 w-28 sm:w-36 md:w-44 opacity-85 select-none">
+      <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto -scale-x-100">
+        <defs>
+          <linearGradient id="goldGrad-right" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fef08a" stopOpacity="0.95" />
+            <stop offset="40%" stopColor="#eab308" stopOpacity="0.85" />
+            <stop offset="80%" stopColor="#ca8a04" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#854d0e" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+        <g stroke="url(#goldGrad-right)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 0 0 C 30 15, 75 25, 120 15 C 135 12, 148 7, 155 2" />
+          <path d="M 0 15 C 40 30, 85 45, 130 35 C 145 30, 152 24, 158 18" stroke-width="0.9" opacity="0.8" />
+          <path d="M 0 35 C 35 55, 70 70, 110 65 C 130 62, 145 50, 150 40" stroke-width="0.8" opacity="0.6" />
+          <path d="M 25 12 C 28 5, 36 6, 38 15 C 34 20, 26 18, 25 12 Z" fill="url(#goldGrad-right)" fill-opacity="0.3" />
+          <path d="M 45 18 C 50 10, 58 12, 60 22 C 55 26, 47 24, 45 18 Z" fill="url(#goldGrad-right)" fill-opacity="0.35" />
+          <path d="M 70 20 C 76 11, 86 14, 88 24 C 82 28, 73 26, 70 20 Z" fill="url(#goldGrad-right)" fill-opacity="0.4" />
+          <path d="M 95 18 C 102 8, 112 12, 113 22 C 107 26, 98 25, 95 18 Z" fill="url(#goldGrad-right)" fill-opacity="0.4" />
+          <circle cx="40" cy="8" r="2" fill="url(#goldGrad-right)" />
+          <circle cx="63" cy="14" r="2.2" fill="url(#goldGrad-right)" />
+          <circle cx="91" cy="15" r="2" fill="url(#goldGrad-right)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Top Utility Bar (Table, Language, Currency) -->
+    <div class="relative z-20 max-w-4xl mx-auto flex items-center justify-between text-xs text-amber-200/80 mb-3 px-1">
+      <div class="flex items-center gap-1.5 bg-neutral-900/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-amber-500/20 shadow-sm">
+        <i data-lucide="utensils-crossed" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span class="text-neutral-400" id="label-table">Stolik:</span>
+        <select id="tableSelector" onchange="changeTable(this.value)" class="bg-transparent text-amber-300 font-semibold focus:outline-none cursor-pointer">
+          <option value="1" class="bg-neutral-900 text-white">#1</option>
+          <option value="2" class="bg-neutral-900 text-white">#2</option>
+          <option value="3" class="bg-neutral-900 text-white">#3</option>
+          <option value="4" selected class="bg-neutral-900 text-white">#4</option>
+          <option value="5" class="bg-neutral-900 text-white">#5</option>
+          <option value="6" class="bg-neutral-900 text-white">#6</option>
+          <option value="8" class="bg-neutral-900 text-white">#8</option>
+          <option value="VIP 1" class="bg-neutral-900 text-white">#VIP 1</option>
+        </select>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Currency -->
+        <div class="flex items-center bg-neutral-900/80 backdrop-blur-md rounded-full border border-amber-500/20 px-1 py-0.5" id="currencyGroup">
+          <button onclick="setCurrency('USD')" id="curr-USD" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-black shadow-sm transition-all">$</button>
+          <button onclick="setCurrency('PLN')" id="curr-PLN" class="px-2 py-0.5 rounded-full text-[10px] font-semibold text-neutral-400 hover:text-amber-200 transition-all">zł</button>
+          <button onclick="setCurrency('EUR')" id="curr-EUR" class="px-2 py-0.5 rounded-full text-[10px] font-semibold text-neutral-400 hover:text-amber-200 transition-all">€</button>
+        </div>
+
+        <!-- Lang switch -->
+        <button onclick="toggleLang()" class="flex items-center gap-1 bg-neutral-900/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-amber-500/20 text-neutral-300 hover:text-amber-300 transition-colors">
+          <i data-lucide="globe" class="w-3 h-3 text-amber-400"></i>
+          <span id="langLabel" class="font-semibold uppercase tracking-wider">PL</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Branding matching screenshot -->
+    <div class="relative z-20 text-center max-w-xl mx-auto pt-1 pb-2">
+      <p id="greetingText" class="font-serif italic text-amber-300/90 text-sm sm:text-base font-normal tracking-wide drop-shadow-sm flex items-center justify-center gap-1.5">
+        <i data-lucide="sparkles" class="w-3 h-3 text-amber-400 opacity-80"></i>
+        <span>Good Evening</span>
+        <i data-lucide="sparkles" class="w-3 h-3 text-amber-400 opacity-80"></i>
+      </p>
+
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-[#fff7d6] via-[#fcd34d] to-[#d97706] drop-shadow-[0_2px_10px_rgba(245,158,11,0.2)] mt-0.5 mb-1 select-none">
+        THE GOLDEN OAK
+      </h1>
+
+      <div class="flex items-center justify-center gap-3 text-amber-500/60 my-1">
+        <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-500/50"></div>
+        <span class="text-[10px] uppercase font-cinzel tracking-[0.25em] text-amber-200/75">
+          Fine Dining & Bar
+        </span>
+        <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-amber-500/50"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CATEGORY TABS ==================== -->
+  <section class="w-full max-w-4xl mx-auto px-4 py-3">
+    <div class="flex items-center justify-between text-xs mb-2.5 px-1">
+      <span id="categoriesHeaderLabel" class="font-cinzel text-neutral-400 text-[11px] tracking-[0.18em] uppercase font-semibold">
+        KATEGORIE
+      </span>
+      <div class="flex items-center gap-2">
+        <span id="swipeListLabel" class="text-neutral-400 text-[11px] font-medium tracking-wide">
+          Swipe List ⇄
+        </span>
+      </div>
+    </div>
+
+    <!-- Scrollable tabs container -->
+    <div id="categoryCarousel" class="flex items-center gap-3 overflow-x-auto no-scrollbar scroll-smooth py-1 px-0.5">
+      <!-- Injected via JS -->
+    </div>
+  </section>
+
+  <!-- ==================== SEARCH & FILTERS ==================== -->
+  <section class="w-full max-w-4xl mx-auto px-4 space-y-3.5 my-2">
+    <!-- Search Box -->
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+        <i data-lucide="search" class="h-4 w-4 text-amber-500/70"></i>
+      </div>
+      <input
+        id="searchInput"
+        type="text"
+        oninput="handleSearch(this.value)"
+        placeholder="Search dishes, ingredients, allergens..."
+        class="w-full pl-10 pr-10 py-2.5 bg-neutral-900/90 text-sm text-neutral-100 placeholder-neutral-500 rounded-xl border border-neutral-800 focus:outline-none focus:border-amber-500/60 focus:ring-1 focus:ring-amber-500/30 transition-all shadow-inner"
+      />
+    </div>
+
+    <!-- Title & Dietary Filters Row -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
+      <h2 id="activeCategoryHeading" class="font-serif text-2xl sm:text-3xl font-bold text-neutral-100 tracking-wide">
+        Starters
+      </h2>
+
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+        <div id="dietaryFiltersContainer" class="flex items-center gap-1.5 bg-neutral-900/80 p-1 rounded-full border border-neutral-800/90 shadow-sm flex-shrink-0">
+          <button onclick="setDietary('all')" id="diet-all" class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-800 text-amber-300 border border-amber-500/50 shadow-sm transition-all">All</button>
+          <button onclick="setDietary('veg')" id="diet-veg" class="px-3 py-1 rounded-full text-xs font-semibold text-neutral-400 hover:text-neutral-200 flex items-center gap-1 transition-all">
+            <span class="text-emerald-400">🌱</span> Veg
+          </button>
+          <button onclick="setDietary('non-veg')" id="diet-non-veg" class="px-3 py-1 rounded-full text-xs font-semibold text-neutral-400 hover:text-neutral-200 flex items-center gap-1 transition-all">
+            <span class="text-rose-400">🥩</span> Non-Veg
+          </button>
+          <button onclick="setDietary('seafood')" id="diet-seafood" class="px-3 py-1 rounded-full text-xs font-semibold text-neutral-400 hover:text-neutral-200 flex items-center gap-1 transition-all">
+            <span class="text-cyan-400">🦐</span> Seafood
+          </button>
+        </div>
+
+        <div class="flex items-center bg-neutral-900/80 p-1 rounded-full border border-neutral-800/90 shadow-sm flex-shrink-0">
+          <button onclick="setViewMode('list')" id="viewModeList" class="p-1.5 rounded-full bg-amber-500 text-black shadow-sm transition-all">
+            <i data-lucide="layout-list" class="w-3.5 h-3.5"></i>
+          </button>
+          <button onclick="setViewMode('grid')" id="viewModeGrid" class="p-1.5 rounded-full text-neutral-400 hover:text-white transition-all">
+            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DISHES LIST ==================== -->
+  <main class="w-full max-w-4xl mx-auto px-4 mt-2">
+    <div id="dishesContainer" class="space-y-3">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Fine Dining Footer Info -->
+    <footer class="mt-14 pt-8 border-t border-neutral-800/80 text-center space-y-4 text-xs text-neutral-400">
+      <div class="flex flex-wrap items-center justify-center gap-6 text-amber-400/80 font-cinzel">
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+          Michelin Guide 2026 Recommended
+        </span>
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+          Chef's Organic Sourcing
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto pt-2 text-[11px] text-neutral-400">
+        <div class="flex items-center justify-center gap-1.5 bg-neutral-900/50 p-2.5 rounded-xl border border-neutral-800/60">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>12:00 – 23:30 (Daily)</span>
+        </div>
+        <div class="flex items-center justify-center gap-1.5 bg-neutral-900/50 p-2.5 rounded-xl border border-neutral-800/60">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Krakowskie Przedmieście 14</span>
+        </div>
+        <div class="flex items-center justify-center gap-1.5 bg-neutral-900/50 p-2.5 rounded-xl border border-neutral-800/60">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>+48 22 890 00 00</span>
+        </div>
+      </div>
+
+      <p class="text-[10px] text-neutral-600 font-cinzel tracking-widest pt-2">
+        THE GOLDEN OAK RESTAURANT & WINE BAR © 2026 • ALL RIGHTS RESERVED
+      </p>
+    </footer>
+  </main>
+
+  <!-- ==================== FLOATING CONCIERGE BUTTON ==================== -->
+  <div class="fixed bottom-6 right-5 z-40 flex flex-col items-end">
+    <!-- Popover -->
+    <div id="conciergePopover" class="hidden mb-3 w-56 p-2 bg-[#16161e] border border-amber-500/40 rounded-2xl shadow-2xl space-y-1.5">
+      <button onclick="openWaiterModal()" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-neutral-800 text-left transition-colors text-amber-200">
+        <div class="p-2 rounded-lg bg-amber-500/20 text-amber-400">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+        </div>
+        <div class="text-xs">
+          <p class="font-bold text-neutral-100" id="popoverCallWaiter">Wezwij kelnera</p>
+          <p class="text-[10px] text-neutral-400" id="popoverTableHelp">Obsługa stolika</p>
+        </div>
+      </button>
+
+      <button onclick="openCartDrawer()" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-neutral-800 text-left transition-colors text-amber-200">
+        <div class="p-2 rounded-lg bg-amber-500/20 text-amber-400 relative">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span id="popoverCartCount" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-amber-500 text-black text-[9px] font-extrabold rounded-full flex items-center justify-center">0</span>
+        </div>
+        <div class="text-xs">
+          <p class="font-bold text-neutral-100" id="popoverOrderBill">Rachunek & Koszyk</p>
+          <p class="text-[10px] text-neutral-400" id="popoverItemSummary">Brak dań</p>
+        </div>
+      </button>
+    </div>
+
+    <!-- Main Button matching screenshot -->
+    <button
+      onclick="toggleConciergePopover()"
+      class="group relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-[#f59e0b] via-[#fbbf24] to-[#fef08a] text-black flex items-center justify-center shadow-[0_8px_25px_rgba(245,158,11,0.4)] border-2 border-yellow-200 hover:scale-105 active:scale-95 transition-all duration-300"
+    >
+      <i data-lucide="user" class="w-7 h-7 sm:w-8 sm:h-8 stroke-[2.2] text-black fill-black/10"></i>
+      <span id="floatingCartBadge" class="hidden absolute -top-1 -right-1 w-6 h-6 bg-red-600 border-2 border-black text-white text-xs font-black rounded-full flex items-center justify-center shadow-md animate-bounce">0</span>
+    </button>
+  </div>
+
+  <!-- ==================== MODAL: DISH DETAIL ==================== -->
+  <div id="dishModal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-md">
+    <div class="fixed inset-0" onclick="closeDishModal()"></div>
+    <div class="relative z-10 w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#121217] border border-amber-500/30 rounded-t-3xl sm:rounded-3xl shadow-2xl text-neutral-100 no-scrollbar">
+      <button onclick="closeDishModal()" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 backdrop-blur-md text-neutral-300 hover:text-white border border-neutral-700/80">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-gradient-to-b from-neutral-900 to-[#121217] flex items-center justify-center p-4">
+        <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden p-2 bg-gradient-to-tr from-neutral-800 via-neutral-900 to-black border-2 border-amber-500/40 shadow-2xl">
+          <img id="modalDishImg" src="" alt="" class="w-full h-full object-cover rounded-full" />
+        </div>
+        <div id="modalDishBadge" class="absolute bottom-4 left-4"></div>
+      </div>
+
+      <div class="p-6 space-y-5">
+        <div>
+          <h2 id="modalDishTitle" class="font-serif text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-200 to-amber-400"></h2>
+          <div id="modalMetaTags" class="flex flex-wrap items-center gap-2 mt-2 text-xs"></div>
+        </div>
+
+        <p id="modalDishDesc" class="text-sm text-neutral-300 leading-relaxed font-light"></p>
+
+        <div>
+          <h4 id="modalIngredientsLabel" class="font-cinzel text-xs uppercase tracking-widest text-amber-400 mb-2 font-semibold flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Kluczowe Składniki
+          </h4>
+          <div id="modalIngredientsList" class="flex flex-wrap gap-1.5"></div>
+        </div>
+
+        <div id="modalWinePairingBox" class="p-3.5 rounded-xl bg-gradient-to-r from-amber-950/30 to-purple-950/20 border border-amber-500/20 flex items-start gap-3">
+          <i data-lucide="wine" class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"></i>
+          <div>
+            <p id="modalWineLabel" class="text-xs font-semibold text-amber-300 uppercase tracking-wide">Rekomendacja Sommeliera</p>
+            <p id="modalWinePairingText" class="text-xs text-neutral-300 italic mt-0.5"></p>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-neutral-800 flex items-center justify-between gap-4">
+          <div class="flex items-center bg-neutral-900 rounded-full border border-neutral-800 p-1">
+            <button onclick="decrementModalQty()" class="p-2 rounded-full hover:bg-neutral-800 text-neutral-300">
+              <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+            </button>
+            <span id="modalQtyDisplay" class="w-8 text-center font-bold text-sm text-amber-300">1</span>
+            <button onclick="incrementModalQty()" class="p-2 rounded-full hover:bg-neutral-800 text-neutral-300">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <button id="modalAddOrderBtn" onclick="confirmModalAddToCart()" class="flex-1 py-3.5 px-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-black shadow-lg shadow-amber-500/25 active:scale-98 transition-transform">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span id="modalAddBtnText">Dodaj do stolika</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DRAWER: CART & BILL ==================== -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-end bg-black/80 backdrop-blur-md">
+    <div class="fixed inset-0" onclick="closeCartDrawer()"></div>
+    <div class="relative z-10 w-full sm:max-w-md h-[92vh] sm:h-full bg-[#121218] border-l border-amber-500/30 flex flex-col justify-between text-neutral-100 shadow-2xl">
+      <!-- Header -->
+      <div class="p-4 sm:p-5 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="p-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 id="drawerTitle" class="font-serif text-xl font-bold text-neutral-100">Zamówienie Stolika</h3>
+            <p id="drawerSubtitle" class="text-xs text-amber-400/90 font-medium">Stolik #4 • 0 pozycji</p>
+          </div>
+        </div>
+        <button onclick="closeCartDrawer()" class="p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white border border-neutral-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 space-y-3 no-scrollbar">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- Footer & Bill Calculation -->
+      <div id="cartFooter" class="p-4 sm:p-5 border-t border-neutral-800 bg-[#0e0e13] space-y-3.5">
+        <!-- Tip Options -->
+        <div>
+          <div class="flex items-center justify-between text-xs text-neutral-400 mb-1.5">
+            <span class="flex items-center gap-1">
+              <i data-lucide="percent" class="w-3 h-3 text-amber-400"></i>
+              <span id="tipLabelText">Napiwek dla obsługi</span>
+            </span>
+            <span id="tipDisplayVal" class="text-amber-300 font-semibold">10%</span>
+          </div>
+          <div class="grid grid-cols-4 gap-1.5">
+            <button onclick="setTip(0)" id="tip-0" class="py-1 rounded-lg text-xs font-semibold bg-neutral-900 text-neutral-400 border border-neutral-800">0%</button>
+            <button onclick="setTip(10)" id="tip-10" class="py-1 rounded-lg text-xs font-bold bg-amber-500 text-black border-amber-400 shadow-sm">10%</button>
+            <button onclick="setTip(15)" id="tip-15" class="py-1 rounded-lg text-xs font-semibold bg-neutral-900 text-neutral-400 border border-neutral-800">15%</button>
+            <button onclick="setTip(20)" id="tip-20" class="py-1 rounded-lg text-xs font-semibold bg-neutral-900 text-neutral-400 border border-neutral-800">20%</button>
+          </div>
+        </div>
+
+        <!-- Split Guests -->
+        <div class="flex items-center justify-between bg-neutral-900/90 px-3 py-2 rounded-xl border border-neutral-800 text-xs">
+          <div class="flex items-center gap-1.5 text-neutral-400">
+            <i data-lucide="users" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span id="splitLabelText">Podział na gości:</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="changeSplit(-1)" class="p-1 rounded-md bg-neutral-800 text-neutral-300 hover:text-white">
+              <i data-lucide="minus" class="w-3 h-3"></i>
+            </button>
+            <span id="splitDisplay" class="font-bold text-amber-300 min-w-[20px] text-center">1 os.</span>
+            <button onclick="changeSplit(1)" class="p-1 rounded-md bg-neutral-800 text-neutral-300 hover:text-white">
+              <i data-lucide="plus" class="w-3 h-3"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Total Breakdown -->
+        <div class="space-y-1 pt-1">
+          <div class="flex items-center justify-between text-xs text-neutral-400">
+            <span id="subtotalLabel">Kwota zamówienia:</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="flex items-center justify-between text-sm sm:text-base font-bold text-neutral-100">
+            <span id="totalLabel" class="font-serif text-amber-200">Razem do zapłaty:</span>
+            <span id="cartTotal" class="font-serif text-lg text-amber-300">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button onclick="submitOrder()" class="w-full py-3.5 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-black font-bold text-sm rounded-2xl shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 transition-transform active:scale-98">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span id="submitOrderBtnText">Złóż zamówienie do kuchni</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: WAITER CALL ==================== -->
+  <div id="waiterModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="fixed inset-0" onclick="closeWaiterModal()"></div>
+    <div class="relative z-10 w-full max-w-md bg-[#14141a] border border-amber-500/30 rounded-3xl p-6 shadow-2xl text-neutral-100">
+      <button onclick="closeWaiterModal()" class="absolute top-4 right-4 p-2 rounded-full bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="space-y-4">
+        <div>
+          <div class="flex items-center gap-2 text-amber-400">
+            <i data-lucide="bell" class="w-5 h-5"></i>
+            <span class="font-cinzel text-xs uppercase tracking-widest font-semibold">Obsługa Stolika</span>
+          </div>
+          <h3 id="waiterModalHeading" class="font-serif text-2xl font-bold text-neutral-100 mt-1">Wezwij kelnera</h3>
+          <p id="waiterModalSub" class="text-xs text-neutral-400 mt-0.5">Wybierz cel wezwania:</p>
+        </div>
+
+        <div class="space-y-2">
+          <button onclick="sendWaiterCall('Obsługa ogólna')" class="w-full p-3 rounded-2xl flex items-center gap-3 text-left bg-neutral-900/90 border border-neutral-800 hover:border-amber-500/50 hover:bg-amber-500/10 transition-all text-neutral-200">
+            <div class="p-2.5 rounded-xl bg-amber-500 text-black">
+              <i data-lucide="bell" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold">Poproś kelnera do stolika</p>
+              <p class="text-[11px] text-neutral-400">Ogólna obsługa i pytania</p>
+            </div>
+          </button>
+
+          <button onclick="sendWaiterCall('Woda / Uzupełnienie')" class="w-full p-3 rounded-2xl flex items-center gap-3 text-left bg-neutral-900/90 border border-neutral-800 hover:border-amber-500/50 hover:bg-amber-500/10 transition-all text-neutral-200">
+            <div class="p-2.5 rounded-xl bg-neutral-800 text-amber-400">
+              <i data-lucide="wine" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold">Woda / Napoje</p>
+              <p class="text-[11px] text-neutral-400">Uzupełnienie wody do karafki</p>
+            </div>
+          </button>
+
+          <button onclick="sendWaiterCall('Rachunek')" class="w-full p-3 rounded-2xl flex items-center gap-3 text-left bg-neutral-900/90 border border-neutral-800 hover:border-amber-500/50 hover:bg-amber-500/10 transition-all text-neutral-200">
+            <div class="p-2.5 rounded-xl bg-neutral-800 text-amber-400">
+              <i data-lucide="receipt" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold">Poproś o rachunek</p>
+              <p class="text-[11px] text-neutral-400">Płatność kartą, gotówką lub BLIK</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    // Categories
+    const CATEGORIES = [
+      { id: 'starters', name: 'STARTERS', namePl: 'PRZYSTAWKI', icon: 'utensils' },
+      { id: 'mains', name: 'MAIN COURSES', namePl: 'DANIA GŁÓWNE', icon: 'soup' },
+      { id: 'burgers', name: 'BURGERS', namePl: 'BURGERY', icon: 'sandwich' },
+      { id: 'salads', name: 'SALADS', namePl: 'SAŁATKI', icon: 'salad' },
+      { id: 'desserts', name: 'DESSERTS', namePl: 'DESERY', icon: 'ice-cream' },
+      { id: 'drinks', name: 'BEVERAGES', namePl: 'NAPOJE & WINA', icon: 'wine' },
+      { id: 'chef', name: "CHEF'S TABLE", namePl: 'SPECJALNOŚCI SZEFA', icon: 'sparkles' },
+    ];
+
+    // Dishes Data
+    const DISHES = [
+      {
+        id: 'starter-1',
+        name: 'Burrata With Prosciutto',
+        namePl: 'Burrata z Szynką Prosciutto',
+        categoryId: 'starters',
+        description: 'Creamy artisanal burrata paired with aged San Daniele prosciutto, heirloom cherry tomatoes, fig balsamic glaze, and grilled sourdough crisps.',
+        descriptionPl: 'Kremowa rzemieślnicza burrata serwowana z dojrzewającą szynką San Daniele, pomidorkami cherry, figowym balsamico i chrupiącą grzanką na zakwasie.',
+        price: 30.60,
+        originalPrice: 34.00,
+        calories: 420,
+        dietary: 'non-veg',
+        badge: 'NEW',
+        image: 'https://images.unsplash.com/photo-1592417817098-8f3d6910985c?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Italian Burrata', 'Prosciutto San Daniele', 'Heirloom Tomatoes', 'Fig Balsamic Glaze', 'Fresh Basil'],
+        ingredientsPl: ['Włoska Burrata', 'Szynka San Daniele', 'Pomidorki Heirloom', 'Figowa redukcja balsamiczna', 'Świeża bazylia'],
+        prepTime: '10-12 min',
+        winePairing: 'Pinot Grigio delle Venezie DOC 2022'
+      },
+      {
+        id: 'starter-2',
+        name: 'Gourmet Truffle Dumplings',
+        namePl: 'Wykwintne Pierogi Truflowe',
+        categoryId: 'starters',
+        description: 'Handcrafted delicate pasta filled with wild forest chanterelles, black truffle cream, aged Parmigiano Reggiano, and herb emulsion.',
+        descriptionPl: 'Ręcznie lepione delikatne pierożki z leśnymi kurkami, kremem z czarnej trufli, tartym Parmigiano Reggiano i emulsją ziołową.',
+        price: 32.00,
+        calories: 380,
+        dietary: 'veg',
+        image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Forest Chanterelles', 'Black Winter Truffle', 'Parmigiano Reggiano 24m', 'Sage Butter'],
+        ingredientsPl: ['Leśne Kurki', 'Czarna Trufla Zimowa', 'Parmigiano Reggiano 24 m-ce', 'Masło szałwiowe'],
+        prepTime: '12-15 min',
+        winePairing: 'Chardonnay Riserva Alto Adige'
+      },
+      {
+        id: 'starter-3',
+        name: 'Lobster Thermidor Morsels',
+        namePl: 'Kąski Homara Thermidor',
+        categoryId: 'starters',
+        description: 'Tender Atlantic lobster tail pieces baked in rich Cognac Dijon cream sauce, Gruyère crust, with fresh lemon herb dust.',
+        descriptionPl: 'Kawałki ogona homara atlantyckiego zapiekane w aksamitnym sosie z koniaku, musztardy Dijon i sera Gruyère z nutą cytrynowo-ziołową.',
+        price: 58.00,
+        calories: 520,
+        dietary: 'seafood',
+        badge: 'CHEF',
+        image: 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Atlantic Lobster', 'French Cognac', 'Dijon Mustard', 'Gruyère Cheese', 'Fresh Herbs'],
+        ingredientsPl: ['Homar Atlantycki', 'Koniak Francuski', 'Musztarda Dijon', 'Ser Gruyère', 'Świeże zioła'],
+        prepTime: '15-18 min',
+        winePairing: 'Chablis Premier Cru 2021'
+      },
+      {
+        id: 'starter-4',
+        name: 'Golden Oak Beef Tartare',
+        namePl: 'Tatar z Polędwicy Wołowej Golden Oak',
+        categoryId: 'starters',
+        description: 'Prime Black Angus tenderloin hand-cut with shallots, capers, pickled wild mushrooms, cured egg yolk, and gold leaf flake accent.',
+        descriptionPl: 'Siekana polędwica Black Angus z szalotką, kaparami, marynowanymi grzybami, marynowanym żółtkiem i płatkiem jadalnego złota.',
+        price: 36.50,
+        originalPrice: 42.00,
+        calories: 340,
+        dietary: 'non-veg',
+        badge: 'STAR',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Black Angus Tenderloin', 'Cured Egg Yolk', 'Cornichons & Shallots', 'Dijon Capers', '24k Edible Gold Leaf'],
+        ingredientsPl: ['Polędwica Black Angus', 'Żółtko marynowane', 'Korniszony i szalotka', 'Kapary Dijon', '24k Złoto jadalne'],
+        prepTime: '10 min',
+        winePairing: 'Chianti Classico Gran Selezione'
+      },
+      {
+        id: 'main-1',
+        name: 'A5 Miyazaki Wagyu Ribeye',
+        namePl: 'Miyazaki Wagyu A5 Ribeye',
+        categoryId: 'mains',
+        description: 'Pure Japanese A5 Wagyu with extraordinary marbling, served with smoked parsnip mousseline and roasted bone marrow demi-glace.',
+        descriptionPl: 'Japońska wołowina Wagyu klasy A5 o idealnym marmurkowaniu, mus z pasternaku i sos demi-glace na pieczonym szpiku.',
+        price: 98.00,
+        originalPrice: 110.00,
+        calories: 780,
+        dietary: 'non-veg',
+        badge: 'CHEF',
+        image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Miyazaki Wagyu Ribeye A5', 'Smoked Parsnip Puree', 'Roasted Bone Marrow Jus', 'Maldon Smoked Salt'],
+        ingredientsPl: ['Stek Wagyu A5', 'Puree z pasternaku', 'Sos demi-glace ze szpiku', 'Sól wędzona Maldon'],
+        prepTime: '20-25 min',
+        winePairing: 'Château Margaux Grand Cru Classé 2018'
+      },
+      {
+        id: 'burger-1',
+        name: 'The Golden Oak Wagyu Truffle Burger',
+        namePl: 'Burger Wagyu z Truflami The Golden Oak',
+        categoryId: 'burgers',
+        description: 'Dry-aged Wagyu beef patty, molten aged Comte cheese, black truffle aioli, crispy shallots on a gold-dusted brioche bun.',
+        descriptionPl: 'Kotlet z wołowiny Wagyu, płynny ser Comte, aioli z czarną truflą, prażona szalotka w maślanej bułce brioche ze złotym pyłem.',
+        price: 38.00,
+        originalPrice: 42.00,
+        calories: 820,
+        dietary: 'non-veg',
+        badge: 'STAR',
+        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Wagyu Beef Patty (220g)', 'Aged Comte Cheese', 'Truffle Mayo', 'Caramelized Onion Jam'],
+        ingredientsPl: ['Wołowina Wagyu (220g)', 'Dojrzały Ser Comte', 'Sos truflowy', 'Konfitura z cebuli'],
+        prepTime: '15 min',
+        winePairing: 'Syrah Columbia Valley 2021'
+      },
+      {
+        id: 'dessert-1',
+        name: '24K Golden Sphere Tiramisu',
+        namePl: 'Złota Kula Tiramisu 24K',
+        categoryId: 'desserts',
+        description: 'Dark chocolate sphere finished with 24k gold leaf, cracked open table-side to reveal espresso-soaked ladyfingers and mascarpone.',
+        descriptionPl: 'Kula z ciemnej czekolady ze złotem 24k, otwierana gorącym espresso przy stoliku, skrywająca krem mascarpone i biszkopt.',
+        price: 26.00,
+        calories: 490,
+        dietary: 'veg',
+        badge: 'STAR',
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Valrhona 70% Chocolate', 'Italian Mascarpone', 'Illy Espresso', '24K Gold Leaf'],
+        ingredientsPl: ['Czekolada Valrhona 70%', 'Włoskie Mascarpone', 'Espresso Illy', 'Złoto 24K'],
+        prepTime: '8 min',
+        winePairing: 'Pedro Ximenez Sherry Vintage'
+      }
+    ];
+
+    // State
+    let currentLang = 'pl';
+    let currentCurrency = 'USD';
+    let currentTable = 4;
+    let activeCategory = 'starters';
+    let selectedDietary = 'all';
+    let searchQuery = '';
+    let viewMode = 'list';
+    let cart = [];
+    let activeModalDish = null;
+    let modalQty = 1;
+    let selectedTip = 10;
+    let splitGuests = 1;
+
+    // Currency Formatting
+    function formatPrice(amount) {
+      const rates = { USD: 1, PLN: 4.10, EUR: 0.92 };
+      const converted = amount * rates[currentCurrency];
+      if (currentCurrency === 'USD') return `$${converted.toFixed(2)}`;
+      if (currentCurrency === 'EUR') return `€${converted.toFixed(2)}`;
+      return `${converted.toFixed(2)} zł`;
+    }
+
+    // Initialize App
+    function init() {
+      renderCategories();
+      renderDishes();
+      updateDynamicGreeting();
+      lucide.createIcons();
+    }
+
+    function updateDynamicGreeting() {
+      const h = new Date().getHours();
+      let text = 'Good Evening';
+      if (currentLang === 'pl') {
+        text = h < 12 ? 'Dzień Dobry' : h < 18 ? 'Miłego Popołudnia' : 'Dobry Wieczór';
+      } else {
+        text = h < 12 ? 'Good Morning' : h < 18 ? 'Good Afternoon' : 'Good Evening';
+      }
+      document.getElementById('greetingText').innerHTML = `
+        <i data-lucide="sparkles" class="w-3 h-3 text-amber-400 opacity-80"></i>
+        <span>${text}</span>
+        <i data-lucide="sparkles" class="w-3 h-3 text-amber-400 opacity-80"></i>
+      `;
+      lucide.createIcons();
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoryCarousel');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = activeCategory === cat.id;
+        const name = currentLang === 'pl' ? cat.namePl : cat.name;
+        return `
+          <button
+            onclick="selectCategory('${cat.id}')"
+            class="flex-shrink-0 flex flex-col items-center justify-center rounded-2xl transition-all duration-300 transform active:scale-95 ${
+              isActive
+                ? 'bg-gradient-to-b from-[#fcd34d] via-[#f59e0b] to-[#eab308] text-black shadow-lg shadow-amber-500/30 min-w-[90px] sm:min-w-[100px] h-[92px] p-2.5 font-bold border-2 border-yellow-200'
+                : 'bg-neutral-900/90 text-neutral-400 hover:text-amber-200 hover:bg-neutral-800/90 border border-neutral-800/80 min-w-[85px] sm:min-w-[95px] h-[90px] p-2 font-medium hover:border-amber-500/30'
+            }"
+          >
+            <div class="p-2 rounded-xl mb-1.5 ${isActive ? 'bg-black/10 text-black' : 'text-amber-400/90'}">
+              <i data-lucide="${cat.icon}" class="w-5 h-5 stroke-[2.2]"></i>
+            </div>
+            <span class="text-[10px] sm:text-[11px] tracking-wider text-center uppercase font-semibold line-clamp-1 max-w-[80px] ${isActive ? 'text-black font-extrabold' : 'text-neutral-300'}">
+              ${name}
+            </span>
+          </button>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function selectCategory(id) {
+      activeCategory = id;
+      searchQuery = '';
+      document.getElementById('searchInput').value = '';
+      const catObj = CATEGORIES.find(c => c.id === id);
+      document.getElementById('activeCategoryHeading').textContent = currentLang === 'pl' ? catObj.namePl : catObj.name;
+      renderCategories();
+      renderDishes();
+    }
+
+    function renderDishes() {
+      const container = document.getElementById('dishesContainer');
+      const filtered = DISHES.filter(d => {
+        if (!searchQuery && d.categoryId !== activeCategory) return false;
+        if (selectedDietary === 'veg' && d.dietary !== 'veg') return false;
+        if (selectedDietary === 'non-veg' && d.dietary !== 'non-veg') return false;
+        if (selectedDietary === 'seafood' && d.dietary !== 'seafood') return false;
+
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          return d.name.toLowerCase().includes(q) || d.namePl.toLowerCase().includes(q) || d.description.toLowerCase().includes(q) || d.descriptionPl.toLowerCase().includes(q);
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="py-16 text-center text-neutral-400 bg-neutral-900/30 rounded-3xl border border-neutral-800/80 p-8 my-4">
+            <i data-lucide="utensils-crossed" class="w-10 h-10 mx-auto text-amber-500/40 mb-3"></i>
+            <h3 class="font-serif text-xl font-bold text-neutral-200">${currentLang === 'pl' ? 'Nie znaleziono dań' : 'No dishes found'}</h3>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      if (viewMode === 'list') {
+        container.className = 'space-y-3';
+        container.innerHTML = filtered.map(dish => {
+          const title = currentLang === 'pl' ? dish.namePl : dish.name;
+          const desc = currentLang === 'pl' ? dish.descriptionPl : dish.description;
+          const emoji = dish.dietary === 'veg' ? '🌱' : dish.dietary === 'seafood' ? '🦐' : '🥩';
+
+          return `
+            <div onclick="openDishModal('${dish.id}')" class="group relative flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-900/60 hover:bg-neutral-900/90 border border-neutral-800/80 hover:border-amber-500/40 transition-all duration-300 cursor-pointer backdrop-blur-sm shadow-md">
+              <div class="relative flex-shrink-0 mr-4">
+                ${dish.badge ? `
+                  <div class="absolute -top-2 -left-1 z-10">
+                    <span class="px-2 py-0.5 text-[9px] font-extrabold uppercase rounded-md ${dish.badge === 'NEW' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'}">
+                      ${dish.badge}
+                    </span>
+                  </div>
+                ` : ''}
+                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden p-1 bg-gradient-to-br from-neutral-800 via-neutral-900 to-black border border-neutral-700/60 shadow-lg group-hover:border-amber-500/50">
+                  <img src="${dish.image}" alt="${title}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" />
+                </div>
+              </div>
+
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="font-serif text-base sm:text-lg font-bold text-neutral-100 group-hover:text-amber-300 transition-colors leading-snug">
+                  ${title} <span class="text-sm font-normal ml-0.5">${emoji}</span>
+                </h3>
+                <p class="text-xs text-neutral-400 font-medium mt-0.5">${dish.calories} ${currentLang === 'pl' ? 'Kalorii' : 'Calories'} • ${dish.prepTime}</p>
+                <p class="text-[11px] text-neutral-400 line-clamp-1 mt-1 font-normal">${desc}</p>
+                <div class="flex items-center gap-2 mt-2">
+                  ${dish.originalPrice ? `<span class="text-xs sm:text-sm text-neutral-400 line-through font-serif">${formatPrice(dish.originalPrice)}</span>` : ''}
+                  <span class="font-serif text-base sm:text-lg font-bold text-amber-300 tracking-wide">${formatPrice(dish.price)}</span>
+                </div>
+              </div>
+
+              <div class="flex-shrink-0">
+                <button onclick="quickAddToCart('${dish.id}', event)" class="p-2.5 rounded-full bg-neutral-800/90 text-amber-300 hover:bg-amber-500 hover:text-black border border-amber-500/30 transition-all">
+                  <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } else {
+        container.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5';
+        container.innerHTML = filtered.map(dish => {
+          const title = currentLang === 'pl' ? dish.namePl : dish.name;
+          const desc = currentLang === 'pl' ? dish.descriptionPl : dish.description;
+          const emoji = dish.dietary === 'veg' ? '🌱' : dish.dietary === 'seafood' ? '🦐' : '🥩';
+
+          return `
+            <div onclick="openDishModal('${dish.id}')" class="group relative flex flex-col justify-between p-4 rounded-2xl bg-neutral-900/60 hover:bg-neutral-900/90 border border-neutral-800/80 hover:border-amber-500/40 transition-all duration-300 cursor-pointer text-center">
+              ${dish.badge ? `
+                <div class="absolute top-3 left-3 z-10">
+                  <span class="px-2 py-0.5 text-[9px] font-extrabold uppercase rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/40">${dish.badge}</span>
+                </div>
+              ` : ''}
+              <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden p-1.5 bg-gradient-to-br from-neutral-800 via-neutral-900 to-black border border-neutral-700/60 shadow-lg mx-auto my-2 group-hover:border-amber-500/50">
+                <img src="${dish.image}" alt="${title}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" />
+              </div>
+              <h3 class="font-serif text-base font-bold text-neutral-100 group-hover:text-amber-300 line-clamp-1">${title} <span>${emoji}</span></h3>
+              <p class="text-xs text-neutral-400 font-medium mt-0.5">${dish.calories} kcal</p>
+              <p class="text-[11px] text-neutral-400 line-clamp-2 mt-1.5">${desc}</p>
+              <div class="flex items-center justify-between mt-3 pt-2 border-t border-neutral-800/60">
+                <span class="font-serif text-base font-bold text-amber-300">${formatPrice(dish.price)}</span>
+                <button onclick="quickAddToCart('${dish.id}', event)" class="p-2 rounded-full bg-neutral-800 text-amber-300 hover:bg-amber-500 hover:text-black border border-amber-500/30">
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      lucide.createIcons();
+    }
+
+    // Modal Details
+    function openDishModal(id) {
+      const dish = DISHES.find(d => d.id === id);
+      if (!dish) return;
+      activeModalDish = dish;
+      modalQty = 1;
+      document.getElementById('modalQtyDisplay').textContent = '1';
+
+      document.getElementById('modalDishImg').src = dish.image;
+      document.getElementById('modalDishTitle').textContent = currentLang === 'pl' ? dish.namePl : dish.name;
+      document.getElementById('modalDishDesc').textContent = currentLang === 'pl' ? dish.descriptionPl : dish.description;
+      
+      const badgeContainer = document.getElementById('modalDishBadge');
+      badgeContainer.innerHTML = dish.badge ? `<span class="px-3 py-1 text-xs font-extrabold uppercase rounded-lg bg-amber-500 text-black shadow-lg">${dish.badge}</span>` : '';
+
+      document.getElementById('modalMetaTags').innerHTML = `
+        <span class="bg-neutral-800/90 text-neutral-300 px-2.5 py-1 rounded-full border border-neutral-700 font-medium">🔥 ${dish.calories} ${currentLang === 'pl' ? 'kalorii' : 'calories'}</span>
+        <span class="bg-neutral-800/90 text-neutral-300 px-2.5 py-1 rounded-full border border-neutral-700 font-medium">⏱️ ${dish.prepTime}</span>
+      `;
+
+      const ings = currentLang === 'pl' ? dish.ingredientsPl : dish.ingredients;
+      document.getElementById('modalIngredientsList').innerHTML = ings.map(i => `
+        <span class="text-xs bg-neutral-900 text-neutral-300 px-2.5 py-1 rounded-lg border border-neutral-800">${i}</span>
+      `).join('');
+
+      document.getElementById('modalWinePairingText').textContent = dish.winePairing || 'Pinot Noir 2021';
+      document.getElementById('modalAddBtnText').textContent = `${currentLang === 'pl' ? 'Dodaj do stolika' : 'Add to Order'} • ${formatPrice(dish.price)}`;
+
+      document.getElementById('dishModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeDishModal() {
+      document.getElementById('dishModal').classList.add('hidden');
+    }
+
+    function incrementModalQty() {
+      modalQty++;
+      document.getElementById('modalQtyDisplay').textContent = modalQty;
+      document.getElementById('modalAddBtnText').textContent = `${currentLang === 'pl' ? 'Dodaj do stolika' : 'Add to Order'} • ${formatPrice(activeModalDish.price * modalQty)}`;
+    }
+
+    function decrementModalQty() {
+      if (modalQty > 1) {
+        modalQty--;
+        document.getElementById('modalQtyDisplay').textContent = modalQty;
+        document.getElementById('modalAddBtnText').textContent = `${currentLang === 'pl' ? 'Dodaj do stolika' : 'Add to Order'} • ${formatPrice(activeModalDish.price * modalQty)}`;
+      }
+    }
+
+    function confirmModalAddToCart() {
+      if (!activeModalDish) return;
+      addToCart(activeModalDish, modalQty);
+      closeDishModal();
+    }
+
+    function quickAddToCart(id, e) {
+      e.stopPropagation();
+      const dish = DISHES.find(d => d.id === id);
+      if (dish) addToCart(dish, 1);
+    }
+
+    function addToCart(dish, qty) {
+      const idx = cart.findIndex(c => c.dish.id === dish.id);
+      if (idx > -1) {
+        cart[idx].qty += qty;
+      } else {
+        cart.push({ dish, qty });
+      }
+      updateCartUI();
+      confetti({ particleCount: 30, spread: 50, origin: { y: 0.9 }, colors: ['#f59e0b', '#fbbf24', '#ffffff'] });
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((acc, c) => acc + c.qty, 0);
+      const floatingBadge = document.getElementById('floatingCartBadge');
+      const popoverCount = document.getElementById('popoverCartCount');
+      const popoverSummary = document.getElementById('popoverItemSummary');
+
+      if (totalCount > 0) {
+        floatingBadge.classList.remove('hidden');
+        floatingBadge.textContent = totalCount;
+        popoverCount.classList.remove('hidden');
+        popoverCount.textContent = totalCount;
+        popoverSummary.textContent = `${totalCount} ${currentLang === 'pl' ? 'dań' : 'items'}`;
+      } else {
+        floatingBadge.classList.add('hidden');
+        popoverCount.classList.add('hidden');
+        popoverSummary.textContent = currentLang === 'pl' ? 'Brak dań' : 'No items';
+      }
+
+      renderCartDrawerItems();
+    }
+
+    function renderCartDrawerItems() {
+      const container = document.getElementById('cartItemsList');
+      const totalCount = cart.reduce((acc, c) => acc + c.qty, 0);
+      document.getElementById('drawerSubtitle').textContent = `${currentLang === 'pl' ? `Stolik #${currentTable}` : `Table #${currentTable}`} • ${totalCount} ${currentLang === 'pl' ? 'pozycji' : 'items'}`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="py-12 text-center text-neutral-400">
+            <i data-lucide="utensils-crossed" class="w-8 h-8 mx-auto text-neutral-600 mb-2"></i>
+            <p class="text-sm">${currentLang === 'pl' ? 'Twój koszyk jest pusty' : 'Your order is empty'}</p>
+          </div>
+        `;
+        document.getElementById('cartSubtotal').textContent = formatPrice(0);
+        document.getElementById('cartTotal').textContent = formatPrice(0);
+        lucide.createIcons();
+        return;
+      }
+
+      let subtotal = 0;
+      container.innerHTML = cart.map((item, idx) => {
+        subtotal += item.dish.price * item.qty;
+        const title = currentLang === 'pl' ? item.dish.namePl : item.dish.name;
+        return `
+          <div class="p-3 bg-neutral-900/80 rounded-2xl border border-neutral-800 flex items-center justify-between gap-3">
+            <img src="${item.dish.image}" alt="${title}" class="w-12 h-12 rounded-full object-cover border border-amber-500/30 flex-shrink-0" />
+            <div class="flex-1 min-w-0">
+              <h4 class="font-serif text-sm font-bold text-neutral-200 line-clamp-1">${title}</h4>
+              <p class="text-xs text-amber-300 font-semibold">${formatPrice(item.dish.price)}</p>
+            </div>
+            <div class="flex items-center gap-1 bg-neutral-800 p-1 rounded-full border border-neutral-700">
+              <button onclick="updateCartItemQty(${idx}, ${item.qty - 1})" class="p-1 text-neutral-400 hover:text-white">
+                <i data-lucide="${item.qty === 1 ? 'trash-2' : 'minus'}" class="w-3.5 h-3.5"></i>
+              </button>
+              <span class="w-5 text-center text-xs font-bold text-amber-300">${item.qty}</span>
+              <button onclick="updateCartItemQty(${idx}, ${item.qty + 1})" class="p-1 text-neutral-400 hover:text-white">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const tipVal = (subtotal * selectedTip) / 100;
+      const total = subtotal + tipVal;
+
+      document.getElementById('cartSubtotal').textContent = formatPrice(subtotal);
+      document.getElementById('cartTotal').textContent = formatPrice(total);
+      lucide.createIcons();
+    }
+
+    function updateCartItemQty(idx, qty) {
+      if (qty <= 0) {
+        cart.splice(idx, 1);
+      } else {
+        cart[idx].qty = qty;
+      }
+      updateCartUI();
+    }
+
+    function setTip(val) {
+      selectedTip = val;
+      [0, 10, 15, 20].forEach(t => {
+        const btn = document.getElementById(`tip-${t}`);
+        if (t === val) {
+          btn.className = 'py-1 rounded-lg text-xs font-bold bg-amber-500 text-black border-amber-400 shadow-sm';
+        } else {
+          btn.className = 'py-1 rounded-lg text-xs font-semibold bg-neutral-900 text-neutral-400 border border-neutral-800';
+        }
+      });
+      renderCartDrawerItems();
+    }
+
+    function changeSplit(delta) {
+      splitGuests = Math.max(1, splitGuests + delta);
+      document.getElementById('splitDisplay').textContent = `${splitGuests} os.`;
+      renderCartDrawerItems();
+    }
+
+    function submitOrder() {
+      if (cart.length === 0) return;
+      confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+      alert(currentLang === 'pl' ? `Zamówienie dla Stolika #${currentTable} zostało przekazane do kuchni!` : `Order for Table #${currentTable} has been submitted!`);
+      cart = [];
+      updateCartUI();
+      closeCartDrawer();
+    }
+
+    // Drawers & Concierge Popover
+    function toggleConciergePopover() {
+      const popover = document.getElementById('conciergePopover');
+      popover.classList.toggle('hidden');
+    }
+
+    function openCartDrawer() {
+      document.getElementById('conciergePopover').classList.add('hidden');
+      document.getElementById('cartDrawer').classList.remove('hidden');
+      renderCartDrawerItems();
+    }
+
+    function closeCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('hidden');
+    }
+
+    function openWaiterModal() {
+      document.getElementById('conciergePopover').classList.add('hidden');
+      document.getElementById('waiterModal').classList.remove('hidden');
+    }
+
+    function closeWaiterModal() {
+      document.getElementById('waiterModal').classList.add('hidden');
+    }
+
+    function sendWaiterCall(reason) {
+      confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
+      alert(currentLang === 'pl' ? `Kelner został powiadomiony dla Stolika #${currentTable} (${reason}). Zaraz podejdzie!` : `Waiter called for Table #${currentTable} (${reason})!`);
+      closeWaiterModal();
+    }
+
+    function changeTable(val) {
+      currentTable = val;
+      renderCartDrawerItems();
+    }
+
+    function setCurrency(curr) {
+      currentCurrency = curr;
+      ['USD', 'PLN', 'EUR'].forEach(c => {
+        const el = document.getElementById(`curr-${c}`);
+        if (c === curr) {
+          el.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-black shadow-sm transition-all';
+        } else {
+          el.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold text-neutral-400 hover:text-amber-200 transition-all';
+        }
+      });
+      renderDishes();
+      renderCartDrawerItems();
+    }
+
+    function toggleLang() {
+      currentLang = currentLang === 'pl' ? 'en' : 'pl';
+      document.getElementById('langLabel').textContent = currentLang.toUpperCase();
+      updateDynamicGreeting();
+      renderCategories();
+      renderDishes();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val.trim();
+      renderDishes();
+    }
+
+    function setDietary(diet) {
+      selectedDietary = diet;
+      ['all', 'veg', 'non-veg', 'seafood'].forEach(d => {
+        const el = document.getElementById(`diet-${d}`);
+        if (d === diet) {
+          el.className = 'px-3 py-1 rounded-full text-xs font-semibold bg-neutral-800 text-amber-300 border border-amber-500/50 shadow-sm transition-all';
+        } else {
+          el.className = 'px-3 py-1 rounded-full text-xs font-semibold text-neutral-400 hover:text-neutral-200 transition-all';
+        }
+      });
+      renderDishes();
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      document.getElementById('viewModeList').className = mode === 'list' ? 'p-1.5 rounded-full bg-amber-500 text-black shadow-sm transition-all' : 'p-1.5 rounded-full text-neutral-400 hover:text-white transition-all';
+      document.getElementById('viewModeGrid').className = mode === 'grid' ? 'p-1.5 rounded-full bg-amber-500 text-black shadow-sm transition-all' : 'p-1.5 rounded-full text-neutral-400 hover:text-white transition-all';
+      renderDishes();
+    }
+
+    // Kickoff
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
