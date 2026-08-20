@@ -2,36 +2,21 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-  />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>MENU | Restauracja</title>
 
   <!-- CZCIONKI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- MODEL VIEWER -->
-  <script
-    type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
-  </script>
-
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
 
   <style>
-
     /* =========================
        RESET
     ========================= */
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -44,7 +29,7 @@
 
     body {
       font-family: "Montserrat", sans-serif;
-      background: #f6f6f6;
+      background: #fbfbfb;
       color: #444;
       overflow-x: hidden;
     }
@@ -53,11 +38,9 @@
       font-family: inherit;
     }
 
-
     /* =========================
        HERO
     ========================= */
-
     .hero {
       width: 100%;
       height: 260px;
@@ -76,80 +59,75 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-
-      background: rgba(0, 0, 0, 0.18);
-
+      background: rgba(0, 0, 0, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-
       flex-direction: column;
-
       color: white;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: 20px;
-      letter-spacing: 7px;
+      font-size: 22px;
+      letter-spacing: 8px;
       font-weight: 400;
       margin-bottom: 12px;
+      font-family: "Playfair Display", serif;
     }
 
     .hero p {
-      font-size: 9px;
-      letter-spacing: 3px;
+      font-size: 10px;
+      letter-spacing: 4px;
       opacity: 0.9;
     }
-
 
     /* =========================
        MENU
     ========================= */
-
     .menu {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 55px 20px 100px;
+      padding: 60px 24px 120px;
     }
 
     .category {
-      margin-bottom: 100px;
+      margin-bottom: 90px;
     }
 
     .category-title {
       text-align: center;
-
-      font-size: 13px;
-      letter-spacing: 3px;
-
+      font-size: 14px;
+      letter-spacing: 4px;
       font-weight: 500;
-
       color: #555;
-
-      margin-bottom: 55px;
-
+      margin-bottom: 60px;
       text-transform: uppercase;
+      position: relative;
     }
 
+    .category-title::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: #d49a4f;
+      margin: 12px auto 0;
+    }
 
     /* =========================
-       DANIE
+       UKŁAD DANIA (50% / 50% ZGODNY Z GRAFIKĄ)
     ========================= */
+    .dish-wrapper {
+      max-width: 800px;
+      margin: 0 auto 75px;
+    }
 
     .dish {
-      max-width: 600px;
-
-      margin: 0 auto 60px;
-
       display: grid;
-
-      grid-template-columns: 1fr 150px;
-
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-
-      gap: 35px;
-
+      gap: 45px;
       transition: transform 0.25s ease;
     }
 
@@ -157,141 +135,145 @@
       transform: translateY(-3px);
     }
 
-    .dish.reverse {
-      grid-template-columns: 150px 1fr;
+    /* Układ domyślny: Tekst po lewej (order 1), Obrazek po prawej (order 2) */
+    .dish .dish-info {
+      order: 1;
+    }
+    .dish .dish-image {
+      order: 2;
     }
 
+    /* Układ odwrócony (co drugie danie): Obrazek po lewej (order 1), Tekst po prawej (order 2) */
     .dish.reverse .dish-image {
       order: 1;
     }
-
     .dish.reverse .dish-info {
       order: 2;
-      text-align: left;
     }
-
 
     /* =========================
        ZDJĘCIE
     ========================= */
-
     .dish-image {
-      width: 150px;
-      height: 150px;
-
+      width: 100%;
+      max-width: 330px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
       overflow: hidden;
-
-      background: #eee;
+      background: #f0f0f0;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
     .dish-image img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       display: block;
-
       transition: transform 0.4s ease;
     }
 
     .dish:hover .dish-image img {
-      transform: scale(1.06);
+      transform: scale(1.05);
     }
 
-
     /* =========================
-       INFORMACJE
+       INFORMACJE (WYŚRODKOWANE)
     ========================= */
-
     .dish-info {
-      text-align: right;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
 
     .dish-name {
       font-family: "Playfair Display", serif;
-
-      font-size: 16px;
-
-      color: #333;
-
-      margin-bottom: 9px;
-
+      font-size: 17px;
+      color: #2b2b2b;
+      margin-bottom: 10px;
       font-weight: 500;
     }
 
     .dish-description {
-      font-size: 10px;
-
-      line-height: 1.7;
-
-      color: #888;
-
-      margin-bottom: 12px;
+      font-size: 11px;
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 15px;
+      max-width: 330px;
+      text-align: center;
+      font-weight: 300;
     }
 
     .dish-price {
-      font-size: 11px;
-
-      color: #555;
-
+      font-size: 13px;
+      color: #333;
       font-weight: 600;
-
-      margin-bottom: 13px;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
     }
-
 
     /* =========================
        PRZYCISK 3D / AR
     ========================= */
-
     .dish-3d-button {
-      border: none;
-
+      border: 1px solid #222;
       background: #222;
-
       color: white;
-
-      padding: 10px 16px;
-
+      padding: 9px 16px;
       font-size: 9px;
-
-      letter-spacing: 1px;
-
+      letter-spacing: 1.5px;
       cursor: pointer;
-
       display: inline-flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 7px;
-
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
     }
 
     .dish-3d-button:hover {
       background: #c68a3b;
+      border-color: #c68a3b;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(198, 138, 59, 0.25);
     }
 
+    /* =========================
+       IKONY ALERGENÓW / DIETY POD DANIEM
+    ========================= */
+    .dish-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .dish-icon-badge {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid #d49a4f;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #b57a2e;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(212, 154, 79, 0.12);
+    }
 
     /* =========================
        3D / AR FULLSCREEN
     ========================= */
-
     .ar-viewer {
       position: fixed;
-
       inset: 0;
-
       background: #eeeeee;
-
       z-index: 9999;
-
       display: none;
     }
 
@@ -302,175 +284,124 @@
     .ar-viewer model-viewer {
       width: 100%;
       height: 100%;
-
-      background:
-        linear-gradient(
-          180deg,
-          #eeeeee,
-          #dddddd
-        );
+      background: linear-gradient(180deg, #f5f5f5, #e0e0e0);
     }
-
-
-    /* =========================
-       GÓRNY PANEL 3D
-    ========================= */
 
     .viewer-header {
       position: absolute;
-
       top: 20px;
       left: 20px;
       right: 20px;
-
       z-index: 20;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       pointer-events: none;
     }
 
     .viewer-title {
-      background: rgba(255, 255, 255, 0.94);
-
-      padding: 12px 18px;
-
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 20px;
       font-family: "Playfair Display", serif;
-
       font-size: 18px;
-
       color: #222;
-
-      box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.12);
-
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
       pointer-events: auto;
     }
-
-
-    /* =========================
-       ZAMKNIĘCIE
-    ========================= */
 
     .viewer-close {
-      width: 45px;
-      height: 45px;
-
+      width: 44px;
+      height: 44px;
       border: none;
-
       border-radius: 50%;
-
       background: white;
-
       color: #222;
-
       font-size: 24px;
-
       cursor: pointer;
-
-      box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.18);
-
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
       pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-
-    /* =========================
-       AR BUTTON
-    ========================= */
 
     .ar-button {
       position: absolute;
-
       bottom: 30px;
       left: 50%;
-
       transform: translateX(-50%);
-
       border: none;
-
       background: #c68a3b;
-
       color: white;
-
       padding: 15px 25px;
-
       font-size: 11px;
-
       letter-spacing: 1px;
-
       cursor: pointer;
-
-      box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.25);
-
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
       white-space: nowrap;
+      border-radius: 30px;
     }
 
-
     /* =========================
-       MOBILE
+       MOBILE (RWD)
     ========================= */
-
-    @media (max-width: 600px) {
-
+    @media (max-width: 680px) {
       .hero {
         height: 190px;
       }
 
       .hero h1 {
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .menu {
-        padding: 45px 18px 90px;
+        padding: 40px 16px 80px;
       }
 
       .category {
-        margin-bottom: 75px;
+        margin-bottom: 60px;
       }
 
       .category-title {
-        margin-bottom: 40px;
-        font-size: 11px;
+        margin-bottom: 35px;
+        font-size: 12px;
+      }
+
+      .dish-wrapper {
+        margin-bottom: 50px;
       }
 
       .dish {
-        grid-template-columns: 1fr 115px;
-
-        gap: 16px;
-
-        margin-bottom: 40px;
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
-      .dish.reverse {
-        grid-template-columns: 115px 1fr;
+      .dish .dish-image,
+      .dish.reverse .dish-image {
+        order: 1;
+        max-width: 250px;
       }
 
-      .dish-image {
-        width: 115px;
-        height: 115px;
+      .dish .dish-info,
+      .dish.reverse .dish-info {
+        order: 2;
       }
 
       .dish-name {
-        font-size: 13px;
+        font-size: 15px;
       }
 
       .dish-description {
-        font-size: 8px;
+        font-size: 10px;
         line-height: 1.6;
       }
 
       .dish-price {
-        font-size: 9px;
+        font-size: 11px;
       }
 
       .dish-3d-button {
-        padding: 9px 12px;
+        padding: 8px 14px;
         font-size: 8px;
       }
 
@@ -486,641 +417,261 @@
 
       .ar-button {
         bottom: 20px;
-
         font-size: 10px;
-
-        padding: 13px 20px;
+        padding: 12px 20px;
       }
-
     }
-
   </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
-<header class="hero">
-
-  <img
-    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=90"
-    alt="Restauracja"
-  >
-
-  <div class="hero-overlay">
-
-    <h1>MENU</h1>
-
-    <p>THE GOLDEN OAK RESTAURANT</p>
-
-  </div>
-
-</header>
-
-
-<!-- =========================
-     MENU
-========================= -->
-
-<main class="menu">
-
-  <div id="menuContainer"></div>
-
-</main>
-
-
-<!-- =========================
-     3D / AR VIEWER
-========================= -->
-
-<div
-  id="arViewer"
-  class="ar-viewer"
->
-
-  <div class="viewer-header">
-
-    <div
-      id="viewerTitle"
-      class="viewer-title"
+  <!-- =========================
+       HERO
+  ========================= -->
+  <header class="hero">
+    <img
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=90"
+      alt="Restauracja"
     >
-      Danie
+    <div class="hero-overlay">
+      <h1>MENU</h1>
+      <p>THE GOLDEN OAK RESTAURANT</p>
+    </div>
+  </header>
+
+  <!-- =========================
+       MENU
+  ========================= -->
+  <main class="menu">
+    <div id="menuContainer"></div>
+  </main>
+
+  <!-- =========================
+       3D / AR VIEWER
+  ========================= -->
+  <div id="arViewer" class="ar-viewer">
+    <div class="viewer-header">
+      <div id="viewerTitle" class="viewer-title">Danie</div>
+      <button class="viewer-close" onclick="close3DViewer()" aria-label="Zamknij">×</button>
     </div>
 
-
-    <button
-      class="viewer-close"
-      onclick="close3DViewer()"
-      aria-label="Zamknij"
+    <model-viewer
+      id="mainModelViewer"
+      src=""
+      alt="Model 3D dania"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      ar-placement="floor"
     >
-      ×
-    </button>
-
+      <button slot="ar-button" class="ar-button">
+        📱 ZOBACZ NA SWOIM STOLE
+      </button>
+    </model-viewer>
   </div>
 
-
-  <model-viewer
-
-    id="mainModelViewer"
-
-    src=""
-
-    alt="Model 3D dania"
-
-    camera-controls
-
-    auto-rotate
-
-    shadow-intensity="1"
-
-    exposure="1"
-
-    ar
-
-    ar-modes="webxr scene-viewer quick-look"
-
-    ar-placement="floor"
-
-  >
-
-    <button
-      slot="ar-button"
-      class="ar-button"
-    >
-      📱 ZOBACZ NA SWOIM STOLE
-    </button>
-
-  </model-viewer>
-
-</div>
-
-
-<script>
-
-
-/* =========================================
-   KATEGORIE
-========================================= */
-
-const CATEGORIES = [
-
-  {
-    id: "starters",
-    name: "PRZYSTAWKI"
-  },
-
-  {
-    id: "soups",
-    name: "ZUPY"
-  },
-
-  {
-    id: "mains",
-    name: "DANIA GŁÓWNE"
-  },
-
-  {
-    id: "desserts",
-    name: "DESERY"
-  }
-
-];
-
-
-
-/* =========================================
-   DANIA
-========================================= */
-
-const DISHES = [
-
-  /* =========================
-     PRZYSTAWKI
-  ========================= */
-
-  {
-
-    id: "starter-1",
-
-    name: "Burrata z pomidorami",
-
-    categoryId: "starters",
-
-    description:
-      "Kremowa burrata, świeże pomidory, oliwa extra virgin i świeża bazylia.",
-
-    price: 36,
-
-    image:
-      "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./burrata.glb"
-
-  },
-
-
-  {
-
-    id: "starter-2",
-
-    name: "Tatar wołowy",
-
-    categoryId: "starters",
-
-    description:
-      "Selekcjonowana wołowina, żółtko, kapary, ogórek i chrupiące pieczywo.",
-
-    price: 42,
-
-    image:
-      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./tatar-wolowy.glb"
-
-  },
-
-
-  /* =========================
-     ZUPY
-  ========================= */
-
-  {
-
-    id: "soup-1",
-
-    name: "Krem z dyni",
-
-    categoryId: "soups",
-
-    description:
-      "Aksamitny krem z pieczonej dyni z nutą imbiru i pestkami dyni.",
-
-    price: 24,
-
-    image:
-      "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./krem-z-dyni.glb"
-
-  },
-
-
-  /* =========================
-     DANIA GŁÓWNE
-  ========================= */
-
-  {
-
-    id: "main-1",
-
-    name: "Polędwica wołowa",
-
-    categoryId: "mains",
-
-    description:
-      "Soczysta polędwica wołowa, sezonowe warzywa i intensywny sos pieczeniowy.",
-
-    price: 72,
-
-    image:
-      "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./poledwica-wolowa.glb"
-
-  },
-
-
-  {
-
-    id: "main-2",
-
-    name: "Miyazaki Wagyu A5 Ribeye",
-
-    categoryId: "mains",
-
-    description:
-      "Japońska wołowina Wagyu klasy A5 o wyjątkowym marmurkowaniu, podawana z puree z pasternaku i sosem demi-glace.",
-
-    price: 98,
-
-    image:
-      "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./miyazaki-wagyu.glb"
-
-  },
-
-
-  {
-
-    id: "main-3",
-
-    name: "Łosoś grillowany",
-
-    categoryId: "mains",
-
-    description:
-      "Filet z łososia, puree ziemniaczane, szparagi i sos cytrynowy.",
-
-    price: 64,
-
-    image:
-      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./losos-grillowany.glb"
-
-  },
-
-
-  /* =========================
-     DESERY
-  ========================= */
-
-  {
-
-    id: "dessert-1",
-
-    name: "Tiramisu",
-
-    categoryId: "desserts",
-
-    description:
-      "Klasyczne włoskie tiramisu z mascarpone i intensywnym espresso.",
-
-    price: 28,
-
-    image:
-      "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./tiramisu.glb"
-
-  },
-
-
-  {
-
-    id: "dessert-2",
-
-    name: "Fondant czekoladowy",
-
-    categoryId: "desserts",
-
-    description:
-      "Ciepłe ciasto czekoladowe z płynnym środkiem i lodami waniliowymi.",
-
-    price: 30,
-
-    image:
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./fondant-czekoladowy.glb"
-
-  }
-
-];
-
-
-
-/* =========================================
-   RENDER MENU
-========================================= */
-
-function renderMenu() {
-
-  const container =
-    document.getElementById(
-      "menuContainer"
-    );
-
-
-  container.innerHTML =
-    CATEGORIES.map(category => {
-
-
-      const categoryDishes =
-        DISHES.filter(
-          dish =>
-            dish.categoryId === category.id
-        );
-
-
-      /*
-        Nie pokazujemy pustych kategorii.
-      */
-
-      if (categoryDishes.length === 0) {
-        return "";
+  <script>
+    /* =========================================
+       KATEGORIE
+    ========================================= */
+    const CATEGORIES = [
+      { id: "starters", name: "PRZYSTAWKI" },
+      { id: "soups", name: "ZUPY" },
+      { id: "mains", name: "DANIA GŁÓWNE" },
+      { id: "desserts", name: "DESERY" }
+    ];
+
+    /* =========================================
+       DANIA
+    ========================================= */
+    const DISHES = [
+      /* PRZYSTAWKI */
+      {
+        id: "starter-1",
+        name: "Podwędzany befsztyk tatarski",
+        categoryId: "starters",
+        description: "Podwędzany befsztyk tatarski z polskiej wołowiny serwowany z klasycznymi marynatami z Podlasia",
+        price: "59zł/150g",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85",
+        model: "./tatar-wolowy.glb",
+        icons: ["🌾"]
+      },
+      {
+        id: "starter-2",
+        name: "Karmelizowana figa",
+        categoryId: "starters",
+        description: "Karmelizowana figa podana na zapiekanej roladzie koziej, skąpanej w gąszczu z truskawek z rukolą i kawiorem z pomarańczy",
+        price: "57zł/150g",
+        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=85",
+        model: "./karmelizowana-figa.glb",
+        icons: ["🍃", "🌾"]
+      },
+      {
+        id: "starter-3",
+        name: "Burrata z pomidorami",
+        categoryId: "starters",
+        description: "Kremowa burrata, świeże pomidory, oliwa extra virgin i świeża bazylia.",
+        price: "36.00 zł",
+        image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=85",
+        model: "./burrata.glb",
+        icons: ["🍃"]
+      },
+
+      /* ZUPY */
+      {
+        id: "soup-1",
+        name: "Krem z dyni",
+        categoryId: "soups",
+        description: "Aksamitny krem z pieczonej dyni z nutą imbiru i prażonymi pestkami dyni.",
+        price: "24.00 zł",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85",
+        model: "./krem-z-dyni.glb",
+        icons: ["🍃", "🌾"]
+      },
+
+      /* DANIA GŁÓWNE */
+      {
+        id: "main-1",
+        name: "Polędwica wołowa",
+        categoryId: "mains",
+        description: "Soczysta polędwica wołowa, sezonowe warzywa i intensywny sos pieczeniowy.",
+        price: "72.00 zł",
+        image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=85",
+        model: "./poledwica-wolowa.glb",
+        icons: ["🌾"]
+      },
+      {
+        id: "main-2",
+        name: "Miyazaki Wagyu A5 Ribeye",
+        categoryId: "mains",
+        description: "Japońska wołowina Wagyu klasy A5 o wyjątkowym marmurkowaniu, podawana z puree z pasternaku i sosem demi-glace.",
+        price: "98.00 zł",
+        image: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=85",
+        model: "./miyazaki-wagyu.glb"
+      },
+      {
+        id: "main-3",
+        name: "Łosoś grillowany",
+        categoryId: "mains",
+        description: "Filet z łososia, puree ziemniaczane, szparagi i sos cytrynowy.",
+        price: "64.00 zł",
+        image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=85",
+        model: "./losos-grillowany.glb",
+        icons: ["🌾"]
+      },
+
+      /* DESERY */
+      {
+        id: "dessert-1",
+        name: "Tiramisu",
+        categoryId: "desserts",
+        description: "Klasyczne włoskie tiramisu z mascarpone i intensywnym espresso.",
+        price: "28.00 zł",
+        image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=85",
+        model: "./tiramisu.glb",
+        icons: ["🍃"]
+      },
+      {
+        id: "dessert-2",
+        name: "Fondant czekoladowy",
+        categoryId: "desserts",
+        description: "Ciepłe ciasto czekoladowe z płynnym środkiem i lodami waniliowymi.",
+        price: "30.00 zł",
+        image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=85",
+        model: "./fondant-czekoladowy.glb",
+        icons: ["🍃"]
       }
+    ];
 
+    /* =========================================
+       RENDER MENU
+    ========================================= */
+    function renderMenu() {
+      const container = document.getElementById("menuContainer");
 
-      return `
+      container.innerHTML = CATEGORIES.map(category => {
+        const categoryDishes = DISHES.filter(dish => dish.categoryId === category.id);
 
-        <section class="category">
+        if (categoryDishes.length === 0) return "";
 
-          <h2 class="category-title">
+        return `
+          <section class="category">
+            <h2 class="category-title">${category.name}</h2>
 
-            ${category.name}
-
-          </h2>
-
-
-          ${categoryDishes.map(
-            (dish, index) => {
-
-
-              const reverse =
-                index % 2 === 1
-                  ? "reverse"
-                  : "";
-
+            ${categoryDishes.map((dish, index) => {
+              const reverse = index % 2 === 1 ? "reverse" : "";
+              const iconsHtml = dish.icons && dish.icons.length > 0 
+                ? `<div class="dish-icons">${dish.icons.map(icon => `<span class="dish-icon-badge">${icon}</span>`).join("")}</div>` 
+                : "";
 
               return `
-
-                <article
-                  class="dish ${reverse}"
-                >
-
-
-                  <div class="dish-info">
-
-
-                    <h3 class="dish-name">
-
-                      ${dish.name}
-
-                    </h3>
-
-
-                    <p class="dish-description">
-
-                      ${dish.description}
-
-                    </p>
-
-
-                    <div class="dish-price">
-
-                      ${dish.price.toFixed(2)} zł
-
+                <div class="dish-wrapper">
+                  <article class="dish ${reverse}">
+                    <div class="dish-info">
+                      <h3 class="dish-name">${dish.name}</h3>
+                      <p class="dish-description">${dish.description}</p>
+                      <div class="dish-price">${dish.price}</div>
+                      <button class="dish-3d-button" onclick="open3DViewer('${dish.id}')">
+                        ✨ 3D / AR
+                      </button>
                     </div>
 
-
-                    <button
-
-                      class="dish-3d-button"
-
-                      onclick="
-                        open3DViewer('${dish.id}')
-                      "
-
-                    >
-
-                      ✨ 3D / AR
-
-                    </button>
-
-
-                  </div>
-
-
-                  <div class="dish-image">
-
-                    <img
-
-                      src="${dish.image}"
-
-                      alt="${dish.name}"
-
-                      loading="lazy"
-
-                    >
-
-                  </div>
-
-
-                </article>
-
+                    <div class="dish-image">
+                      <img src="${dish.image}" alt="${dish.name}" loading="lazy">
+                    </div>
+                  </article>
+                  ${iconsHtml}
+                </div>
               `;
-
-            }
-          ).join("")}
-
-
-        </section>
-
-      `;
-
-    }).join("");
-
-}
-
-
-
-/* =========================================
-   OPEN 3D / AR
-========================================= */
-
-function open3DViewer(id) {
-
-
-  const dish =
-    DISHES.find(
-      item =>
-        item.id === id
-    );
-
-
-  if (!dish || !dish.model) {
-    return;
-  }
-
-
-  const viewer =
-    document.getElementById(
-      "mainModelViewer"
-    );
-
-
-  const viewerContainer =
-    document.getElementById(
-      "arViewer"
-    );
-
-
-  const title =
-    document.getElementById(
-      "viewerTitle"
-    );
-
-
-  /*
-    Ustaw model GLB.
-  */
-
-  viewer.src =
-    dish.model;
-
-
-  viewer.alt =
-    `Model 3D - ${dish.name}`;
-
-
-  /*
-    Ustaw nazwę dania.
-  */
-
-  title.textContent =
-    dish.name;
-
-
-  /*
-    Otwórz viewer.
-  */
-
-  viewerContainer.classList.add(
-    "active"
-  );
-
-
-  /*
-    Zablokuj przewijanie strony.
-  */
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-
-/* =========================================
-   CLOSE 3D VIEWER
-========================================= */
-
-function close3DViewer() {
-
-
-  const viewerContainer =
-    document.getElementById(
-      "arViewer"
-    );
-
-
-  const viewer =
-    document.getElementById(
-      "mainModelViewer"
-    );
-
-
-  viewerContainer.classList.remove(
-    "active"
-  );
-
-
-  /*
-    Wyczyść aktualny model.
-  */
-
-  viewer.removeAttribute(
-    "src"
-  );
-
-
-  /*
-    Przywróć przewijanie.
-  */
-
-  document.body.style.overflow =
-    "";
-
-}
-
-
-
-/* =========================================
-   ESC = CLOSE
-========================================= */
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (
-      event.key === "Escape"
-    ) {
-
-      close3DViewer();
-
+            }).join("")}
+          </section>
+        `;
+      }).join("");
     }
 
-  }
-);
+    /* =========================================
+       OPEN 3D / AR
+    ========================================= */
+    function open3DViewer(id) {
+      const dish = DISHES.find(item => item.id === id);
+      if (!dish || !dish.model) return;
 
+      const viewer = document.getElementById("mainModelViewer");
+      const viewerContainer = document.getElementById("arViewer");
+      const title = document.getElementById("viewerTitle");
 
+      viewer.src = dish.model;
+      viewer.alt = `Model 3D - ${dish.name}`;
+      title.textContent = dish.name;
+      viewerContainer.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
 
-/* =========================================
-   START
-========================================= */
+    /* =========================================
+       CLOSE 3D VIEWER
+    ========================================= */
+    function close3DViewer() {
+      const viewerContainer = document.getElementById("arViewer");
+      const viewer = document.getElementById("mainModelViewer");
 
-renderMenu();
+      viewerContainer.classList.remove("active");
+      viewer.removeAttribute("src");
+      document.body.style.overflow = "";
+    }
 
+    /* ESC = CLOSE */
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        close3DViewer();
+      }
+    });
 
-</script>
-
-
+    /* START */
+    renderMenu();
+  </script>
 </body>
 </html>
