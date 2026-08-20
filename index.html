@@ -73,7 +73,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.18);
+      background: rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -220,8 +220,8 @@
     }
 
     .mini-icon {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
 
       border-radius: 50%;
 
@@ -233,58 +233,7 @@
       color: white;
 
       font-size: 8px;
-    }
-
-    /* =========================
-       KOSZYK
-    ========================= */
-
-    .cart-button {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-
-      width: 58px;
-      height: 58px;
-
-      border-radius: 50%;
-      border: none;
-
-      background: #222;
-      color: white;
-
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 22px;
-
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-
-      z-index: 100;
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-
-      width: 20px;
-      height: 20px;
-
-      background: #c68a3b;
-      color: white;
-
-      border-radius: 50%;
-
-      font-size: 10px;
-      font-weight: bold;
-
-      display: none;
-      align-items: center;
-      justify-content: center;
+      font-weight: 600;
     }
 
     /* =========================
@@ -295,7 +244,7 @@
       position: fixed;
       inset: 0;
 
-      background: rgba(0,0,0,0.65);
+      background: rgba(0, 0, 0, 0.65);
 
       display: none;
       align-items: center;
@@ -322,7 +271,7 @@
 
       position: relative;
 
-      box-shadow: 0 30px 100px rgba(0,0,0,0.35);
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
     }
 
     .close-button {
@@ -346,11 +295,11 @@
 
       z-index: 20;
 
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     }
 
     /* =========================
-       MODAL HERO
+       MODAL VISUAL
     ========================= */
 
     .modal-visual {
@@ -391,7 +340,7 @@
     }
 
     /* =========================
-       3D BUTTON
+       3D / AR BUTTON
     ========================= */
 
     .show-3d-button {
@@ -418,6 +367,14 @@
       z-index: 10;
 
       white-space: nowrap;
+
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+      transition: background 0.25s ease;
+    }
+
+    .show-3d-button:hover {
+      background: #c68a3b;
     }
 
     .ar-button {
@@ -443,7 +400,7 @@
 
       white-space: nowrap;
 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
 
     /* =========================
@@ -493,7 +450,7 @@
       flex-wrap: wrap;
       gap: 8px;
 
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     .ingredient {
@@ -507,192 +464,27 @@
     }
 
     /* =========================
-       QUANTITY
+       3D INFO
     ========================= */
 
-    .order-row {
-      display: flex;
-      gap: 15px;
-      align-items: center;
+    .model-info {
+      margin-top: 25px;
+
+      padding: 16px;
+
+      background: #f7f3ed;
+
+      border-left: 3px solid #c68a3b;
+
+      font-size: 10px;
+
+      line-height: 1.7;
+
+      color: #777;
     }
 
-    .quantity {
-      display: flex;
-      align-items: center;
-
-      border: 1px solid #ddd;
-    }
-
-    .quantity button {
-      width: 38px;
-      height: 42px;
-
-      border: none;
-
-      background: white;
-
-      cursor: pointer;
-
-      font-size: 18px;
-    }
-
-    .quantity span {
-      width: 35px;
-
-      text-align: center;
-
-      font-size: 13px;
-    }
-
-    .add-button {
-      flex: 1;
-
-      height: 42px;
-
-      border: none;
-
-      background: #222;
-
-      color: white;
-
-      font-size: 11px;
-
-      letter-spacing: 1px;
-
-      cursor: pointer;
-    }
-
-    /* =========================
-       CART DRAWER
-    ========================= */
-
-    .cart-drawer {
-      position: fixed;
-
-      top: 0;
-      right: -450px;
-
-      width: 100%;
-      max-width: 420px;
-
-      height: 100vh;
-
-      background: white;
-
-      z-index: 300;
-
-      transition: right 0.35s ease;
-
-      box-shadow: -10px 0 50px rgba(0,0,0,0.15);
-
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-drawer.active {
-      right: 0;
-    }
-
-    .cart-header {
-      padding: 25px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      border-bottom: 1px solid #eee;
-    }
-
-    .cart-header h2 {
-      font-family: "Playfair Display", serif;
-
-      font-size: 24px;
-
-      font-weight: 500;
-    }
-
-    .cart-close {
-      border: none;
-
-      background: none;
-
-      font-size: 24px;
-
-      cursor: pointer;
-    }
-
-    .cart-items {
-      flex: 1;
-
-      overflow-y: auto;
-
-      padding: 20px;
-    }
-
-    .cart-item {
-      display: flex;
-
-      gap: 12px;
-
-      margin-bottom: 18px;
-
-      padding-bottom: 18px;
-
-      border-bottom: 1px solid #eee;
-    }
-
-    .cart-item img {
-      width: 60px;
-      height: 60px;
-
-      object-fit: cover;
-    }
-
-    .cart-item-info {
-      flex: 1;
-    }
-
-    .cart-item-name {
-      font-size: 12px;
-      font-weight: 600;
-
-      margin-bottom: 5px;
-    }
-
-    .cart-item-price {
-      font-size: 11px;
-      color: #888;
-    }
-
-    .cart-footer {
-      padding: 25px;
-
-      border-top: 1px solid #eee;
-    }
-
-    .cart-total {
-      display: flex;
-
-      justify-content: space-between;
-
-      font-size: 18px;
-
-      margin-bottom: 20px;
-    }
-
-    .order-button {
-      width: 100%;
-
-      border: none;
-
-      background: #222;
-      color: white;
-
-      height: 50px;
-
-      cursor: pointer;
-
-      letter-spacing: 1px;
+    .model-info strong {
+      color: #444;
     }
 
     /* =========================
@@ -760,6 +552,10 @@
         height: 280px;
       }
 
+      .modal-title {
+        font-size: 24px;
+      }
+
     }
 
   </style>
@@ -804,27 +600,6 @@
 
 
 <!-- =========================
-     CART BUTTON
-========================= -->
-
-<button
-  class="cart-button"
-  onclick="openCart()"
->
-
-  🛒
-
-  <span
-    id="cartCount"
-    class="cart-count"
-  >
-    0
-  </span>
-
-</button>
-
-
-<!-- =========================
      DISH MODAL
 ========================= -->
 
@@ -838,17 +613,20 @@
     <button
       class="close-button"
       onclick="closeDishModal()"
+      aria-label="Zamknij"
     >
       ×
     </button>
 
 
-    <!-- IMAGE / MODEL -->
+    <!-- =========================
+         IMAGE / MODEL 3D
+    ========================= -->
 
     <div class="modal-visual">
 
 
-      <!-- IMAGE -->
+      <!-- ZDJĘCIE -->
 
       <div
         id="modalImageContainer"
@@ -864,7 +642,7 @@
       </div>
 
 
-      <!-- MODEL 3D -->
+      <!-- MODEL 3D + AR -->
 
       <model-viewer
 
@@ -896,13 +674,13 @@
           slot="ar-button"
           class="ar-button"
         >
-          📱 Zobacz na swoim stole
+          📱 ZOBACZ NA SWOIM STOLE
         </button>
 
       </model-viewer>
 
 
-      <!-- SHOW 3D -->
+      <!-- PRZYCISK POKAZANIA 3D -->
 
       <button
         id="show3DButton"
@@ -910,16 +688,16 @@
         style="display:none;"
         onclick="showDish3D()"
       >
-
         ✨ ZOBACZ DANIE W 3D
-
       </button>
 
 
     </div>
 
 
-    <!-- CONTENT -->
+    <!-- =========================
+         CONTENT
+    ========================= -->
 
     <div class="modal-content">
 
@@ -945,9 +723,7 @@
 
 
       <div class="ingredients-title">
-
         SKŁADNIKI
-
       </div>
 
 
@@ -958,107 +734,20 @@
       </div>
 
 
-      <!-- QUANTITY -->
+      <!-- INFORMACJA O 3D -->
 
-      <div class="order-row">
-
-        <div class="quantity">
-
-          <button
-            onclick="changeQuantity(-1)"
-          >
-            −
-          </button>
-
-
-          <span
-            id="modalQuantity"
-          >
-            1
-          </span>
-
-
-          <button
-            onclick="changeQuantity(1)"
-          >
-            +
-          </button>
-
-        </div>
-
-
-        <button
-          class="add-button"
-          onclick="addCurrentDishToCart()"
-        >
-
-          DODAJ DO ZAMÓWIENIA
-
-        </button>
-
+      <div
+        id="modelInfo"
+        class="model-info"
+        style="display:none;"
+      >
+        <strong>WIZUALIZACJA 3D / AR</strong><br>
+        Obracaj danie palcem lub myszką, aby zobaczyć je z każdej strony.
+        Na obsługiwanych urządzeniach możesz również wyświetlić danie
+        w swojej przestrzeni dzięki technologii AR.
       </div>
 
-
     </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     CART DRAWER
-========================= -->
-
-<div
-  id="cartDrawer"
-  class="cart-drawer"
->
-
-  <div class="cart-header">
-
-    <h2>Twoje zamówienie</h2>
-
-    <button
-      class="cart-close"
-      onclick="closeCart()"
-    >
-      ×
-    </button>
-
-  </div>
-
-
-  <div
-    id="cartItems"
-    class="cart-items"
-  >
-  </div>
-
-
-  <div class="cart-footer">
-
-    <div class="cart-total">
-
-      <span>Razem</span>
-
-      <strong
-        id="cartTotal"
-      >
-        0.00 zł
-      </strong>
-
-    </div>
-
-
-    <button
-      class="order-button"
-      onclick="submitOrder()"
-    >
-
-      ZŁÓŻ ZAMÓWIENIE
-
-    </button>
 
   </div>
 
@@ -1124,6 +813,18 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=85",
 
+    /*
+      MODEL 3D:
+
+      Wstaw tutaj swój plik GLB.
+
+      Przykład:
+      "./models/burrata.glb"
+    */
+
+    model:
+      "./models/burrata.glb",
+
     ingredients: [
       "Burrata",
       "Pomidory",
@@ -1150,6 +851,9 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=85",
 
+    model:
+      "./models/tatar-wolowy.glb",
+
     ingredients: [
       "Wołowina",
       "Żółtko",
@@ -1175,6 +879,9 @@ const DISHES = [
 
     image:
       "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85",
+
+    model:
+      "./models/przegrzebki.glb",
 
     ingredients: [
       "Przegrzebki",
@@ -1206,6 +913,9 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=85",
 
+    model:
+      "./models/krem-z-dyni.glb",
+
     ingredients: [
       "Dynia",
       "Imbir",
@@ -1231,6 +941,9 @@ const DISHES = [
 
     image:
       "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=85",
+
+    model:
+      "./models/rosol-z-kaczki.glb",
 
     ingredients: [
       "Kaczka",
@@ -1262,14 +975,6 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=85",
 
-    /* =================================
-       MODEL 3D
-
-       TU MUSISZ WRZUCIĆ SWÓJ PLIK:
-
-       models/miyazaki-wagyu.glb
-    ================================= */
-
     model:
       "./models/miyazaki-wagyu.glb",
 
@@ -1299,6 +1004,9 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=85",
 
+    model:
+      "./models/poledwica-wolowa.glb",
+
     ingredients: [
       "Wołowina",
       "Warzywa",
@@ -1325,6 +1033,9 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=85",
 
+    model:
+      "./models/losos-grillowany.glb",
+
     ingredients: [
       "Łosoś",
       "Szparagi",
@@ -1350,6 +1061,9 @@ const DISHES = [
 
     image:
       "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=600&q=85",
+
+    model:
+      "./models/risotto-truflowe.glb",
 
     ingredients: [
       "Ryż Arborio",
@@ -1381,6 +1095,9 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=85",
 
+    model:
+      "./models/tiramisu.glb",
+
     ingredients: [
       "Mascarpone",
       "Espresso",
@@ -1407,6 +1124,9 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=85",
 
+    model:
+      "./models/fondant-czekoladowy.glb",
+
     ingredients: [
       "Czekolada",
       "Masło",
@@ -1415,7 +1135,6 @@ const DISHES = [
     ]
 
   }
-
 
 ];
 
@@ -1426,10 +1145,6 @@ const DISHES = [
 ========================================= */
 
 let activeDish = null;
-
-let quantity = 1;
-
-let cart = [];
 
 
 
@@ -1476,7 +1191,14 @@ function renderMenu() {
 
             const hasModel =
               dish.model
-                ? `<div class="mini-icon">3D</div>`
+                ? `
+                    <div
+                      class="mini-icon"
+                      title="Dostępne 3D / AR"
+                    >
+                      3D
+                    </div>
+                  `
                 : "";
 
 
@@ -1519,10 +1241,11 @@ function renderMenu() {
 
                     ${hasModel}
 
-                    <div class="mini-icon">
-
+                    <div
+                      class="mini-icon"
+                      title="Opis dania"
+                    >
                       🍽
-
                     </div>
 
                   </div>
@@ -1581,13 +1304,6 @@ function openDishModal(id) {
 
   activeDish = dish;
 
-  quantity = 1;
-
-
-  document.getElementById(
-    "modalQuantity"
-  ).textContent = quantity;
-
 
   /* =========================
      IMAGE
@@ -1596,6 +1312,11 @@ function openDishModal(id) {
   document.getElementById(
     "modalDishImg"
   ).src = dish.image;
+
+
+  document.getElementById(
+    "modalDishImg"
+  ).alt = dish.name;
 
 
   document.getElementById(
@@ -1635,7 +1356,7 @@ function openDishModal(id) {
 
 
   /* =========================
-     MODEL
+     MODEL 3D
   ========================= */
 
   const modelViewer =
@@ -1656,15 +1377,29 @@ function openDishModal(id) {
     );
 
 
-  /* Zawsze zaczynamy od zdjęcia */
+  const modelInfo =
+    document.getElementById(
+      "modelInfo"
+    );
 
-  imageContainer.style.display = "block";
 
-  modelViewer.style.display = "none";
+  /*
+     Zawsze zaczynamy od zdjęcia.
+  */
+
+  imageContainer.style.display =
+    "block";
+
+
+  modelViewer.style.display =
+    "none";
 
 
   if (dish.model) {
 
+    /*
+       Ustawienie modelu konkretnego dania.
+    */
 
     modelViewer.src =
       dish.model;
@@ -1674,10 +1409,22 @@ function openDishModal(id) {
       "block";
 
 
+    modelInfo.style.display =
+      "block";
+
+
   } else {
 
+    /*
+       Jeśli danie nie ma modelu,
+       nie pokazujemy funkcji 3D.
+    */
 
     show3DButton.style.display =
+      "none";
+
+
+    modelInfo.style.display =
       "none";
 
 
@@ -1685,11 +1432,12 @@ function openDishModal(id) {
       "src"
     );
 
-
   }
 
 
-  /* OPEN */
+  /* =========================
+     OPEN MODAL
+  ========================= */
 
   document.getElementById(
     "dishModal"
@@ -1707,6 +1455,11 @@ function openDishModal(id) {
 ========================================= */
 
 function showDish3D() {
+
+
+  if (!activeDish || !activeDish.model) {
+    return;
+  }
 
 
   const modelViewer =
@@ -1727,17 +1480,28 @@ function showDish3D() {
     );
 
 
+  /*
+     Ukryj zdjęcie.
+  */
+
   imageContainer.style.display =
     "none";
 
+
+  /*
+     Pokaż model 3D.
+  */
 
   modelViewer.style.display =
     "block";
 
 
+  /*
+     Ukryj przycisk.
+  */
+
   show3DButton.style.display =
     "none";
-
 
 }
 
@@ -1750,423 +1514,54 @@ function showDish3D() {
 function closeDishModal() {
 
 
-  document.getElementById(
-    "dishModal"
-  ).classList.remove(
+  const modal =
+    document.getElementById(
+      "dishModal"
+    );
+
+
+  modal.classList.remove(
     "active"
   );
 
 
-}
+  /*
+     Po zamknięciu modal wraca
+     do zdjęcia przy kolejnym otwarciu.
+  */
 
-
-
-/* =========================================
-   QUANTITY
-========================================= */
-
-function changeQuantity(change) {
-
-
-  quantity += change;
-
-
-  if (quantity < 1) {
-
-    quantity = 1;
-
-  }
-
-
-  document.getElementById(
-    "modalQuantity"
-  ).textContent =
-    quantity;
-
-
-}
-
-
-
-/* =========================================
-   ADD TO CART
-========================================= */
-
-function addCurrentDishToCart() {
-
-
-  if (!activeDish) return;
-
-
-  const existing =
-    cart.find(
-      item =>
-        item.dish.id === activeDish.id
-    );
-
-
-  if (existing) {
-
-
-    existing.quantity += quantity;
-
-
-  } else {
-
-
-    cart.push({
-
-      dish: activeDish,
-
-      quantity: quantity
-
-    });
-
-
-  }
-
-
-  updateCart();
-
-
-  closeDishModal();
-
-
-}
-
-
-
-/* =========================================
-   UPDATE CART
-========================================= */
-
-function updateCart() {
-
-
-  const count =
-    cart.reduce(
-
-      (total, item) =>
-        total + item.quantity,
-
-      0
-
-    );
-
-
-  const badge =
+  const modelViewer =
     document.getElementById(
-      "cartCount"
+      "dish3DModel"
     );
 
 
-  if (count > 0) {
-
-
-    badge.style.display =
-      "flex";
-
-
-    badge.textContent =
-      count;
-
-
-  } else {
-
-
-    badge.style.display =
-      "none";
-
-
-  }
-
-
-  renderCart();
-
-
-}
-
-
-
-/* =========================================
-   OPEN CART
-========================================= */
-
-function openCart() {
-
-
-  document.getElementById(
-    "cartDrawer"
-  ).classList.add(
-    "active"
-  );
-
-
-}
-
-
-
-/* =========================================
-   CLOSE CART
-========================================= */
-
-function closeCart() {
-
-
-  document.getElementById(
-    "cartDrawer"
-  ).classList.remove(
-    "active"
-  );
-
-
-}
-
-
-
-/* =========================================
-   RENDER CART
-========================================= */
-
-function renderCart() {
-
-
-  const container =
+  const imageContainer =
     document.getElementById(
-      "cartItems"
+      "modalImageContainer"
     );
 
 
-  if (cart.length === 0) {
-
-
-    container.innerHTML = `
-
-      <p
-        style="
-          text-align:center;
-          color:#999;
-          margin-top:50px;
-          font-size:12px;
-        "
-      >
-
-        Twój koszyk jest pusty.
-
-      </p>
-
-    `;
-
-
+  const show3DButton =
     document.getElementById(
-      "cartTotal"
-    ).textContent =
-      "0.00 zł";
+      "show3DButton"
+    );
 
 
-    return;
+  imageContainer.style.display =
+    "block";
+
+
+  if (activeDish && activeDish.model) {
+
+    show3DButton.style.display =
+      "block";
 
   }
 
 
-  container.innerHTML =
-    cart.map((item, index) => {
-
-
-      return `
-
-        <div class="cart-item">
-
-
-          <img
-            src="${item.dish.image}"
-            alt="${item.dish.name}"
-          >
-
-
-          <div class="cart-item-info">
-
-
-            <div class="cart-item-name">
-
-              ${item.dish.name}
-
-            </div>
-
-
-            <div class="cart-item-price">
-
-              ${item.quantity}
-              ×
-              ${item.dish.price.toFixed(2)} zł
-
-            </div>
-
-
-            <div
-              style="
-                margin-top:8px;
-                display:flex;
-                gap:5px;
-              "
-            >
-
-
-              <button
-
-                onclick="
-                  changeCartQuantity(
-                    ${index},
-                    -1
-                  )
-                "
-
-                style="
-                  width:25px;
-                  height:25px;
-                  border:1px solid #ddd;
-                  background:white;
-                  cursor:pointer;
-                "
-
-              >
-
-                −
-
-              </button>
-
-
-              <button
-
-                onclick="
-                  changeCartQuantity(
-                    ${index},
-                    1
-                  )
-                "
-
-                style="
-                  width:25px;
-                  height:25px;
-                  border:1px solid #ddd;
-                  background:white;
-                  cursor:pointer;
-                "
-
-              >
-
-                +
-
-              </button>
-
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-      `;
-
-    }).join("");
-
-
-  const total =
-    cart.reduce(
-
-      (sum, item) =>
-
-        sum +
-        (
-          item.dish.price *
-          item.quantity
-        ),
-
-      0
-
-    );
-
-
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-    total.toFixed(2) + " zł";
-
-
-}
-
-
-
-/* =========================================
-   CHANGE CART QUANTITY
-========================================= */
-
-function changeCartQuantity(
-  index,
-  change
-) {
-
-
-  cart[index].quantity +=
-    change;
-
-
-  if (
-    cart[index].quantity <= 0
-  ) {
-
-
-    cart.splice(
-      index,
-      1
-    );
-
-
-  }
-
-
-  updateCart();
-
-
-}
-
-
-
-/* =========================================
-   SUBMIT ORDER
-========================================= */
-
-function submitOrder() {
-
-
-  if (cart.length === 0) {
-
-
-    alert(
-      "Koszyk jest pusty."
-    );
-
-
-    return;
-
-  }
-
-
-  alert(
-    "Zamówienie zostało wysłane do kuchni!"
-  );
-
-
-  cart = [];
-
-
-  updateCart();
-
-
-  closeCart();
-
+  modelViewer.style.display =
+    "none";
 
 }
 
@@ -2177,29 +1572,42 @@ function submitOrder() {
 ========================================= */
 
 document
-  .getElementById(
-    "dishModal"
-  )
+  .getElementById("dishModal")
   .addEventListener(
     "click",
-
     function(event) {
-
 
       if (
         event.target === this
       ) {
 
-
         closeDishModal();
-
 
       }
 
+    }
+  );
+
+
+
+/* =========================================
+   ESC = CLOSE MODAL
+========================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeDishModal();
 
     }
 
-  );
+  }
+);
 
 
 
