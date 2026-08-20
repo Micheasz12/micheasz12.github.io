@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
@@ -9,7 +10,10 @@
 
   <title>MENU | Restauracja</title>
 
-  <!-- Czcionki -->
+  <!-- =========================
+       CZCIONKI
+  ========================= -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -18,11 +22,15 @@
     rel="stylesheet"
   >
 
-  <!-- Model Viewer -->
+  <!-- =========================
+       MODEL VIEWER
+  ========================= -->
+
   <script
     type="module"
     src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
   </script>
+
 
   <style>
 
@@ -51,6 +59,7 @@
       font-family: inherit;
     }
 
+
     /* =========================
        HERO
     ========================= */
@@ -58,6 +67,7 @@
     .hero {
       width: 100%;
       height: 260px;
+
       position: relative;
       overflow: hidden;
     }
@@ -65,35 +75,49 @@
     .hero img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       filter: brightness(0.65);
+
       transform: scale(1.02);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
+
       background: rgba(0, 0, 0, 0.18);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       flex-direction: column;
+
       color: white;
+
       text-align: center;
     }
 
     .hero h1 {
       font-size: 20px;
+
       letter-spacing: 7px;
+
       font-weight: 400;
+
       margin-bottom: 12px;
     }
 
     .hero p {
       font-size: 9px;
+
       letter-spacing: 3px;
+
       opacity: 0.9;
     }
+
 
     /* =========================
        MENU
@@ -101,7 +125,9 @@
 
     .menu {
       max-width: 850px;
+
       margin: 0 auto;
+
       padding: 55px 20px 100px;
     }
 
@@ -111,13 +137,20 @@
 
     .category-title {
       text-align: center;
+
       font-size: 13px;
+
       letter-spacing: 3px;
+
       font-weight: 500;
+
       color: #555;
+
       margin-bottom: 55px;
+
       text-transform: uppercase;
     }
+
 
     /* =========================
        DANIE
@@ -125,14 +158,16 @@
 
     .dish {
       max-width: 600px;
+
       margin: 0 auto 60px;
 
       display: grid;
-      grid-template-columns: 1fr 150px;
-      align-items: center;
-      gap: 35px;
 
-      cursor: pointer;
+      grid-template-columns: 1fr 150px;
+
+      align-items: center;
+
+      gap: 35px;
 
       transition: transform 0.25s ease;
     }
@@ -151,8 +186,10 @@
 
     .dish.reverse .dish-info {
       order: 2;
+
       text-align: left;
     }
+
 
     /* =========================
        ZDJĘCIE
@@ -161,14 +198,18 @@
     .dish-image {
       width: 150px;
       height: 150px;
+
       overflow: hidden;
+
       background: #eee;
     }
 
     .dish-image img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       display: block;
 
       transition: transform 0.4s ease;
@@ -178,8 +219,9 @@
       transform: scale(1.06);
     }
 
+
     /* =========================
-       TEKST
+       INFORMACJE
     ========================= */
 
     .dish-info {
@@ -188,199 +230,202 @@
 
     .dish-name {
       font-family: "Playfair Display", serif;
+
       font-size: 16px;
+
       color: #333;
+
       margin-bottom: 9px;
+
       font-weight: 500;
     }
 
     .dish-description {
       font-size: 10px;
+
       line-height: 1.7;
+
       color: #888;
+
       margin-bottom: 12px;
     }
 
     .dish-price {
       font-size: 11px;
+
       color: #555;
+
       font-weight: 600;
+
+      margin-bottom: 13px;
     }
 
-    .dish-icons {
-      margin-top: 12px;
-
-      display: flex;
-      justify-content: flex-end;
-      gap: 6px;
-    }
-
-    .dish.reverse .dish-icons {
-      justify-content: flex-start;
-    }
-
-    .mini-icon {
-      width: 22px;
-      height: 22px;
-
-      border-radius: 50%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: #d8a15a;
-      color: white;
-
-      font-size: 8px;
-      font-weight: 600;
-    }
 
     /* =========================
-       MODAL
+       PRZYCISK 3D / AR
     ========================= */
 
-    .modal {
-      position: fixed;
-      inset: 0;
-
-      background: rgba(0, 0, 0, 0.65);
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-
-      z-index: 200;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 650px;
-
-      max-height: 92vh;
-
-      overflow-y: auto;
-
-      background: white;
-
-      position: relative;
-
-      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
-    }
-
-    .close-button {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-
-      width: 38px;
-      height: 38px;
-
-      border-radius: 50%;
-
-      border: none;
-
-      background: white;
-      color: #333;
-
-      font-size: 20px;
-
-      cursor: pointer;
-
-      z-index: 20;
-
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* =========================
-       MODAL VISUAL
-    ========================= */
-
-    .modal-visual {
-      width: 100%;
-      height: 340px;
-
-      background: #eeeeee;
-
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      overflow: hidden;
-    }
-
-    .modal-image-container {
-      width: 100%;
-      height: 100%;
-    }
-
-    .modal-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    model-viewer {
-      width: 100%;
-      height: 100%;
-
-      background: linear-gradient(
-        180deg,
-        #eeeeee,
-        #dddddd
-      );
-    }
-
-    /* =========================
-       3D / AR BUTTON
-    ========================= */
-
-    .show-3d-button {
-      position: absolute;
-
-      bottom: 20px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
+    .dish-3d-button {
       border: none;
 
       background: #222;
+
       color: white;
 
-      padding: 13px 24px;
+      padding: 10px 16px;
 
-      font-size: 11px;
+      font-size: 9px;
 
       letter-spacing: 1px;
 
       cursor: pointer;
 
-      z-index: 10;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease;
 
-      white-space: nowrap;
+      display: inline-flex;
 
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      align-items: center;
 
-      transition: background 0.25s ease;
+      justify-content: center;
+
+      gap: 7px;
     }
 
-    .show-3d-button:hover {
+    .dish-3d-button:hover {
       background: #c68a3b;
+
+      transform: translateY(-2px);
     }
+
+    .dish.reverse .dish-3d-button {
+      margin-left: 0;
+    }
+
+
+    /* =========================
+       BRAK 3D
+    ========================= */
+
+    .no-3d {
+      font-size: 8px;
+
+      color: #aaa;
+
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================
+       3D / AR FULLSCREEN
+    ========================= */
+
+    .ar-viewer {
+      position: fixed;
+
+      inset: 0;
+
+      background: #eeeeee;
+
+      z-index: 9999;
+
+      display: none;
+    }
+
+    .ar-viewer.active {
+      display: block;
+    }
+
+    .ar-viewer model-viewer {
+      width: 100%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #eeeeee,
+          #dddddd
+        );
+    }
+
+
+    /* =========================
+       GÓRNY PANEL 3D
+    ========================= */
+
+    .viewer-header {
+      position: absolute;
+
+      top: 20px;
+      left: 20px;
+      right: 20px;
+
+      z-index: 20;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      pointer-events: none;
+    }
+
+    .viewer-title {
+      background: rgba(255, 255, 255, 0.94);
+
+      padding: 12px 18px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 18px;
+
+      color: #222;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.12);
+
+      pointer-events: auto;
+    }
+
+
+    /* =========================
+       ZAMKNIĘCIE 3D
+    ========================= */
+
+    .viewer-close {
+      width: 45px;
+      height: 45px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: white;
+
+      color: #222;
+
+      font-size: 24px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.18);
+
+      pointer-events: auto;
+    }
+
+
+    /* =========================
+       AR BUTTON
+    ========================= */
 
     .ar-button {
       position: absolute;
 
-      bottom: 20px;
+      bottom: 30px;
+
       left: 50%;
 
       transform: translateX(-50%);
@@ -388,9 +433,10 @@
       border: none;
 
       background: #c68a3b;
+
       color: white;
 
-      padding: 14px 25px;
+      padding: 15px 25px;
 
       font-size: 11px;
 
@@ -398,94 +444,12 @@
 
       cursor: pointer;
 
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
       white-space: nowrap;
-
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
 
-    /* =========================
-       MODAL INFO
-    ========================= */
-
-    .modal-content {
-      padding: 35px;
-    }
-
-    .modal-title {
-      font-family: "Playfair Display", serif;
-      font-size: 28px;
-
-      color: #222;
-
-      margin-bottom: 15px;
-    }
-
-    .modal-description {
-      font-size: 12px;
-      line-height: 1.8;
-
-      color: #777;
-
-      margin-bottom: 25px;
-    }
-
-    .modal-price {
-      font-size: 20px;
-      font-weight: 600;
-
-      margin-bottom: 25px;
-    }
-
-    .ingredients-title {
-      font-size: 11px;
-      letter-spacing: 2px;
-
-      margin-bottom: 12px;
-
-      color: #444;
-    }
-
-    .ingredients {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-
-      margin-bottom: 10px;
-    }
-
-    .ingredient {
-      background: #f1f1f1;
-
-      padding: 7px 10px;
-
-      font-size: 10px;
-
-      color: #666;
-    }
-
-    /* =========================
-       3D INFO
-    ========================= */
-
-    .model-info {
-      margin-top: 25px;
-
-      padding: 16px;
-
-      background: #f7f3ed;
-
-      border-left: 3px solid #c68a3b;
-
-      font-size: 10px;
-
-      line-height: 1.7;
-
-      color: #777;
-    }
-
-    .model-info strong {
-      color: #444;
-    }
 
     /* =========================
        MOBILE
@@ -511,6 +475,7 @@
 
       .category-title {
         margin-bottom: 40px;
+
         font-size: 11px;
       }
 
@@ -537,6 +502,7 @@
 
       .dish-description {
         font-size: 8px;
+
         line-height: 1.6;
       }
 
@@ -544,16 +510,29 @@
         font-size: 9px;
       }
 
-      .modal-content {
-        padding: 25px;
+      .dish-3d-button {
+        padding: 9px 12px;
+
+        font-size: 8px;
       }
 
-      .modal-visual {
-        height: 280px;
+      .viewer-title {
+        font-size: 15px;
+
+        padding: 10px 14px;
       }
 
-      .modal-title {
-        font-size: 24px;
+      .viewer-close {
+        width: 40px;
+        height: 40px;
+      }
+
+      .ar-button {
+        bottom: 20px;
+
+        font-size: 10px;
+
+        padding: 13px 20px;
       }
 
     }
@@ -600,156 +579,77 @@
 
 
 <!-- =========================
-     DISH MODAL
+     PEŁNOEKRANOWY VIEWER 3D / AR
 ========================= -->
 
 <div
-  id="dishModal"
-  class="modal"
+  id="arViewer"
+  class="ar-viewer"
 >
 
-  <div class="modal-box">
+  <!-- GÓRNY PANEL -->
+
+  <div class="viewer-header">
+
+    <div
+      id="viewerTitle"
+      class="viewer-title"
+    >
+      Danie
+    </div>
 
     <button
-      class="close-button"
-      onclick="closeDishModal()"
+      class="viewer-close"
+      onclick="close3DViewer()"
       aria-label="Zamknij"
     >
       ×
     </button>
 
-
-    <!-- =========================
-         IMAGE / MODEL 3D
-    ========================= -->
-
-    <div class="modal-visual">
-
-
-      <!-- ZDJĘCIE -->
-
-      <div
-        id="modalImageContainer"
-        class="modal-image-container"
-      >
-
-        <img
-          id="modalDishImg"
-          src=""
-          alt=""
-        >
-
-      </div>
-
-
-      <!-- MODEL 3D + AR -->
-
-      <model-viewer
-
-        id="dish3DModel"
-
-        style="display:none;"
-
-        src=""
-
-        alt="Model 3D dania"
-
-        camera-controls
-
-        auto-rotate
-
-        shadow-intensity="1"
-
-        exposure="1"
-
-        ar
-
-        ar-modes="webxr scene-viewer quick-look"
-
-        ar-placement="floor"
-
-      >
-
-        <button
-          slot="ar-button"
-          class="ar-button"
-        >
-          📱 ZOBACZ NA SWOIM STOLE
-        </button>
-
-      </model-viewer>
-
-
-      <!-- PRZYCISK POKAZANIA 3D -->
-
-      <button
-        id="show3DButton"
-        class="show-3d-button"
-        style="display:none;"
-        onclick="showDish3D()"
-      >
-        ✨ ZOBACZ DANIE W 3D
-      </button>
-
-
-    </div>
-
-
-    <!-- =========================
-         CONTENT
-    ========================= -->
-
-    <div class="modal-content">
-
-      <h2
-        id="modalDishTitle"
-        class="modal-title"
-      >
-      </h2>
-
-
-      <p
-        id="modalDishDescription"
-        class="modal-description"
-      >
-      </p>
-
-
-      <div
-        id="modalDishPrice"
-        class="modal-price"
-      >
-      </div>
-
-
-      <div class="ingredients-title">
-        SKŁADNIKI
-      </div>
-
-
-      <div
-        id="modalIngredients"
-        class="ingredients"
-      >
-      </div>
-
-
-      <!-- INFORMACJA O 3D -->
-
-      <div
-        id="modelInfo"
-        class="model-info"
-        style="display:none;"
-      >
-        <strong>WIZUALIZACJA 3D / AR</strong><br>
-        Obracaj danie palcem lub myszką, aby zobaczyć je z każdej strony.
-        Na obsługiwanych urządzeniach możesz również wyświetlić danie
-        w swojej przestrzeni dzięki technologii AR.
-      </div>
-
-    </div>
-
   </div>
+
+
+  <!-- MODEL -->
+
+  <model-viewer
+
+    id="mainModelViewer"
+
+    src=""
+
+    alt="Model 3D dania"
+
+    camera-controls
+
+    auto-rotate
+
+    shadow-intensity="1"
+
+    exposure="1"
+
+    ar
+
+    ar-modes="webxr scene-viewer quick-look"
+
+    ar-placement="floor"
+
+  >
+
+    <!--
+
+      Ten przycisk jest używany przez Model Viewer
+      jako natywny przycisk uruchomienia AR.
+
+    -->
+
+    <button
+      slot="ar-button"
+      class="ar-button"
+    >
+      📱 ZOBACZ NA SWOIM STOLE
+    </button>
+
+  </model-viewer>
 
 </div>
 
@@ -813,17 +713,8 @@ const DISHES = [
     image:
       "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=85",
 
-    /*
-      MODEL 3D:
-
-      Wstaw tutaj swój plik GLB.
-
-      Przykład:
-      "./models/burrata.glb"
-    */
-
     model:
-      "./models/burrata.glb",
+      "./burrata.glb",
 
     ingredients: [
       "Burrata",
@@ -852,7 +743,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/tatar-wolowy.glb",
+      "./tatar-wolowy.glb",
 
     ingredients: [
       "Wołowina",
@@ -881,7 +772,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/przegrzebki.glb",
+      "./przegrzebki.glb",
 
     ingredients: [
       "Przegrzebki",
@@ -914,7 +805,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/krem-z-dyni.glb",
+      "./krem-z-dyni.glb",
 
     ingredients: [
       "Dynia",
@@ -943,7 +834,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/rosol-z-kaczki.glb",
+      "./rosol-z-kaczki.glb",
 
     ingredients: [
       "Kaczka",
@@ -1005,7 +896,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/poledwica-wolowa.glb",
+      "./poledwica-wolowa.glb",
 
     ingredients: [
       "Wołowina",
@@ -1034,7 +925,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/losos-grillowany.glb",
+      "./losos-grillowany.glb",
 
     ingredients: [
       "Łosoś",
@@ -1063,7 +954,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/risotto-truflowe.glb",
+      "./risotto-truflowe.glb",
 
     ingredients: [
       "Ryż Arborio",
@@ -1096,7 +987,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/tiramisu.glb",
+      "./tiramisu.glb",
 
     ingredients: [
       "Mascarpone",
@@ -1125,7 +1016,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./models/fondant-czekoladowy.glb",
+      "./fondant-czekoladowy.glb",
 
     ingredients: [
       "Czekolada",
@@ -1141,21 +1032,15 @@ const DISHES = [
 
 
 /* =========================================
-   STATE
-========================================= */
-
-let activeDish = null;
-
-
-
-/* =========================================
    RENDER MENU
 ========================================= */
 
 function renderMenu() {
 
   const container =
-    document.getElementById("menuContainer");
+    document.getElementById(
+      "menuContainer"
+    );
 
 
   container.innerHTML =
@@ -1174,107 +1059,112 @@ function renderMenu() {
         <section class="category">
 
           <h2 class="category-title">
-
             ${category.name}
-
           </h2>
 
 
-          ${categoryDishes.map((dish, index) => {
+          ${categoryDishes.map(
+            (dish, index) => {
 
 
-            const reverse =
-              index % 2 === 1
-                ? "reverse"
-                : "";
+              const reverse =
+                index % 2 === 1
+                  ? "reverse"
+                  : "";
 
 
-            const hasModel =
-              dish.model
-                ? `
-                    <div
-                      class="mini-icon"
-                      title="Dostępne 3D / AR"
+              /*
+                Jeśli danie ma model GLB,
+                pokazujemy przycisk 3D / AR.
+              */
+
+              const modelButton =
+                dish.model
+                  ? `
+
+                    <button
+
+                      class="dish-3d-button"
+
+                      onclick="
+                        event.stopPropagation();
+                        open3DViewer(
+                          '${dish.id}'
+                        );
+                      "
+
                     >
-                      3D
-                    </div>
+
+                      ✨ 3D / AR
+
+                    </button>
+
                   `
-                : "";
+                  : `
+
+                    <span class="no-3d">
+                      WIZUALIZACJA 3D NIEDOSTĘPNA
+                    </span>
+
+                  `;
 
 
-            return `
+              return `
 
-              <article
+                <article
+                  class="dish ${reverse}"
+                >
 
-                class="dish ${reverse}"
+                  <!-- =====================
+                       INFORMACJE
+                  ===================== -->
 
-                onclick="openDishModal('${dish.id}')"
+                  <div class="dish-info">
 
-              >
-
-
-                <div class="dish-info">
-
-
-                  <h3 class="dish-name">
-
-                    ${dish.name}
-
-                  </h3>
+                    <h3 class="dish-name">
+                      ${dish.name}
+                    </h3>
 
 
-                  <p class="dish-description">
-
-                    ${dish.description}
-
-                  </p>
+                    <p class="dish-description">
+                      ${dish.description}
+                    </p>
 
 
-                  <div class="dish-price">
-
-                    ${dish.price.toFixed(2)} zł
-
-                  </div>
-
-
-                  <div class="dish-icons">
-
-                    ${hasModel}
-
-                    <div
-                      class="mini-icon"
-                      title="Opis dania"
-                    >
-                      🍽
+                    <div class="dish-price">
+                      ${dish.price.toFixed(2)} zł
                     </div>
 
+
+                    ${modelButton}
+
                   </div>
 
 
-                </div>
+                  <!-- =====================
+                       ZDJĘCIE
+                  ===================== -->
 
+                  <div class="dish-image">
 
-                <div class="dish-image">
+                    <img
 
-                  <img
+                      src="${dish.image}"
 
-                    src="${dish.image}"
+                      alt="${dish.name}"
 
-                    alt="${dish.name}"
+                      loading="lazy"
 
-                    loading="lazy"
+                    >
 
-                  >
+                  </div>
 
-                </div>
+                </article>
 
+              `;
 
-              </article>
-
-            `;
-
-          }).join("")}
-
+            }
+          ).join("")}
 
         </section>
 
@@ -1287,311 +1177,133 @@ function renderMenu() {
 
 
 /* =========================================
-   OPEN DISH
+   OPEN 3D / AR
 ========================================= */
 
-function openDishModal(id) {
-
+function open3DViewer(id) {
 
   const dish =
     DISHES.find(
-      d => d.id === id
+      item =>
+        item.id === id
     );
 
 
-  if (!dish) return;
-
-
-  activeDish = dish;
-
-
-  /* =========================
-     IMAGE
-  ========================= */
-
-  document.getElementById(
-    "modalDishImg"
-  ).src = dish.image;
-
-
-  document.getElementById(
-    "modalDishImg"
-  ).alt = dish.name;
-
-
-  document.getElementById(
-    "modalDishTitle"
-  ).textContent = dish.name;
-
-
-  document.getElementById(
-    "modalDishDescription"
-  ).textContent = dish.description;
-
-
-  document.getElementById(
-    "modalDishPrice"
-  ).textContent =
-    dish.price.toFixed(2) + " zł";
-
-
-  /* =========================
-     INGREDIENTS
-  ========================= */
-
-  document.getElementById(
-    "modalIngredients"
-  ).innerHTML =
-    dish.ingredients.map(
-
-      ingredient =>
-
-        `<span class="ingredient">
-
-          ${ingredient}
-
-        </span>`
-
-    ).join("");
-
-
-  /* =========================
-     MODEL 3D
-  ========================= */
-
-  const modelViewer =
-    document.getElementById(
-      "dish3DModel"
-    );
-
-
-  const show3DButton =
-    document.getElementById(
-      "show3DButton"
-    );
-
-
-  const imageContainer =
-    document.getElementById(
-      "modalImageContainer"
-    );
-
-
-  const modelInfo =
-    document.getElementById(
-      "modelInfo"
-    );
-
-
-  /*
-     Zawsze zaczynamy od zdjęcia.
-  */
-
-  imageContainer.style.display =
-    "block";
-
-
-  modelViewer.style.display =
-    "none";
-
-
-  if (dish.model) {
-
-    /*
-       Ustawienie modelu konkretnego dania.
-    */
-
-    modelViewer.src =
-      dish.model;
-
-
-    show3DButton.style.display =
-      "block";
-
-
-    modelInfo.style.display =
-      "block";
-
-
-  } else {
-
-    /*
-       Jeśli danie nie ma modelu,
-       nie pokazujemy funkcji 3D.
-    */
-
-    show3DButton.style.display =
-      "none";
-
-
-    modelInfo.style.display =
-      "none";
-
-
-    modelViewer.removeAttribute(
-      "src"
-    );
-
-  }
-
-
-  /* =========================
-     OPEN MODAL
-  ========================= */
-
-  document.getElementById(
-    "dishModal"
-  ).classList.add(
-    "active"
-  );
-
-
-}
-
-
-
-/* =========================================
-   SHOW 3D
-========================================= */
-
-function showDish3D() {
-
-
-  if (!activeDish || !activeDish.model) {
+  if (!dish) {
     return;
   }
 
 
-  const modelViewer =
+  if (!dish.model) {
+    return;
+  }
+
+
+  const viewer =
     document.getElementById(
-      "dish3DModel"
+      "mainModelViewer"
     );
 
 
-  const imageContainer =
+  const viewerContainer =
     document.getElementById(
-      "modalImageContainer"
+      "arViewer"
     );
 
 
-  const show3DButton =
+  const title =
     document.getElementById(
-      "show3DButton"
+      "viewerTitle"
     );
 
 
   /*
-     Ukryj zdjęcie.
+    Ustawienie odpowiedniego modelu GLB.
   */
 
-  imageContainer.style.display =
-    "none";
+  viewer.src =
+    dish.model;
+
+
+  viewer.alt =
+    `Model 3D - ${dish.name}`;
 
 
   /*
-     Pokaż model 3D.
+    Zmiana nazwy dania
+    w górnym panelu.
   */
 
-  modelViewer.style.display =
-    "block";
+  title.textContent =
+    dish.name;
 
 
   /*
-     Ukryj przycisk.
+    Otwórz pełnoekranowy viewer.
   */
 
-  show3DButton.style.display =
-    "none";
-
-}
-
-
-
-/* =========================================
-   CLOSE MODAL
-========================================= */
-
-function closeDishModal() {
-
-
-  const modal =
-    document.getElementById(
-      "dishModal"
-    );
-
-
-  modal.classList.remove(
+  viewerContainer.classList.add(
     "active"
   );
 
 
   /*
-     Po zamknięciu modal wraca
-     do zdjęcia przy kolejnym otwarciu.
+    Zablokuj przewijanie strony
+    podczas oglądania modelu.
   */
 
-  const modelViewer =
-    document.getElementById(
-      "dish3DModel"
-    );
-
-
-  const imageContainer =
-    document.getElementById(
-      "modalImageContainer"
-    );
-
-
-  const show3DButton =
-    document.getElementById(
-      "show3DButton"
-    );
-
-
-  imageContainer.style.display =
-    "block";
-
-
-  if (activeDish && activeDish.model) {
-
-    show3DButton.style.display =
-      "block";
-
-  }
-
-
-  modelViewer.style.display =
-    "none";
+  document.body.style.overflow =
+    "hidden";
 
 }
 
 
 
 /* =========================================
-   CLOSE MODAL OUTSIDE
+   CLOSE 3D VIEWER
 ========================================= */
 
-document
-  .getElementById("dishModal")
-  .addEventListener(
-    "click",
-    function(event) {
+function close3DViewer() {
 
-      if (
-        event.target === this
-      ) {
+  const viewerContainer =
+    document.getElementById(
+      "arViewer"
+    );
 
-        closeDishModal();
 
-      }
+  const viewer =
+    document.getElementById(
+      "mainModelViewer"
+    );
 
-    }
+
+  viewerContainer.classList.remove(
+    "active"
   );
+
+
+  /*
+    Usunięcie modelu po zamknięciu.
+  */
+
+  viewer.removeAttribute(
+    "src"
+  );
+
+
+  /*
+    Przywrócenie przewijania strony.
+  */
+
+  document.body.style.overflow =
+    "";
+
+}
 
 
 
 /* =========================================
-   ESC = CLOSE MODAL
+   ESC = CLOSE 3D
 ========================================= */
 
 document.addEventListener(
@@ -1602,7 +1314,7 @@ document.addEventListener(
       event.key === "Escape"
     ) {
 
-      closeDishModal();
+      close3DViewer();
 
     }
 
