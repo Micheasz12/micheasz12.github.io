@@ -1,569 +1,105 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VÉRDE | Restaurant</title>
+  <title>Burger AR</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Model Viewer - obsługa GLB + AR -->
+  <!-- Google Model Viewer -->
   <script
     type="module"
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-  ></script>
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
+  </script>
 
   <style>
-    :root {
-      --bg: #11110f;
-      --bg-soft: #181815;
-      --card: #20201c;
-      --card-hover: #292924;
-      --text: #f4f0e7;
-      --muted: #a8a59c;
-      --gold: #d7b46a;
-      --gold-light: #efd394;
-      --border: rgba(255, 255, 255, 0.08);
-    }
-
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: "DM Sans", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f1eb;
+      color: #222;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =========================
-       NAVBAR
-    ========================= */
-
-    nav {
-      width: 100%;
-      max-width: 1300px;
-      margin: auto;
-      padding: 24px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: "Playfair Display", serif;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 4px;
-    }
-
-    .logo span {
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav-links a {
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    .reservation {
-      padding: 11px 20px;
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
-      font-size: 13px;
-      transition: 0.3s;
-    }
-
-    .reservation:hover {
-      background: var(--gold);
-      color: #111;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 72vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .header {
+      padding: 25px 20px 10px;
       text-align: center;
-      padding: 80px 20px;
-      position: relative;
-      overflow: hidden;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(215, 180, 106, 0.14),
-        transparent 65%
-      );
-      top: -250px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 850px;
-    }
-
-    .eyebrow {
-      color: var(--gold);
+    .restaurant {
+      font-size: 14px;
+      color: #777;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      font-size: 12px;
-      margin-bottom: 20px;
+      letter-spacing: 2px;
     }
 
     h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(50px, 8vw, 105px);
-      font-weight: 600;
-      line-height: 1;
-      margin-bottom: 25px;
+      margin: 8px 0;
+      font-size: 32px;
     }
 
-    .hero p {
+    .card {
       max-width: 600px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 35px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 26px;
-      display: inline-block;
-      transition: 0.3s;
-      font-size: 14px;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: #16140f;
-      font-weight: 700;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    /* =========================
-       MENU
-    ========================= */
-
-    .menu-section {
-      max-width: 1250px;
-      margin: auto;
-      padding: 100px 30px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header span {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-    }
-
-    .section-header h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(38px, 5vw, 60px);
-      margin-top: 10px;
-    }
-
-    .section-header p {
-      color: var(--muted);
-      margin-top: 15px;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .menu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 30px;
-      transition: 0.35s;
-      position: relative;
+      margin: 20px auto;
+      background: white;
+      border-radius: 24px;
       overflow: hidden;
-    }
-
-    .menu-card:hover {
-      transform: translateY(-7px);
-      background: var(--card-hover);
-      border-color: rgba(215, 180, 106, 0.35);
-    }
-
-    .dish-number {
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
-
-    .dish-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 15px;
-    }
-
-    .dish-top h3 {
-      font-family: "Playfair Display", serif;
-      font-size: 27px;
-      font-weight: 500;
-    }
-
-    .price {
-      color: var(--gold-light);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .description {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 16px 0 28px;
-      min-height: 68px;
-    }
-
-    .dish-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--muted);
-    }
-
-    /* =========================
-       BUTTON 3D / AR
-    ========================= */
-
-    .view-3d {
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
-      background: transparent;
-      padding: 10px 16px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .view-3d:hover {
-      background: var(--gold);
-      color: #15130e;
-    }
-
-    /* =========================
-       3D SECTION
-    ========================= */
-
-    .viewer-section {
-      max-width: 1250px;
-      margin: 0 auto 100px;
-      padding: 0 30px;
-    }
-
-    .viewer-container {
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(215, 180, 106, 0.1),
-          transparent 55%
-        ),
-        var(--bg-soft);
-
-      border: 1px solid var(--border);
-      min-height: 650px;
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      overflow: hidden;
-    }
-
-    .viewer-info {
-      padding: 70px 55px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-right: 1px solid var(--border);
-    }
-
-    .viewer-info span {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      margin-bottom: 18px;
-    }
-
-    .viewer-info h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(40px, 5vw, 65px);
-      line-height: 1.1;
-      margin-bottom: 25px;
-    }
-
-    .viewer-info p {
-      color: var(--muted);
-      margin-bottom: 35px;
-      max-width: 450px;
-    }
-
-    .viewer-features {
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .viewer-features div::before {
-      content: "✦";
-      color: var(--gold);
-      margin-right: 10px;
-    }
-
-    .model-area {
-      position: relative;
-      min-height: 550px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     }
 
     model-viewer {
       width: 100%;
-      height: 100%;
-      min-height: 650px;
-
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255, 255, 255, 0.04),
-          transparent 55%
-        );
+      height: 450px;
+      background: #eee;
     }
 
-    /* Przycisk AR */
-    #ar-button {
-      background: var(--gold);
-      border: none;
-      padding: 13px 22px;
-      color: #111;
-      font-family: inherit;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s;
+    .info {
+      padding: 25px;
     }
 
-    #ar-button:hover {
-      background: var(--gold-light);
-      transform: scale(1.03);
+    .name {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
-    /* Loading */
-    .progress-bar {
-      display: block;
-      width: 33%;
-      height: 4px;
-      background: var(--gold);
-      position: absolute;
-      left: 33%;
-      top: 50%;
-      transform: translateY(-50%);
+    .description {
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 15px;
     }
 
-    .update-bar {
-      background: var(--gold-light);
-      width: 0%;
-      height: 100%;
-    }
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 100px 30px;
-    }
-
-    .about-inner {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .about h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(40px, 5vw, 65px);
-      line-height: 1.1;
-    }
-
-    .about p {
-      color: var(--muted);
+    .price {
+      font-size: 24px;
+      font-weight: bold;
       margin-bottom: 20px;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      max-width: 1250px;
-      margin: auto;
-      padding: 50px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
+    .ar-button {
+      background: #111;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 17px;
+      border-radius: 14px;
+      font-size: 17px;
+      cursor: pointer;
     }
 
-    .footer-logo {
-      font-family: "Playfair Display", serif;
-      font-size: 25px;
-      letter-spacing: 4px;
-    }
-
-    footer p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 900px) {
-      .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .viewer-container {
-        grid-template-columns: 1fr;
-      }
-
-      .viewer-info {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .about-inner {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-
-      .nav-links {
-        display: none;
-      }
+    .ar-button:hover {
+      background: #333;
     }
 
     @media (max-width: 600px) {
-      nav {
-        padding: 20px;
-      }
-
-      .reservation {
-        padding: 9px 12px;
-        font-size: 11px;
-      }
-
-      .menu-section {
-        padding: 70px 20px;
-      }
-
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .viewer-section {
-        padding: 0 20px;
-      }
-
-      .viewer-info {
-        padding: 50px 30px;
+      .card {
+        margin: 10px;
       }
 
       model-viewer {
-        min-height: 500px;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
+        height: 400px;
       }
     }
   </style>
@@ -571,432 +107,50 @@
 
 <body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
+  <div class="header">
+    <div class="restaurant">RESTAURACJA XYZ</div>
+    <h1>Nasze menu</h1>
+  </div>
 
-  <nav>
-    <a href="#" class="logo">VÉR<span>DE</span></a>
+  <div class="card">
 
-    <div class="nav-links">
-      <a href="#menu">Menu</a>
-      <a href="#experience">3D Experience</a>
-      <a href="#about">O nas</a>
-    </div>
+    <model-viewer
+      src="./burger.glb"
+      alt="Burger Classic"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      ar-placement="floor"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1">
 
-    <a href="#menu" class="reservation">
-      REZERWUJ STOLIK
-    </a>
-  </nav>
+      <button
+        class="ar-button"
+        slot="ar-button">
+        📱 Zobacz na swoim stole
+      </button>
 
+    </model-viewer>
 
-  <!-- =========================
-       HERO
-  ========================== -->
+    <div class="info">
 
-  <section class="hero">
-    <div class="hero-content">
-
-      <div class="eyebrow">
-        Modern Dining Experience
+      <div class="name">
+        Burger Classic
       </div>
 
-      <h1>Smak, który możesz zobaczyć.</h1>
-
-      <p>
-        Odkryj nasze dania w zupełnie nowy sposób.
-        Przeglądaj menu, obracaj potrawy w 3D
-        i zobacz je w swojej przestrzeni dzięki AR.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#menu" class="btn btn-primary">
-          ODKRYJ MENU
-        </a>
-
-        <a href="#experience" class="btn btn-outline">
-          ZOBACZ 3D
-        </a>
+      <div class="description">
+        Wołowina, cheddar, sałata, pomidor,
+        cebula i sos naszego szefa kuchni.
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- =========================
-       MENU
-  ========================== -->
-
-  <section class="menu-section" id="menu">
-
-    <div class="section-header">
-      <span>Nasze menu</span>
-
-      <h2>Wybrane dania</h2>
-
-      <p>
-        Każde danie możesz obejrzeć w technologii 3D.
-      </p>
-    </div>
-
-
-    <div class="menu-grid">
-
-      <!-- DANIE 1 -->
-
-      <article class="menu-card">
-
-        <div class="dish-number">
-          01 / SIGNATURE
-        </div>
-
-        <div class="dish-top">
-          <h3>Truffle Pasta</h3>
-          <div class="price">48 zł</div>
-        </div>
-
-        <p class="description">
-          Świeży makaron, kremowy sos z czarnej trufli,
-          parmezan i aromatyczna oliwa.
-        </p>
-
-        <div class="dish-footer">
-          <span class="tag">Vegetarian</span>
-
-          <a href="#experience" class="view-3d">
-            ◉ ZOBACZ 3D / AR
-          </a>
-        </div>
-
-      </article>
-
-
-      <!-- DANIE 2 -->
-
-      <article class="menu-card">
-
-        <div class="dish-number">
-          02 / CHEF'S CHOICE
-        </div>
-
-        <div class="dish-top">
-          <h3>Beef Tartare</h3>
-          <div class="price">52 zł</div>
-        </div>
-
-        <p class="description">
-          Selekcjonowana wołowina, żółtko,
-          musztarda francuska, kapary
-          i chrupiąca brioche.
-        </p>
-
-        <div class="dish-footer">
-          <span class="tag">Premium</span>
-
-          <a href="#experience" class="view-3d">
-            ◉ ZOBACZ 3D / AR
-          </a>
-        </div>
-
-      </article>
-
-
-      <!-- DANIE 3 -->
-
-      <article class="menu-card">
-
-        <div class="dish-number">
-          03 / SEAFOOD
-        </div>
-
-        <div class="dish-top">
-          <h3>Salmon Noir</h3>
-          <div class="price">64 zł</div>
-        </div>
-
-        <p class="description">
-          Łosoś sous-vide, czarny ryż,
-          sos cytrynowy i sezonowe warzywa.
-        </p>
-
-        <div class="dish-footer">
-          <span class="tag">Gluten Free</span>
-
-          <a href="#experience" class="view-3d">
-            ◉ ZOBACZ 3D / AR
-          </a>
-        </div>
-
-      </article>
-
-
-      <!-- DANIE 4 -->
-
-      <article class="menu-card">
-
-        <div class="dish-number">
-          04 / CLASSIC
-        </div>
-
-        <div class="dish-top">
-          <h3>Risotto Verde</h3>
-          <div class="price">44 zł</div>
-        </div>
-
-        <p class="description">
-          Kremowe risotto, szparagi,
-          zielony groszek, parmezan
-          i świeże zioła.
-        </p>
-
-        <div class="dish-footer">
-          <span class="tag">Vegetarian</span>
-
-          <a href="#experience" class="view-3d">
-            ◉ ZOBACZ 3D / AR
-          </a>
-        </div>
-
-      </article>
-
-
-      <!-- DANIE 5 -->
-
-      <article class="menu-card">
-
-        <div class="dish-number">
-          05 / SPECIAL
-        </div>
-
-        <div class="dish-top">
-          <h3>Wagyu Burger</h3>
-          <div class="price">58 zł</div>
-        </div>
-
-        <p class="description">
-          Wołowina Wagyu, cheddar,
-          karmelizowana cebula,
-          sos house i brioche.
-        </p>
-
-        <div class="dish-footer">
-          <span class="tag">Signature</span>
-
-          <a href="#experience" class="view-3d">
-            ◉ ZOBACZ 3D / AR
-          </a>
-        </div>
-
-      </article>
-
-
-      <!-- DANIE 6 -->
-
-      <article class="menu-card">
-
-        <div class="dish-number">
-          06 / DESSERT
-        </div>
-
-        <div class="dish-top">
-          <h3>Chocolate Sphere</h3>
-          <div class="price">32 zł</div>
-        </div>
-
-        <p class="description">
-          Czekoladowa kula, mus waniliowy,
-          karmel i gorący sos czekoladowy.
-        </p>
-
-        <div class="dish-footer">
-          <span class="tag">Dessert</span>
-
-          <a href="#experience" class="view-3d">
-            ◉ ZOBACZ 3D / AR
-          </a>
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       3D / AR VIEWER
-  ========================== -->
-
-  <section
-    class="viewer-section"
-    id="experience"
-  >
-
-    <div class="viewer-container">
-
-      <div class="viewer-info">
-
-        <span>Interactive Experience</span>
-
-        <h2>Zobacz danie zanim je zamówisz.</h2>
-
-        <p>
-          Obracaj model, przybliżaj go
-          i zobacz, jak wygląda z każdej strony.
-          Na kompatybilnym telefonie możesz również
-          umieścić danie w swojej przestrzeni dzięki AR.
-        </p>
-
-        <div class="viewer-features">
-          <div>Obracaj model w 360°</div>
-          <div>Przybliżaj i oddalaj</div>
-          <div>Uruchom doświadczenie AR</div>
-        </div>
-
-      </div>
-
-
-      <div class="model-area">
-
-        <!--
-          ==============================
-          TUTAJ PODAJ SWÓJ PLIK .GLB
-          ==============================
-
-          ZMIEŃ:
-
-          models/danie.glb
-
-          NA ŚCIEŻKĘ DO SWOJEGO MODELU.
-
-          PRZYKŁAD:
-
-          models/pizza.glb
-
-        -->
-
-        <model-viewer
-          src="models/danie.glb"
-
-          alt="Model 3D dania"
-
-          camera-controls
-
-          auto-rotate
-
-          auto-rotate-delay="1000"
-
-          rotation-per-second="20deg"
-
-          shadow-intensity="1"
-
-          shadow-softness="0.8"
-
-          environment-image="neutral"
-
-          exposure="1"
-
-          ar
-
-          ar-modes="
-            webxr
-            scene-viewer
-            quick-look
-          "
-
-          ar-scale="auto"
-
-          loading="eager"
-
-        >
-
-          <!-- PRZYCISK AR -->
-
-          <button
-            slot="ar-button"
-            id="ar-button"
-          >
-            ✦ ZOBACZ W SWOJEJ PRZESTRZENI
-          </button>
-
-
-          <!-- LOADING -->
-
-          <div
-            slot="progress-bar"
-            class="progress-bar"
-          >
-            <div class="update-bar"></div>
-          </div>
-
-        </model-viewer>
-
+      <div class="price">
+        39 zł
       </div>
 
     </div>
 
-  </section>
-
-
-  <!-- =========================
-       ABOUT
-  ========================== -->
-
-  <section class="about" id="about">
-
-    <div class="about-inner">
-
-      <h2>
-        Nowoczesna kuchnia.
-        Nowoczesne doświadczenie.
-      </h2>
-
-      <div>
-
-        <p>
-          VÉRDE to miejsce, w którym gastronomia
-          spotyka się z technologią.
-        </p>
-
-        <p>
-          Chcemy, aby wybór dania był częścią całego
-          doświadczenia. Dlatego nasze menu pozwala
-          zobaczyć wybrane potrawy w pełnym 3D
-          jeszcze przed zamówieniem.
-        </p>
-
-        <a href="#menu" class="btn btn-primary">
-          POZNAJ MENU
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div>
-      <div class="footer-logo">
-        VÉRDE
-      </div>
-
-      <p>
-        Modern Restaurant Experience
-      </p>
-    </div>
-
-    <p>
-      © 2026 VÉRDE Restaurant
-    </p>
-
-  </footer>
+  </div>
 
 </body>
 </html>
