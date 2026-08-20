@@ -69,7 +69,7 @@
     }
 
     .hero h1 {
-      font-size: 22px;
+      font-size: 24px;
       letter-spacing: 8px;
       font-weight: 400;
       margin-bottom: 12px;
@@ -116,14 +116,11 @@
     }
 
     /* =========================
-       UKŁAD DANIA (50% / 50% ZGODNY Z GRAFIKĄ)
+       UKŁAD DANIA (50% / 50% WYŚRODKOWANY)
     ========================= */
-    .dish-wrapper {
+    .dish {
       max-width: 800px;
       margin: 0 auto 75px;
-    }
-
-    .dish {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
@@ -135,7 +132,7 @@
       transform: translateY(-3px);
     }
 
-    /* Układ domyślny: Tekst po lewej (order 1), Obrazek po prawej (order 2) */
+    /* 1. Układ domyślny: Tekst po lewej (order 1), Zdjęcie po prawej (order 2) */
     .dish .dish-info {
       order: 1;
     }
@@ -143,7 +140,7 @@
       order: 2;
     }
 
-    /* Układ odwrócony (co drugie danie): Obrazek po lewej (order 1), Tekst po prawej (order 2) */
+    /* 2. Układ odwrócony: Zdjęcie po lewej (order 1), Tekst po prawej (order 2) */
     .dish.reverse .dish-image {
       order: 1;
     }
@@ -239,31 +236,6 @@
       border-color: #c68a3b;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(198, 138, 59, 0.25);
-    }
-
-    /* =========================
-       IKONY ALERGENÓW / DIETY POD DANIEM
-    ========================= */
-    .dish-icons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .dish-icon-badge {
-      width: 28px;
-      height: 28px;
-      border: 1.5px solid #d49a4f;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #b57a2e;
-      background: #ffffff;
-      box-shadow: 0 2px 6px rgba(212, 154, 79, 0.12);
     }
 
     /* =========================
@@ -367,13 +339,10 @@
         font-size: 12px;
       }
 
-      .dish-wrapper {
-        margin-bottom: 50px;
-      }
-
       .dish {
         grid-template-columns: 1fr;
         gap: 20px;
+        margin-bottom: 50px;
       }
 
       .dish .dish-image,
@@ -497,18 +466,16 @@
         description: "Podwędzany befsztyk tatarski z polskiej wołowiny serwowany z klasycznymi marynatami z Podlasia",
         price: "59zł/150g",
         image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85",
-        model: "./tatar-wolowy.glb",
-        icons: ["🌾"]
+        model: "./tatar-wolowy.glb"
       },
       {
         id: "starter-2",
-        name: "Karmelizowana figa",
+        name: "Karmelizowana figa z kozim serem",
         categoryId: "starters",
         description: "Karmelizowana figa podana na zapiekanej roladzie koziej, skąpanej w gąszczu z truskawek z rukolą i kawiorem z pomarańczy",
         price: "57zł/150g",
         image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=85",
-        model: "./karmelizowana-figa.glb",
-        icons: ["🍃", "🌾"]
+        model: "./karmelizowana-figa.glb"
       },
       {
         id: "starter-3",
@@ -517,32 +484,29 @@
         description: "Kremowa burrata, świeże pomidory, oliwa extra virgin i świeża bazylia.",
         price: "36.00 zł",
         image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=85",
-        model: "./burrata.glb",
-        icons: ["🍃"]
+        model: "./burrata.glb"
       },
 
       /* ZUPY */
       {
         id: "soup-1",
-        name: "Krem z dyni",
+        name: "Krem z pieczonej dyni",
         categoryId: "soups",
         description: "Aksamitny krem z pieczonej dyni z nutą imbiru i prażonymi pestkami dyni.",
         price: "24.00 zł",
         image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85",
-        model: "./krem-z-dyni.glb",
-        icons: ["🍃", "🌾"]
+        model: "./krem-z-dyni.glb"
       },
 
       /* DANIA GŁÓWNE */
       {
         id: "main-1",
-        name: "Polędwica wołowa",
+        name: "Polędwica wołowa Black Angus",
         categoryId: "mains",
         description: "Soczysta polędwica wołowa, sezonowe warzywa i intensywny sos pieczeniowy.",
         price: "72.00 zł",
         image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=85",
-        model: "./poledwica-wolowa.glb",
-        icons: ["🌾"]
+        model: "./poledwica-wolowa.glb"
       },
       {
         id: "main-2",
@@ -560,8 +524,7 @@
         description: "Filet z łososia, puree ziemniaczane, szparagi i sos cytrynowy.",
         price: "64.00 zł",
         image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=85",
-        model: "./losos-grillowany.glb",
-        icons: ["🌾"]
+        model: "./losos-grillowany.glb"
       },
 
       /* DESERY */
@@ -572,8 +535,7 @@
         description: "Klasyczne włoskie tiramisu z mascarpone i intensywnym espresso.",
         price: "28.00 zł",
         image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=85",
-        model: "./tiramisu.glb",
-        icons: ["🍃"]
+        model: "./tiramisu.glb"
       },
       {
         id: "dessert-2",
@@ -582,16 +544,16 @@
         description: "Ciepłe ciasto czekoladowe z płynnym środkiem i lodami waniliowymi.",
         price: "30.00 zł",
         image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=85",
-        model: "./fondant-czekoladowy.glb",
-        icons: ["🍃"]
+        model: "./fondant-czekoladowy.glb"
       }
     ];
 
     /* =========================================
-       RENDER MENU
+       RENDER MENU (ŚCISŁA CIĄGŁA NAPRZEMIENOŚĆ W CAŁYM MENU)
     ========================================= */
     function renderMenu() {
       const container = document.getElementById("menuContainer");
+      let globalDishIndex = 0;
 
       container.innerHTML = CATEGORIES.map(category => {
         const categoryDishes = DISHES.filter(dish => dish.categoryId === category.id);
@@ -602,30 +564,26 @@
           <section class="category">
             <h2 class="category-title">${category.name}</h2>
 
-            ${categoryDishes.map((dish, index) => {
-              const reverse = index % 2 === 1 ? "reverse" : "";
-              const iconsHtml = dish.icons && dish.icons.length > 0 
-                ? `<div class="dish-icons">${dish.icons.map(icon => `<span class="dish-icon-badge">${icon}</span>`).join("")}</div>` 
-                : "";
+            ${categoryDishes.map((dish) => {
+              /* globalDishIndex gwarantuje stałą naprzemienność w całym menu */
+              const reverse = globalDishIndex % 2 === 1 ? "reverse" : "";
+              globalDishIndex++;
 
               return `
-                <div class="dish-wrapper">
-                  <article class="dish ${reverse}">
-                    <div class="dish-info">
-                      <h3 class="dish-name">${dish.name}</h3>
-                      <p class="dish-description">${dish.description}</p>
-                      <div class="dish-price">${dish.price}</div>
-                      <button class="dish-3d-button" onclick="open3DViewer('${dish.id}')">
-                        ✨ 3D / AR
-                      </button>
-                    </div>
+                <article class="dish ${reverse}">
+                  <div class="dish-info">
+                    <h3 class="dish-name">${dish.name}</h3>
+                    <p class="dish-description">${dish.description}</p>
+                    <div class="dish-price">${dish.price}</div>
+                    <button class="dish-3d-button" onclick="open3DViewer('${dish.id}')">
+                      ✨ 3D / AR
+                    </button>
+                  </div>
 
-                    <div class="dish-image">
-                      <img src="${dish.image}" alt="${dish.name}" loading="lazy">
-                    </div>
-                  </article>
-                  ${iconsHtml}
-                </div>
+                  <div class="dish-image">
+                    <img src="${dish.image}" alt="${dish.name}" loading="lazy">
+                  </div>
+                </article>
               `;
             }).join("")}
           </section>
