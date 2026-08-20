@@ -123,7 +123,7 @@
       transform: translateY(-3px);
     }
 
-    /* Układ standardowy: Tekst lewa (1), Obrazek prawa (2) */
+    /* 1. Domyślny: Tekst lewa (1), Zdjęcie prawa (2) */
     .dish .dish-info {
       order: 1;
     }
@@ -131,7 +131,7 @@
       order: 2;
     }
 
-    /* Układ odwrócony: Obrazek lewa (1), Tekst prawa (2) */
+    /* 2. Odwrócony: Zdjęcie lewa (1), Tekst prawa (2) */
     .dish.reverse .dish-image {
       order: 1;
     }
@@ -163,7 +163,7 @@
       transform: scale(1.05);
     }
 
-    /* TEKST I WYŚRODKOWANIE */
+    /* INFORMACJE WYŚRODKOWANE */
     .dish-info {
       text-align: center;
       display: flex;
@@ -223,7 +223,7 @@
       box-shadow: 0 4px 12px rgba(198, 138, 59, 0.25);
     }
 
-    /* AR VIEWER */
+    /* 3D / AR VIEWER */
     .ar-viewer {
       position: fixed;
       inset: 0;
@@ -412,82 +412,82 @@
     const DISHES = [
       /* PRZYSTAWKI */
       {
-        id: "starter-1",
-        name: "Podwędzany befsztyk tatarski",
+        id: "dish-1",
+        name: "Chrupiący krokiet z kozim serem",
         categoryId: "starters",
-        description: "Podwędzany befsztyk tatarski z polskiej wołowiny serwowany z klasycznymi marynatami z Podlasia",
-        price: "59zł/150g",
-        image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85",
-        model: "./tatar-wolowy.glb"
+        description: "Złocisty, chrupiący krokiet z aksamitnym kozim serem serwowany na puree ze szczypiorkową oliwą i młodą boćwiną",
+        price: "42.00 zł",
+        image: "pozycja1.jpg",
+        model: "./krokiet-kozi-ser.glb"
       },
       {
-        id: "starter-3",
-        name: "Burrata z pomidorami",
+        id: "dish-2",
+        name: "Carpaccio z pomidorów z kremową burratą",
         categoryId: "starters",
-        description: "Kremowa burrata, świeże pomidory, oliwa extra virgin i świeża bazylia.",
-        price: "36.00 zł",
-        image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=85",
+        description: "Plastry dojrzałych pomidorów malinowych ze świeżą kremową burratą, aromatyczną bazylią i oliwą extra virgin",
+        price: "38.00 zł",
+        image: "pozycja2.jpg",
         model: "./burrata.glb"
       },
 
       /* ZUPY */
       {
-        id: "soup-1",
-        name: "Krem z pieczonej dyni",
+        id: "dish-3",
+        name: "Aksamitny krem z pieczonej dyni",
         categoryId: "soups",
-        description: "Aksamitny krem z pieczonej dyni z nutą imbiru i prażonymi pestkami dyni.",
-        price: "24.00 zł",
-        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85",
+        description: "Rozgrzewający krem z pieczonej dyni z nutą imbiru, chrupiącymi grzankami, prażonymi pestkami dyni i świeżą natką pietruszki",
+        price: "26.00 zł",
+        image: "pozycja3.jpg",
         model: "./krem-z-dyni.glb"
       },
 
       /* DANIA GŁÓWNE */
       {
-        id: "main-1",
-        name: "Polędwica wołowa Black Angus",
+        id: "dish-4",
+        name: "Polędwica wołowa z puree i brokułem bimi",
         categoryId: "mains",
-        description: "Soczysta polędwica wołowa, sezonowe warzywa i intensywny sos pieczeniowy.",
-        price: "72.00 zł",
-        image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=85",
+        description: "Soczysty stek z polędwicy wołowej podany z aksamitnym puree ziemniaczanym, dzikim brokułem bimi i sosem pieczeniowym demi-glace",
+        price: "84.00 zł",
+        image: "pozycja4.jpeg",
         model: "./poledwica-wolowa.glb"
       },
       {
-        id: "main-2",
-        name: "Miyazaki Wagyu A5 Ribeye",
+        id: "dish-5",
+        name: "Pizza Prosciutto di Parma e Rucola",
         categoryId: "mains",
-        description: "Japońska wołowina Wagyu klasy A5 o wyjątkowym marmurkowaniu, podawana z puree z pasternaku i sosem demi-glace.",
-        price: "98.00 zł",
-        image: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=85",
-        model: "./miyazaki-wagyu.glb"
+        description: "Włoska pizza na puszystym cieście dojrzewającym z szynką Prosciutto di Parma, świeżą rukolą i płatkami Parmigiano Reggiano",
+        price: "48.00 zł",
+        image: "pozycja5.jpeg",
+        model: "./pizza-prosciutto.glb"
       },
       {
-        id: "main-3",
-        name: "Łosoś grillowany",
+        id: "dish-6",
+        name: "Grillowany łosoś z ryżem szafranowym",
         categoryId: "mains",
-        description: "Filet z łososia, puree ziemniaczane, szparagi i sos cytrynowy.",
-        price: "64.00 zł",
-        image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=85",
+        description: "Soczysty stek z grillowanego łososia serwowany na świeżym szpinaku z aromatycznym ryżem szafranowym i cytryną",
+        price: "68.00 zł",
+        image: "pozycja6.png",
         model: "./losos-grillowany.glb"
       },
 
       /* DESERY */
       {
-        id: "dessert-1",
-        name: "Tiramisu",
+        id: "dish-7",
+        name: "Klasyczne włoskie Tiramisu",
         categoryId: "desserts",
-        description: "Klasyczne włoskie tiramisu z mascarpone i intensywnym espresso.",
+        description: "Tradycyjny deser na bazie kremu z mascarpone, biszkoptów nasączonych espresso i likierem Amaretto, oprószony kakao",
         price: "28.00 zł",
-        image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=85",
+        image: "pozycja7.jpg",
         model: "./tiramisu.glb"
       },
       {
-        id: "dessert-2",
-        name: "Fondant czekoladowy",
+        id: "dish-8",
+        name: "Chrupiący gofr z owocami i bitą śmietaną",
         categoryId: "desserts",
-        description: "Ciepłe ciasto czekoladowe z płynnym środkiem i lodami waniliowymi.",
-        price: "30.00 zł",
-        image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=85",
-        model: "./fondant-czekoladowy.glb"
+        description: "Złocisty gofr belgijski serwowany z bogatą kompozycją świeżych owoców sezonowych, puszystą bitą śmietaną i cukrem pudrem",
+        price: "32.00 zł",
+        image: "pozycja8.jpg",
+        model: "./gofr-z-owocami.glb"
       }
     ];
 
@@ -505,6 +505,7 @@
             <h2 class="category-title">${category.name}</h2>
 
             ${categoryDishes.map((dish) => {
+              /* globalDishIndex zapewnia stałą naprzemienność lewo/prawo w całym menu */
               const reverse = globalDishIndex % 2 === 1 ? "reverse" : "";
               globalDishIndex++;
 
