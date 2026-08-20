@@ -10,10 +10,7 @@
 
   <title>MENU | Restauracja</title>
 
-  <!-- =========================
-       CZCIONKI
-  ========================= -->
-
+  <!-- CZCIONKI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -22,10 +19,7 @@
     rel="stylesheet"
   >
 
-  <!-- =========================
-       MODEL VIEWER
-  ========================= -->
-
+  <!-- MODEL VIEWER -->
   <script
     type="module"
     src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
@@ -67,7 +61,6 @@
     .hero {
       width: 100%;
       height: 260px;
-
       position: relative;
       overflow: hidden;
     }
@@ -75,11 +68,8 @@
     .hero img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       filter: brightness(0.65);
-
       transform: scale(1.02);
     }
 
@@ -96,25 +86,19 @@
       flex-direction: column;
 
       color: white;
-
       text-align: center;
     }
 
     .hero h1 {
       font-size: 20px;
-
       letter-spacing: 7px;
-
       font-weight: 400;
-
       margin-bottom: 12px;
     }
 
     .hero p {
       font-size: 9px;
-
       letter-spacing: 3px;
-
       opacity: 0.9;
     }
 
@@ -125,9 +109,7 @@
 
     .menu {
       max-width: 850px;
-
       margin: 0 auto;
-
       padding: 55px 20px 100px;
     }
 
@@ -139,7 +121,6 @@
       text-align: center;
 
       font-size: 13px;
-
       letter-spacing: 3px;
 
       font-weight: 500;
@@ -186,7 +167,6 @@
 
     .dish.reverse .dish-info {
       order: 2;
-
       text-align: left;
     }
 
@@ -280,10 +260,6 @@
 
       cursor: pointer;
 
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease;
-
       display: inline-flex;
 
       align-items: center;
@@ -291,29 +267,15 @@
       justify-content: center;
 
       gap: 7px;
+
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease;
     }
 
     .dish-3d-button:hover {
       background: #c68a3b;
-
       transform: translateY(-2px);
-    }
-
-    .dish.reverse .dish-3d-button {
-      margin-left: 0;
-    }
-
-
-    /* =========================
-       BRAK 3D
-    ========================= */
-
-    .no-3d {
-      font-size: 8px;
-
-      color: #aaa;
-
-      letter-spacing: 1px;
     }
 
 
@@ -391,7 +353,7 @@
 
 
     /* =========================
-       ZAMKNIĘCIE 3D
+       ZAMKNIĘCIE
     ========================= */
 
     .viewer-close {
@@ -425,7 +387,6 @@
       position: absolute;
 
       bottom: 30px;
-
       left: 50%;
 
       transform: translateX(-50%);
@@ -475,7 +436,6 @@
 
       .category-title {
         margin-bottom: 40px;
-
         font-size: 11px;
       }
 
@@ -502,7 +462,6 @@
 
       .dish-description {
         font-size: 8px;
-
         line-height: 1.6;
       }
 
@@ -512,13 +471,11 @@
 
       .dish-3d-button {
         padding: 9px 12px;
-
         font-size: 8px;
       }
 
       .viewer-title {
         font-size: 15px;
-
         padding: 10px 14px;
       }
 
@@ -579,15 +536,13 @@
 
 
 <!-- =========================
-     PEŁNOEKRANOWY VIEWER 3D / AR
+     3D / AR VIEWER
 ========================= -->
 
 <div
   id="arViewer"
   class="ar-viewer"
 >
-
-  <!-- GÓRNY PANEL -->
 
   <div class="viewer-header">
 
@@ -597,6 +552,7 @@
     >
       Danie
     </div>
+
 
     <button
       class="viewer-close"
@@ -608,8 +564,6 @@
 
   </div>
 
-
-  <!-- MODEL -->
 
   <model-viewer
 
@@ -635,13 +589,6 @@
 
   >
 
-    <!--
-
-      Ten przycisk jest używany przez Model Viewer
-      jako natywny przycisk uruchomienia AR.
-
-    -->
-
     <button
       slot="ar-button"
       class="ar-button"
@@ -658,7 +605,7 @@
 
 
 /* =========================================
-   CATEGORIES
+   KATEGORIE
 ========================================= */
 
 const CATEGORIES = [
@@ -688,7 +635,7 @@ const CATEGORIES = [
 
 
 /* =========================================
-   DISHES
+   DANIA
 ========================================= */
 
 const DISHES = [
@@ -714,14 +661,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./burrata.glb",
-
-    ingredients: [
-      "Burrata",
-      "Pomidory",
-      "Bazylia",
-      "Oliwa"
-    ]
+      "./burrata.glb"
 
   },
 
@@ -743,43 +683,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./tatar-wolowy.glb",
-
-    ingredients: [
-      "Wołowina",
-      "Żółtko",
-      "Kapary",
-      "Szalotka"
-    ]
-
-  },
-
-
-  {
-
-    id: "starter-3",
-
-    name: "Przegrzebki",
-
-    categoryId: "starters",
-
-    description:
-      "Delikatne przegrzebki, puree warzywne i lekki sos cytrusowy.",
-
-    price: 48,
-
-    image:
-      "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./przegrzebki.glb",
-
-    ingredients: [
-      "Przegrzebki",
-      "Cytryna",
-      "Masło",
-      "Zioła"
-    ]
+      "./tatar-wolowy.glb"
 
   },
 
@@ -805,43 +709,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./krem-z-dyni.glb",
-
-    ingredients: [
-      "Dynia",
-      "Imbir",
-      "Śmietanka",
-      "Pestki dyni"
-    ]
-
-  },
-
-
-  {
-
-    id: "soup-2",
-
-    name: "Rosół z kaczki",
-
-    categoryId: "soups",
-
-    description:
-      "Aromatyczny bulion z kaczki, domowy makaron i świeże warzywa.",
-
-    price: 26,
-
-    image:
-      "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./rosol-z-kaczki.glb",
-
-    ingredients: [
-      "Kaczka",
-      "Makaron",
-      "Marchew",
-      "Zioła"
-    ]
+      "./krem-z-dyni.glb"
 
   },
 
@@ -853,35 +721,6 @@ const DISHES = [
   {
 
     id: "main-1",
-
-    name: "Miyazaki Wagyu A5 Ribeye",
-
-    categoryId: "mains",
-
-    description:
-      "Japońska wołowina Wagyu klasy A5 o wyjątkowym marmurkowaniu, podawana z puree z pasternaku i sosem demi-glace.",
-
-    price: 98,
-
-    image:
-      "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./miyazaki-wagyu.glb",
-
-    ingredients: [
-      "Miyazaki Wagyu A5",
-      "Pasternak",
-      "Sos demi-glace",
-      "Sól Maldon"
-    ]
-
-  },
-
-
-  {
-
-    id: "main-2",
 
     name: "Polędwica wołowa",
 
@@ -896,14 +735,29 @@ const DISHES = [
       "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./poledwica-wolowa.glb",
+      "./poledwica-wolowa.glb"
 
-    ingredients: [
-      "Wołowina",
-      "Warzywa",
-      "Masło",
-      "Sos pieczeniowy"
-    ]
+  },
+
+
+  {
+
+    id: "main-2",
+
+    name: "Miyazaki Wagyu A5 Ribeye",
+
+    categoryId: "mains",
+
+    description:
+      "Japońska wołowina Wagyu klasy A5 o wyjątkowym marmurkowaniu, podawana z puree z pasternaku i sosem demi-glace.",
+
+    price: 98,
+
+    image:
+      "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=85",
+
+    model:
+      "./miyazaki-wagyu.glb"
 
   },
 
@@ -925,43 +779,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./losos-grillowany.glb",
-
-    ingredients: [
-      "Łosoś",
-      "Szparagi",
-      "Ziemniaki",
-      "Cytryna"
-    ]
-
-  },
-
-
-  {
-
-    id: "main-4",
-
-    name: "Risotto truflowe",
-
-    categoryId: "mains",
-
-    description:
-      "Kremowe risotto z parmezanem i aromatyczną czarną truflą.",
-
-    price: 54,
-
-    image:
-      "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=600&q=85",
-
-    model:
-      "./risotto-truflowe.glb",
-
-    ingredients: [
-      "Ryż Arborio",
-      "Trufla",
-      "Parmezan",
-      "Masło"
-    ]
+      "./losos-grillowany.glb"
 
   },
 
@@ -987,14 +805,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./tiramisu.glb",
-
-    ingredients: [
-      "Mascarpone",
-      "Espresso",
-      "Kakao",
-      "Biszkopty"
-    ]
+      "./tiramisu.glb"
 
   },
 
@@ -1016,14 +827,7 @@ const DISHES = [
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=85",
 
     model:
-      "./fondant-czekoladowy.glb",
-
-    ingredients: [
-      "Czekolada",
-      "Masło",
-      "Wanilia",
-      "Jajka"
-    ]
+      "./fondant-czekoladowy.glb"
 
   }
 
@@ -1054,12 +858,23 @@ function renderMenu() {
         );
 
 
+      /*
+        Nie pokazujemy pustych kategorii.
+      */
+
+      if (categoryDishes.length === 0) {
+        return "";
+      }
+
+
       return `
 
         <section class="category">
 
           <h2 class="category-title">
+
             ${category.name}
+
           </h2>
 
 
@@ -1073,24 +888,43 @@ function renderMenu() {
                   : "";
 
 
-              /*
-                Jeśli danie ma model GLB,
-                pokazujemy przycisk 3D / AR.
-              */
+              return `
 
-              const modelButton =
-                dish.model
-                  ? `
+                <article
+                  class="dish ${reverse}"
+                >
+
+
+                  <div class="dish-info">
+
+
+                    <h3 class="dish-name">
+
+                      ${dish.name}
+
+                    </h3>
+
+
+                    <p class="dish-description">
+
+                      ${dish.description}
+
+                    </p>
+
+
+                    <div class="dish-price">
+
+                      ${dish.price.toFixed(2)} zł
+
+                    </div>
+
 
                     <button
 
                       class="dish-3d-button"
 
                       onclick="
-                        event.stopPropagation();
-                        open3DViewer(
-                          '${dish.id}'
-                        );
+                        open3DViewer('${dish.id}')
                       "
 
                     >
@@ -1099,51 +933,9 @@ function renderMenu() {
 
                     </button>
 
-                  `
-                  : `
-
-                    <span class="no-3d">
-                      WIZUALIZACJA 3D NIEDOSTĘPNA
-                    </span>
-
-                  `;
-
-
-              return `
-
-                <article
-                  class="dish ${reverse}"
-                >
-
-                  <!-- =====================
-                       INFORMACJE
-                  ===================== -->
-
-                  <div class="dish-info">
-
-                    <h3 class="dish-name">
-                      ${dish.name}
-                    </h3>
-
-
-                    <p class="dish-description">
-                      ${dish.description}
-                    </p>
-
-
-                    <div class="dish-price">
-                      ${dish.price.toFixed(2)} zł
-                    </div>
-
-
-                    ${modelButton}
 
                   </div>
 
-
-                  <!-- =====================
-                       ZDJĘCIE
-                  ===================== -->
 
                   <div class="dish-image">
 
@@ -1159,12 +951,14 @@ function renderMenu() {
 
                   </div>
 
+
                 </article>
 
               `;
 
             }
           ).join("")}
+
 
         </section>
 
@@ -1182,6 +976,7 @@ function renderMenu() {
 
 function open3DViewer(id) {
 
+
   const dish =
     DISHES.find(
       item =>
@@ -1189,12 +984,7 @@ function open3DViewer(id) {
     );
 
 
-  if (!dish) {
-    return;
-  }
-
-
-  if (!dish.model) {
+  if (!dish || !dish.model) {
     return;
   }
 
@@ -1218,7 +1008,7 @@ function open3DViewer(id) {
 
 
   /*
-    Ustawienie odpowiedniego modelu GLB.
+    Ustaw model GLB.
   */
 
   viewer.src =
@@ -1230,8 +1020,7 @@ function open3DViewer(id) {
 
 
   /*
-    Zmiana nazwy dania
-    w górnym panelu.
+    Ustaw nazwę dania.
   */
 
   title.textContent =
@@ -1239,7 +1028,7 @@ function open3DViewer(id) {
 
 
   /*
-    Otwórz pełnoekranowy viewer.
+    Otwórz viewer.
   */
 
   viewerContainer.classList.add(
@@ -1248,8 +1037,7 @@ function open3DViewer(id) {
 
 
   /*
-    Zablokuj przewijanie strony
-    podczas oglądania modelu.
+    Zablokuj przewijanie strony.
   */
 
   document.body.style.overflow =
@@ -1264,6 +1052,7 @@ function open3DViewer(id) {
 ========================================= */
 
 function close3DViewer() {
+
 
   const viewerContainer =
     document.getElementById(
@@ -1283,7 +1072,7 @@ function close3DViewer() {
 
 
   /*
-    Usunięcie modelu po zamknięciu.
+    Wyczyść aktualny model.
   */
 
   viewer.removeAttribute(
@@ -1292,7 +1081,7 @@ function close3DViewer() {
 
 
   /*
-    Przywrócenie przewijania strony.
+    Przywróć przewijanie.
   */
 
   document.body.style.overflow =
@@ -1303,7 +1092,7 @@ function close3DViewer() {
 
 
 /* =========================================
-   ESC = CLOSE 3D
+   ESC = CLOSE
 ========================================= */
 
 document.addEventListener(
