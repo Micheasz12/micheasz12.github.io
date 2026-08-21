@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&display=swap" rel="stylesheet">
 
+  <!-- Google Model-Viewer for 3D .GLB & Augmented Reality -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
   <style>
     /* ==========================================================================
        RESET & BASE STYLES
@@ -257,15 +260,66 @@
       transform: translateY(-2px);
     }
 
-    /* 3D Food Platter Model Representation */
+    /* 3D GLB Food Platter Model Representation & Model Viewer */
     .hero-3d-showcase {
       position: relative;
       width: 100%;
-      max-width: 640px;
+      max-width: 680px;
       margin: 10px auto 0 auto;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      z-index: 20;
+    }
+
+    .model-viewer-wrapper {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      max-width: 580px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      --poster-color: transparent;
+      outline: none;
+      filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.75));
+      cursor: grab;
+    }
+
+    model-viewer:active {
+      cursor: grabbing;
+    }
+
+    .btn-ar-launch {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(245, 158, 11, 0.9);
+      color: #000000;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 7px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .btn-ar-launch:hover {
+      background: #f59e0b;
+      transform: scale(1.05);
     }
 
     .food-platter-container {
@@ -1593,53 +1647,72 @@
         </a>
       </div>
 
-      <!-- 3D Platter Visual Model -->
+      <!-- 3D Platter Visual Model with Google Model-Viewer (.GLB file from website folder) -->
       <div class="hero-3d-showcase">
-        <div class="food-platter-container">
-          <svg class="plate-art" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Plate Shadow -->
-            <ellipse cx="300" cy="360" rx="240" ry="60" fill="rgba(0,0,0,0.6)" filter="blur(15px)" />
-            <!-- Plate Outer Rim -->
-            <ellipse cx="300" cy="320" rx="240" ry="110" fill="#cbd5e1" />
-            <ellipse cx="300" cy="316" rx="236" ry="106" fill="#e2e8f0" />
-            <ellipse cx="300" cy="310" rx="226" ry="100" fill="#f8fafc" />
-            <ellipse cx="300" cy="305" rx="190" ry="80" fill="#ede9fe" fill-opacity="0.3" />
-            
-            <!-- Food Leaves & Ingredients (3D Stylized Salad & Salmon/Cheese Tart) -->
-            <g id="salad-garnishes">
-              <!-- Background Lettuce Layer -->
-              <ellipse cx="230" cy="280" rx="65" ry="38" fill="#4ade80" transform="rotate(-15 230 280)" />
-              <ellipse cx="370" cy="275" rx="70" ry="40" fill="#22c55e" transform="rotate(18 370 275)" />
-              <ellipse cx="300" cy="250" rx="80" ry="35" fill="#16a34a" />
-              <ellipse cx="180" cy="310" rx="55" ry="32" fill="#84cc16" transform="rotate(-25 180 310)" />
-              <ellipse cx="420" cy="305" rx="60" ry="34" fill="#65a30d" transform="rotate(20 420 305)" />
+        <div class="model-viewer-wrapper" id="viewer-container">
+          <model-viewer 
+            id="dish-model-viewer"
+            src="./dish.glb" 
+            alt="3D Restaurant Dish Model"
+            auto-rotate
+            rotation-per-second="24deg"
+            camera-controls
+            touch-action="pan-y"
+            interaction-prompt="none"
+            shadow-intensity="1.6"
+            shadow-softness="0.85"
+            exposure="1.15"
+            camera-orbit="0deg 68deg 105%"
+            field-of-view="32deg"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            loading="eager"
+          >
+            <!-- Custom AR Button Slot -->
+            <button slot="ar-button" class="btn-ar-launch" aria-label="View in Augmented Reality">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+              </svg>
+              <span>AR 3D</span>
+            </button>
 
-              <!-- Tomatoes & Accents -->
-              <circle cx="210" cy="325" r="14" fill="#ef4444" />
-              <circle cx="400" cy="318" r="15" fill="#dc2626" />
-              <circle cx="270" cy="340" r="12" fill="#f87171" />
-              <circle cx="340" cy="335" r="13" fill="#ef4444" />
-
-              <!-- Foreground Greens / Avocados -->
-              <ellipse cx="260" cy="330" rx="42" ry="24" fill="#84cc16" transform="rotate(35 260 330)" />
-              <ellipse cx="340" cy="325" rx="44" ry="24" fill="#4ade80" transform="rotate(-25 340 325)" />
-              <ellipse cx="205" cy="290" rx="35" ry="20" fill="#a3e635" transform="rotate(10 205 290)" />
-              <ellipse cx="395" cy="285" rx="38" ry="22" fill="#86efac" transform="rotate(-15 395 285)" />
-
-              <!-- Central Creamy Dome / Tart -->
-              <ellipse cx="300" cy="288" rx="55" ry="26" fill="#e2e8f0" />
-              <path d="M245 288 C245 270, 355 270, 355 288 L355 295 C355 315, 245 315, 245 295 Z" fill="#f1f5f9" />
-              <ellipse cx="300" cy="284" rx="52" ry="23" fill="#f59e0b" />
-              
-              <!-- Seasoning herbs on top -->
-              <circle cx="290" cy="280" r="2.5" fill="#15803d" />
-              <circle cx="305" cy="284" r="2.5" fill="#166534" />
-              <circle cx="315" cy="278" r="2.5" fill="#15803d" />
-              <circle cx="298" cy="275" r="2.2" fill="#14532d" />
-              <circle cx="288" cy="288" r="2" fill="#166534" />
-              <circle cx="310" cy="290" r="2.2" fill="#15803d" />
-            </g>
-          </svg>
+            <!-- Fallback poster while .glb is fetching -->
+            <div slot="poster" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+              <div class="food-platter-container">
+                <svg class="plate-art" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="300" cy="360" rx="240" ry="60" fill="rgba(0,0,0,0.6)" filter="blur(15px)" />
+                  <ellipse cx="300" cy="320" rx="240" ry="110" fill="#cbd5e1" />
+                  <ellipse cx="300" cy="316" rx="236" ry="106" fill="#e2e8f0" />
+                  <ellipse cx="300" cy="310" rx="226" ry="100" fill="#f8fafc" />
+                  <ellipse cx="300" cy="305" rx="190" ry="80" fill="#ede9fe" fill-opacity="0.3" />
+                  <g id="salad-garnishes">
+                    <ellipse cx="230" cy="280" rx="65" ry="38" fill="#4ade80" transform="rotate(-15 230 280)" />
+                    <ellipse cx="370" cy="275" rx="70" ry="40" fill="#22c55e" transform="rotate(18 370 275)" />
+                    <ellipse cx="300" cy="250" rx="80" ry="35" fill="#16a34a" />
+                    <ellipse cx="180" cy="310" rx="55" ry="32" fill="#84cc16" transform="rotate(-25 180 310)" />
+                    <ellipse cx="420" cy="305" rx="60" ry="34" fill="#65a30d" transform="rotate(20 420 305)" />
+                    <circle cx="210" cy="325" r="14" fill="#ef4444" />
+                    <circle cx="400" cy="318" r="15" fill="#dc2626" />
+                    <circle cx="270" cy="340" r="12" fill="#f87171" />
+                    <circle cx="340" cy="335" r="13" fill="#ef4444" />
+                    <ellipse cx="260" cy="330" rx="42" ry="24" fill="#84cc16" transform="rotate(35 260 330)" />
+                    <ellipse cx="340" cy="325" rx="44" ry="24" fill="#4ade80" transform="rotate(-25 340 325)" />
+                    <ellipse cx="205" cy="290" rx="35" ry="20" fill="#a3e635" transform="rotate(10 205 290)" />
+                    <ellipse cx="395" cy="285" rx="38" ry="22" fill="#86efac" transform="rotate(-15 395 285)" />
+                    <ellipse cx="300" cy="288" rx="55" ry="26" fill="#e2e8f0" />
+                    <path d="M245 288 C245 270, 355 270, 355 288 L355 295 C355 315, 245 315, 245 295 Z" fill="#f1f5f9" />
+                    <ellipse cx="300" cy="284" rx="52" ry="23" fill="#f59e0b" />
+                    <circle cx="290" cy="280" r="2.5" fill="#15803d" />
+                    <circle cx="305" cy="284" r="2.5" fill="#166534" />
+                    <circle cx="315" cy="278" r="2.5" fill="#15803d" />
+                    <circle cx="298" cy="275" r="2.2" fill="#14532d" />
+                    <circle cx="288" cy="288" r="2" fill="#166534" />
+                    <circle cx="310" cy="290" r="2.2" fill="#15803d" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </model-viewer>
         </div>
       </div>
     </div>
@@ -2475,5 +2548,53 @@
     </div>
   </footer>
 
+  <!-- Script for 3D GLB Model handling & drag-drop test -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const viewer = document.getElementById('dish-model-viewer');
+      if (!viewer) return;
+
+      // Candidates list in website folder:
+      const candidatePaths = ['./dish.glb', './model.glb', '/dish.glb', '/model.glb', './assets/dish.glb', './assets/model.glb'];
+
+      // Check candidate path loading
+      let pathIdx = 0;
+      viewer.addEventListener('error', (event) => {
+        console.warn('Could not load ' + candidatePaths[pathIdx] + ', trying next path...');
+        pathIdx++;
+        if (pathIdx < candidatePaths.length) {
+          viewer.src = candidatePaths[pathIdx];
+        }
+      });
+
+      viewer.addEventListener('load', () => {
+        console.log('3D GLB model loaded successfully from: ' + viewer.src);
+      });
+
+      // Drag and Drop support to test any .glb file on the fly
+      const container = document.getElementById('viewer-container');
+      if (container) {
+        container.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          container.style.opacity = '0.75';
+        });
+        container.addEventListener('dragleave', () => {
+          container.style.opacity = '1';
+        });
+        container.addEventListener('drop', (e) => {
+          e.preventDefault();
+          container.style.opacity = '1';
+          if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            const file = e.dataTransfer.files[0];
+            if (file.name.endsWith('.glb') || file.name.endsWith('.gltf')) {
+              const objectUrl = URL.createObjectURL(file);
+              viewer.src = objectUrl;
+              console.log('Loaded custom 3D model from dropped file:', file.name);
+            }
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
