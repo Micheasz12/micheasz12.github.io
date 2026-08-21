@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu3D – Interaktywne Menu Restauracji 3D & AR</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#e05e00',
+              amber: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React, ReactDOM, Babel, Three.js & Lucide Icons -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-neutral-950 text-neutral-100 selection:bg-amber-400 selection:text-neutral-950 antialiased">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- IKONY POMOCNICZE (SVG) ---
+    const Icon = ({ name, className = "w-5 h-5" }) => {
+      const icons = {
+        box: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>,
+        sparkles: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>,
+        arrowRight: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>,
+        arrowLeft: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>,
+        check: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>,
+        rotate: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>,
+        qrCode: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>,
+        phone: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>,
+        flame: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>,
+        utensils: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>,
+      };
+      return icons[name] || icons.sparkles;
+    };
+
+    // --- DANE MOTYWÓW ---
+    const THEMES = [
+      {
+        id: 'matisse',
+        name: 'Matisse & Co.',
+        number: '01',
+        subtitle: 'Minimalist Japanese Fusion',
+        tag: 'Modern Bistro',
+        imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=700&auto=format&fit=crop&q=80',
+        items: [
+          { name: 'Kobe Wagyu A5 Strip', price: '48 €', description: 'Truffle ponzu, charred scallion emulsion.' },
+          { name: 'Hamachi Crudo', price: '22 €', description: 'Compressed yuzu melon, crispy shallots.' },
+          { name: 'Matcha Fondant Tart', price: '14 €', description: 'Smoked sesame gelato, gold leaf.' }
+        ]
+      },
+      {
+        id: 'urban',
+        name: 'Urban Crust',
+        number: '02',
+        subtitle: 'Street Crafted Artisan',
+        tag: 'Gourmet Street Food',
+        imageUrl: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&auto=format&fit=crop&q=80',
+        items: [
+          { name: 'Smash Double Brisket', price: '19 €', description: 'Aged cheddar, secret truffle glaze.' },
+          { name: 'Truffle Parm Fries', price: '9 €', description: 'Hand cut russets, aged parmesan.' },
+          { name: 'Salted Dulce Shake', price: '8 €', description: 'Vanilla bean, Maldon smoked salt.' }
+        ]
+      },
+      {
+        id: 'domaine',
+        name: 'Domaine Gastronomie',
+        number: '03',
+        subtitle: 'Michelin Starred Experience',
+        tag: 'Haute Cuisine',
+        imageUrl: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=700&auto=format&fit=crop&q=80',
+        items: [
+          { name: 'Homard Bleu Rôti', price: '54 €', description: 'Emulsion au corail, bisque safranée.' },
+          { name: 'Filet de Canette Sauvage', price: '38 €', description: 'Betteraves fumées, jus corsé.' },
+          { name: 'Soufflé Grand Marnier', price: '18 €', description: 'Crème glacée à la fève tonka.' }
+        ]
+      },
+      {
+        id: 'atelier',
+        name: 'L\'Atelier Nordic',
+        number: '04',
+        subtitle: 'Scandinavian Clean Pure',
+        tag: 'Nordic Organic',
+        imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&auto=format&fit=crop&q=80',
+        items: [
+          { name: 'Cured Arctic Char', price: '24 €', description: 'Pickled sea buckthorn, dill oil.' },
+          { name: 'Reindeer Carpaccio', price: '29 €', description: 'Juniper berries, rye crisp.' },
+          { name: 'Birch Bark Ice Cream', price: '13 €', description: 'Foraged forest berry coulis.' }
+        ]
+      }
+    ];
+
+    // --- TRÓJWYMIAROWY CANVAS (Three.js) ---
+    const Canvas3D = () => {
+      const containerRef = useRef(null);
+
+      useEffect(() => {
+        if (!containerRef.current || !window.THREE) return;
+        const width = containerRef.current.clientWidth;
+        const height = containerRef.current.clientHeight;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+        camera.position.set(0, 1.8, 3.5);
+        camera.lookAt(0, 0.2, 0);
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio || 1);
+        containerRef.current.appendChild(renderer.domElement);
+
+        // Oświetlenie
+        const ambLight = new THREE.AmbientLight(0xffffff, 1.2);
+        scene.add(ambLight);
+        const dirLight = new THREE.DirectionalLight(0xffd580, 2.5);
+        dirLight.position.set(5, 8, 4);
+        scene.add(dirLight);
+
+        // Model Talerza z Daniami
+        const group = new THREE.Group();
+
+        // Talerz ceramiczny
+        const plateGeo = new THREE.CylinderGeometry(1.2, 0.9, 0.08, 64);
+        const plateMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.2, metalness: 0.1 });
+        const plate = new THREE.Mesh(plateGeo, plateMat);
+        group.add(plate);
+
+        // Złoty rant
+        const rimGeo = new THREE.TorusGeometry(1.2, 0.025, 16, 64);
+        const rimMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.9, roughness: 0.2 });
+        const rim = new THREE.Mesh(rimGeo, rimMat);
+        rim.rotation.x = Math.PI / 2;
+        rim.position.y = 0.04;
+        group.add(rim);
+
+        // Danie Signature (Truffle & Filet)
+        const steakGeo = new THREE.CylinderGeometry(0.48, 0.52, 0.25, 32);
+        const steakMat = new THREE.MeshStandardMaterial({ color: 0x4a2016, roughness: 0.6 });
+        const steak = new THREE.Mesh(steakGeo, steakMat);
+        steak.position.set(0, 0.15, 0);
+        group.add(steak);
+
+        // Dodatki gourmet
+        for (let i = 0; i < 5; i++) {
+          const leafGeo = new THREE.DodecahedronGeometry(0.12);
+          const leafMat = new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.3 });
+          const leaf = new THREE.Mesh(leafGeo, leafMat);
+          const angle = (i / 5) * Math.PI * 2;
+          leaf.position.set(Math.cos(angle) * 0.7, 0.08, Math.sin(angle) * 0.7);
+          group.add(leaf);
+        }
+
+        scene.add(group);
+
+        // Interakcja myszką
+        let isDragging = false;
+        let prevMouseX = 0;
+        const onDown = (e) => { isDragging = true; prevMouseX = e.clientX || (e.touches && e.touches[0].clientX); };
+        const onUp = () => { isDragging = false; };
+        const onMove = (e) => {
+          if (!isDragging) return;
+          const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+          const delta = clientX - prevMouseX;
+          group.rotation.y += delta * 0.01;
+          prevMouseX = clientX;
+        };
+
+        window.addEventListener('mousedown', onDown);
+        window.addEventListener('mouseup', onUp);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('touchstart', onDown);
+        window.addEventListener('touchend', onUp);
+        window.addEventListener('touchmove', onMove);
+
+        // Animacja
+        let animId;
+        const animate = () => {
+          animId = requestAnimationFrame(animate);
+          if (!isDragging) group.rotation.y += 0.004;
+          renderer.render(scene, camera);
+        };
+        animate();
+
+        return () => {
+          cancelAnimationFrame(animId);
+          if (containerRef.current) containerRef.current.innerHTML = '';
+          window.removeEventListener('mousedown', onDown);
+          window.removeEventListener('mouseup', onUp);
+          window.removeEventListener('mousemove', onMove);
+          window.removeEventListener('touchstart', onDown);
+          window.removeEventListener('touchend', onUp);
+          window.removeEventListener('touchmove', onMove);
+        };
+      }, []);
+
+      return <div ref={containerRef} className="w-full h-full min-h-[380px] sm:min-h-[480px] cursor-grab active:cursor-grabbing" />;
+    };
+
+    // --- KOMPONENT: GŁÓWNA APLIKACJA ---
+    function App() {
+      const [currentThemeId, setCurrentThemeId] = useState(null);
+      const [cartCount, setCartCount] = useState(0);
+      const [orderToast, setOrderToast] = useState(null);
+      const [arModalOpen, setArModalOpen] = useState(false);
+
+      // Obsługa URL query (?theme=...)
+      useEffect(() => {
+        const checkUrl = () => {
+          const params = new URLSearchParams(window.location.search);
+          const t = params.get('theme');
+          setCurrentThemeId(t);
+        };
+        checkUrl();
+        window.addEventListener('popstate', checkUrl);
+        return () => window.removeEventListener('popstate', checkUrl);
+      }, []);
+
+      const openTheme = (themeId) => {
+        setCurrentThemeId(themeId);
+        window.history.pushState({}, '', `?theme=${themeId}`);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
+      const backHome = () => {
+        setCurrentThemeId(null);
+        window.history.pushState({}, '', window.location.pathname);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
+      // WIDOK: OSOBNA STRONA CYFROWEGO MENU RESTAURACJI
+      if (currentThemeId) {
+        const theme = THEMES.find(t => t.id === currentThemeId) || THEMES[2];
+        return (
+          <div className="min-h-screen bg-[#f7f3ec] text-stone-900 font-serif antialiased pb-20">
+            {/* Top Bar */}
+            <div className="sticky top-0 z-50 bg-neutral-900 text-white px-4 py-3 flex items-center justify-between shadow-xl">
+              <button onClick={backHome} className="flex items-center gap-2 text-amber-400 hover:text-white font-sans text-xs font-bold transition-colors">
+                <Icon name="arrowLeft" className="w-4 h-4" />
+                <span>Wróć do strony głównej Menu3D</span>
+              </button>
+              <span className="text-[11px] font-mono bg-white/10 px-3 py-1 rounded-full">
+                demo/{theme.id} • Live Menu
+              </span>
+            </div>
+
+            <div className="max-w-xl mx-auto px-4 py-8">
+              {/* Header Karty */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl mb-8 aspect-video border border-black/10">
+                <img src={theme.imageUrl} alt={theme.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end text-white">
+                  <span className="text-[11px] text-amber-400 font-mono tracking-widest uppercase font-bold">{theme.tag}</span>
+                  <h1 className="text-3xl sm:text-4xl font-extrabold">{theme.name}</h1>
+                  <p className="text-xs text-white/80 font-sans mt-1">{theme.subtitle} • Menu 3D & AR</p>
+                </div>
+              </div>
+
+              {/* Pozycje Menu */}
+              <div className="space-y-4 font-sans">
+                {theme.items.map((item, idx) => (
+                  <div key={idx} className="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm flex justify-between items-start gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-bold text-base text-stone-900">{item.name}</h3>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">3D AR</span>
+                      </div>
+                      <p className="text-xs text-stone-600 mb-3 leading-relaxed">{item.description}</p>
+                      <div className="flex gap-2">
+                        <button onClick={() => setArModalOpen(true)} className="bg-amber-400 hover:bg-amber-500 text-neutral-950 text-xs px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 transition-colors">
+                          <Icon name="sparkles" className="w-3.5 h-3.5" />
+                          <span>Zobacz w 3D AR</span>
+                        </button>
+                        <button onClick={() => { setCartCount(c => c + 1); setOrderToast(item.name); setTimeout(() => setOrderToast(null), 2500); }} className="bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs px-3 py-1.5 rounded-xl font-bold transition-colors">
+                          + Dodaj do stolika
+                        </button>
+                      </div>
+                    </div>
+                    <span className="text-lg font-bold text-stone-900 font-mono">{item.price}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Inne motywy */}
+              <div className="mt-12 text-center font-sans">
+                <p className="text-xs text-stone-500 mb-3">Przetestuj inne szablony cyfrowe:</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {THEMES.map(t => (
+                    <button key={t.id} onClick={() => openTheme(t.id)} className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${t.id === theme.id ? 'bg-amber-500 text-black shadow' : 'bg-stone-200 hover:bg-stone-300 text-stone-800'}`}>
+                      {t.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Powiadomienie Toast */}
+            {orderToast && (
+              <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-neutral-900 text-white text-xs font-bold px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-white/20">
+                <Icon name="check" className="w-4 h-4 text-emerald-400" />
+                <span>Dodano do zamówienia: {orderToast}</span>
+              </div>
+            )}
+
+            {/* AR Modal */}
+            {arModalOpen && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+                <div className="bg-neutral-900 text-white rounded-3xl p-6 max-w-sm w-full border border-white/15 text-center font-sans">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-400 mx-auto flex items-center justify-center mb-3">
+                    <Icon name="qrCode" className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-bold">Zeskanuj kod w telefonie</h3>
+                  <p className="text-xs text-stone-400 mt-1 mb-4">Skieruj aparat na kod QR, aby wyświetlić potrawę na Twoim stole w rzeczywistości rozszerzonej (AR).</p>
+                  <div className="bg-white p-4 rounded-2xl w-44 h-44 mx-auto mb-4 flex items-center justify-center">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://menu3d.live/demo/ar-preview" alt="QR Code" className="w-full h-full" />
+                  </div>
+                  <button onClick={() => setArModalOpen(false)} className="w-full bg-white/10 hover:bg-white/20 py-2.5 rounded-xl text-xs font-bold transition-colors">
+                    Zamknij podgląd
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      // WIDOK: GŁÓWNA STRONA LANDING PAGE
+      return (
+        <div className="min-h-screen">
+          {/* HEADER / NAWIGACJA */}
+          <header className="fixed top-3 left-0 right-0 z-50 flex justify-center px-4">
+            <nav className="w-full max-w-5xl rounded-full px-6 py-2.5 relative flex items-center justify-between bg-neutral-900/80 backdrop-blur-lg border border-white/20 shadow-xl">
+              {/* Logo */}
+              <a href="#" className="flex items-center gap-2 font-bold text-lg text-white z-10">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950">
+                  <Icon name="box" className="w-5 h-5 stroke-[2.5]" />
+                </div>
+                <span>Menu<span className="text-amber-400 font-black">3D</span></span>
+              </a>
+
+              {/* Wyśrodkowane menu */}
+              <div className="hidden md:flex items-center gap-7 text-xs xl:text-sm font-medium text-gray-200 absolute left-1/2 -translate-x-1/2">
+                <a href="#features" className="hover:text-amber-400 transition-colors">Features</a>
+                <a href="#themes" className="hover:text-amber-400 transition-colors">Themes</a>
+                <a href="#pricing" className="hover:text-amber-400 transition-colors">Pricing</a>
+                <a href="#faq" className="hover:text-amber-400 transition-colors">FAQ</a>
+                <a href="#blog" className="hover:text-amber-400 transition-colors">Blog</a>
+                <a href="#contact" className="hover:text-amber-400 transition-colors">Contact</a>
+              </div>
+
+              <div className="hidden md:block w-24" />
+            </nav>
+          </header>
+
+          {/* HERO SECTION 3D */}
+          <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+            <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 text-center lg:text-left z-10">
+                <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 px-3.5 py-1.5 rounded-full text-xs font-bold mb-6">
+                  <Icon name="sparkles" className="w-4 h-4" />
+                  <span>Nowa generacja menu gastronomicznego</span>
+                </div>
+                <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                  Przekształć swoje menu w <span className="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">interaktywne doświadczenie 3D</span>
+                </h1>
+                <p className="text-stone-400 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8">
+                  Fotorealistyczne modele dań w rozszerzonej rzeczywistości (AR) bezpośrednio na telefonach Twoich gości. Bez aplikacji, natychmiast po zeskanowaniu kodu QR.
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                  <a href="#themes" className="bg-amber-400 hover:bg-amber-300 text-neutral-950 px-6 py-3.5 rounded-full font-bold text-xs flex items-center gap-2 transition-transform hover:scale-105 shadow-xl">
+                    <span>Zobacz szablony menu</span>
+                    <Icon name="arrowRight" className="w-4 h-4" />
+                  </a>
+                  <a href="#contact" className="bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-3.5 rounded-full font-bold text-xs transition-colors">
+                    Skontaktuj się z nami
+                  </a>
+                </div>
+              </div>
+
+              {/* Trójwymiarowy model dania */}
+              <div className="lg:col-span-5 relative flex justify-center">
+                <div className="w-full max-w-[440px] aspect-square rounded-3xl bg-gradient-to-b from-neutral-900 to-neutral-950 border border-white/10 p-2 shadow-2xl relative">
+                  <Canvas3D />
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-[11px] text-stone-300 border border-white/10 flex items-center gap-2 pointer-events-none">
+                    <Icon name="rotate" className="w-3.5 h-3.5 text-amber-400 animate-spin" />
+                    <span>Obróć danie 360° myszką lub dotykiem</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SEKCYJA MOTYWÓW (THEMES) */}
+          <section id="themes" className="py-24 px-4 bg-neutral-900/50 border-t border-white/5">
+            <div className="max-w-6xl mx-auto text-center mb-14">
+              <span className="text-amber-400 text-xs font-mono tracking-widest uppercase font-bold block mb-2">CYFROWE SZABLONY</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold">Wybierz styl pasujący do Twojej restauracji</h2>
+              <p className="text-stone-400 text-xs sm:text-sm mt-2">Kliknij dowolny telefon, aby otworzyć pełne demo pod osobnym linkiem.</p>
+            </div>
+
+            <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {THEMES.map((theme) => (
+                <div
+                  key={theme.id}
+                  onClick={() => openTheme(theme.id)}
+                  className="group cursor-pointer rounded-3xl bg-neutral-900 border border-neutral-800 hover:border-amber-400/50 p-3 transition-all duration-300 hover:-translate-y-2 shadow-xl flex flex-col justify-between"
+                >
+                  <div className="rounded-2xl overflow-hidden aspect-[4/5] relative mb-4">
+                    <img src={theme.imageUrl} alt={theme.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex flex-col justify-end">
+                      <span className="text-[10px] text-amber-400 font-bold uppercase">{theme.tag}</span>
+                      <h3 className="font-bold text-lg text-white">{theme.name}</h3>
+                      <p className="text-[11px] text-stone-300">{theme.subtitle}</p>
+                    </div>
+                  </div>
+                  <div className="bg-amber-400 group-hover:bg-amber-300 text-neutral-950 font-bold text-xs py-2 rounded-xl text-center flex items-center justify-center gap-1.5 transition-colors">
+                    <span>Otwórz Demo 3D</span>
+                    <Icon name="arrowRight" className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* SEKCJA KONTAKT (Z pomarańczową plakietką i nagłówkiem) */}
+          <section id="contact" className="py-24 px-4 bg-[#f7f3ec] text-stone-900 border-t border-stone-300">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="mb-3">
+                <span className="inline-block bg-[#e05e00] text-white font-black text-xs uppercase tracking-wider px-3.5 py-1 rounded-md shadow-sm">
+                  KONTAKT
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight mb-4">
+                Let's talk about <span className="text-[#e05e00] font-serif italic">your project</span>
+              </h2>
+              <p className="text-sm text-stone-600 mb-10 max-w-lg mx-auto">
+                Chcesz wdrożyć interaktywne menu 3D w swoim lokalu? Wypełnij krótki formularz, a nasz zespół przygotuje bezpłatną wycenę.
+              </p>
+
+              <form onSubmit={(e) => { e.preventDefault(); alert('Dziękujemy za kontakt! Odezwiemy się wkrótce.'); }} className="bg-white p-8 rounded-3xl border border-stone-200 shadow-xl space-y-4 text-left font-sans">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-stone-700 mb-1">Imię i Nazwisko</label>
+                    <input required type="text" placeholder="Jan Kowalski" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-xs text-stone-900 focus:outline-amber-500" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-stone-700 mb-1">Nazwa Restauracji</label>
+                    <input required type="text" placeholder="Bistro & Grill" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-xs text-stone-900 focus:outline-amber-500" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-stone-700 mb-1">Adres Email</label>
+                  <input required type="email" placeholder="kontakt@restauracja.pl" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-xs text-stone-900 focus:outline-amber-500" />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-stone-700 mb-1">Wiadomość</label>
+                  <textarea rows="3" placeholder="Opisz swoje menu lub zapytaj o wdrożenie modeli 3D..." className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-xs text-stone-900 focus:outline-amber-500"></textarea>
+                </div>
+                <button type="submit" className="w-full bg-[#e05e00] hover:bg-[#c95400] text-white font-bold text-xs py-3.5 rounded-xl shadow-lg transition-transform active:scale-95">
+                  Wyślij zgłoszenie projektu
+                </button>
+              </form>
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <footer className="bg-neutral-950 text-stone-500 py-10 px-4 text-center text-xs border-t border-neutral-900">
+            <p>© 2026 Menu3D. Wszelkie prawa zastrzeżone. Nowoczesne technologie 3D & AR dla gastronomii.</p>
+          </footer>
+        </div>
+      );
+    }
+
+    // Renderowanie aplikacji React
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
