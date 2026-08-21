@@ -322,23 +322,27 @@
       transform: scale(1.05);
     }
 
-    .food-platter-container {
-      position: relative;
+    .model-loading-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      max-width: 520px;
-      filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.85));
-      animation: floatPlate 6s ease-in-out infinite alternate;
+      height: 100%;
+      background: transparent;
     }
 
-    @keyframes floatPlate {
-      0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-10px) rotate(1deg); }
-    }
-
-    .plate-art {
-      width: 100%;
-      height: auto;
+    .model-spinner {
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      border-top-color: #f59e0b;
       border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* ==========================================================================
@@ -1676,41 +1680,9 @@
               <span>AR 3D</span>
             </button>
 
-            <!-- Fallback poster while .glb is fetching -->
-            <div slot="poster" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-              <div class="food-platter-container">
-                <svg class="plate-art" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="300" cy="360" rx="240" ry="60" fill="rgba(0,0,0,0.6)" filter="blur(15px)" />
-                  <ellipse cx="300" cy="320" rx="240" ry="110" fill="#cbd5e1" />
-                  <ellipse cx="300" cy="316" rx="236" ry="106" fill="#e2e8f0" />
-                  <ellipse cx="300" cy="310" rx="226" ry="100" fill="#f8fafc" />
-                  <ellipse cx="300" cy="305" rx="190" ry="80" fill="#ede9fe" fill-opacity="0.3" />
-                  <g id="salad-garnishes">
-                    <ellipse cx="230" cy="280" rx="65" ry="38" fill="#4ade80" transform="rotate(-15 230 280)" />
-                    <ellipse cx="370" cy="275" rx="70" ry="40" fill="#22c55e" transform="rotate(18 370 275)" />
-                    <ellipse cx="300" cy="250" rx="80" ry="35" fill="#16a34a" />
-                    <ellipse cx="180" cy="310" rx="55" ry="32" fill="#84cc16" transform="rotate(-25 180 310)" />
-                    <ellipse cx="420" cy="305" rx="60" ry="34" fill="#65a30d" transform="rotate(20 420 305)" />
-                    <circle cx="210" cy="325" r="14" fill="#ef4444" />
-                    <circle cx="400" cy="318" r="15" fill="#dc2626" />
-                    <circle cx="270" cy="340" r="12" fill="#f87171" />
-                    <circle cx="340" cy="335" r="13" fill="#ef4444" />
-                    <ellipse cx="260" cy="330" rx="42" ry="24" fill="#84cc16" transform="rotate(35 260 330)" />
-                    <ellipse cx="340" cy="325" rx="44" ry="24" fill="#4ade80" transform="rotate(-25 340 325)" />
-                    <ellipse cx="205" cy="290" rx="35" ry="20" fill="#a3e635" transform="rotate(10 205 290)" />
-                    <ellipse cx="395" cy="285" rx="38" ry="22" fill="#86efac" transform="rotate(-15 395 285)" />
-                    <ellipse cx="300" cy="288" rx="55" ry="26" fill="#e2e8f0" />
-                    <path d="M245 288 C245 270, 355 270, 355 288 L355 295 C355 315, 245 315, 245 295 Z" fill="#f1f5f9" />
-                    <ellipse cx="300" cy="284" rx="52" ry="23" fill="#f59e0b" />
-                    <circle cx="290" cy="280" r="2.5" fill="#15803d" />
-                    <circle cx="305" cy="284" r="2.5" fill="#166534" />
-                    <circle cx="315" cy="278" r="2.5" fill="#15803d" />
-                    <circle cx="298" cy="275" r="2.2" fill="#14532d" />
-                    <circle cx="288" cy="288" r="2" fill="#166534" />
-                    <circle cx="310" cy="290" r="2.2" fill="#15803d" />
-                  </g>
-                </svg>
-              </div>
+            <!-- Clean transparent poster while .glb is fetching -->
+            <div slot="poster" class="model-loading-placeholder">
+              <div class="model-spinner"></div>
             </div>
           </model-viewer>
         </div>
