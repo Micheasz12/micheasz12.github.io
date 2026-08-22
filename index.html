@@ -1711,7 +1711,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 2: SEE HOW IT WORKS (SCREENSHOT 2 — ZAKTUALIZOWANA Z filmik1.mp4)
+       SECTION 2: SEE HOW IT WORKS (MINIATURKA POBIERANA BEZPOŚREDNIO Z filmik1.mp4)
        ========================================================================== -->
   <section class="section-works" id="features">
     <div class="container">
@@ -1720,19 +1720,19 @@
       </div>
 
       <div class="works-grid">
-        <!-- Left: Video Player pobierający filmik1.mp4 -->
+        <!-- Left: Video Player pobierający filmik1.mp4 z miniaturką z pierwszej klatki filmu -->
         <div class="video-player-card" id="main-video-card">
           <div class="video-preview-inner" id="video-wrapper">
             <video 
               id="feature-video" 
               class="video-mock-visual"
-              poster="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80"
+              src="filmik1.mp4#t=0.001"
               playsinline
-              preload="metadata"
+              preload="auto"
             >
-              <source src="filmik1.mp4" type="video/mp4">
-              <source src="./filmik1.mp4" type="video/mp4">
-              <source src="/filmik1.mp4" type="video/mp4">
+              <source src="filmik1.mp4#t=0.001" type="video/mp4">
+              <source src="./filmik1.mp4#t=0.001" type="video/mp4">
+              <source src="/filmik1.mp4#t=0.001" type="video/mp4">
               Twoja przeglądarka nie obsługuje odtwarzacza wideo.
             </video>
             <div class="video-play-btn" id="feature-video-play-btn" aria-label="Odtwórz wideo">
