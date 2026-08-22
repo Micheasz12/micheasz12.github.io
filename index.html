@@ -63,7 +63,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    img {
+    img, video {
       max-width: 100%;
       height: auto;
       display: block;
@@ -396,13 +396,13 @@
       justify-content: center;
       background: linear-gradient(135deg, #0e1117 0%, #1a1e29 100%);
       overflow: hidden;
+      cursor: pointer;
     }
 
     .video-mock-visual {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.85;
     }
 
     .video-play-btn {
@@ -418,6 +418,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       cursor: pointer;
       transition: all 0.25s ease;
+      z-index: 5;
     }
 
     .video-play-btn:hover {
@@ -436,6 +437,22 @@
       font-size: 0.8rem;
     }
 
+    .ctrl-icon-btn {
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .ctrl-icon-btn:hover {
+      color: #ffffff;
+    }
+
     .video-controls-bar .progress-track {
       flex: 1;
       height: 4px;
@@ -450,6 +467,7 @@
       height: 100%;
       background: #f59e0b;
       border-radius: 2px;
+      transition: width 0.1s linear;
     }
 
     /* Steps List */
@@ -1693,7 +1711,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 2: SEE HOW IT WORKS (SCREENSHOT 2)
+       SECTION 2: SEE HOW IT WORKS (SCREENSHOT 2 — ZAKTUALIZOWANA Z filmik1.mp4)
        ========================================================================== -->
   <section class="section-works" id="features">
     <div class="container">
@@ -1702,31 +1720,48 @@
       </div>
 
       <div class="works-grid">
-        <!-- Left: Interactive Video Player Mockup -->
-        <div class="video-player-card">
-          <div class="video-preview-inner">
-            <img class="video-mock-visual" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Restaurant 3D Preview" />
-            <div class="video-play-btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <!-- Left: Video Player pobierający filmik1.mp4 -->
+        <div class="video-player-card" id="main-video-card">
+          <div class="video-preview-inner" id="video-wrapper">
+            <video 
+              id="feature-video" 
+              class="video-mock-visual"
+              poster="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80"
+              playsinline
+              preload="metadata"
+            >
+              <source src="filmik1.mp4" type="video/mp4">
+              <source src="./filmik1.mp4" type="video/mp4">
+              <source src="/filmik1.mp4" type="video/mp4">
+              Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+            </video>
+            <div class="video-play-btn" id="feature-video-play-btn" aria-label="Odtwórz wideo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" id="play-btn-icon">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </div>
           </div>
           <div class="video-controls-bar">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            <div class="progress-track">
-              <div class="progress-filled" style="width: 25%;"></div>
+            <button id="ctrl-play-pause-btn" class="ctrl-icon-btn" aria-label="Odtwórz / Pauza">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" id="ctrl-play-icon">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+            <div class="progress-track" id="video-progress-track">
+              <div class="progress-filled" id="video-progress-bar" style="width: 0%;"></div>
             </div>
-            <span>0:00 / 0:30</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-            </svg>
+            <span id="video-time-display">0:00 / 0:30</span>
+            <button id="ctrl-mute-btn" class="ctrl-icon-btn" aria-label="Wycisz / Wyłącz wyciszenie">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="ctrl-sound-icon">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
+            <button id="ctrl-fullscreen-btn" class="ctrl-icon-btn" aria-label="Pełny ekran">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -1885,7 +1920,7 @@
         <div class="feature-media">
           <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Atmospheric Restaurant Interior" />
           <div class="golden-sparkle-overlay">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </div>
@@ -2521,49 +2556,113 @@
     </div>
   </footer>
 
-  <!-- Script for 3D GLB Model handling & drag-drop test -->
+  <!-- Scripts: 3D Model Viewer & Video Player Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const viewer = document.getElementById('dish-model-viewer');
-      if (!viewer) return;
+      // 1. Video Player Logic dla filmik1.mp4 w Sekcji 2
+      const video = document.getElementById('feature-video');
+      const videoWrapper = document.getElementById('video-wrapper');
+      const playBtnOverlay = document.getElementById('feature-video-play-btn');
+      const ctrlPlayBtn = document.getElementById('ctrl-play-pause-btn');
+      const progressBar = document.getElementById('video-progress-bar');
+      const progressTrack = document.getElementById('video-progress-track');
+      const timeDisplay = document.getElementById('video-time-display');
+      const muteBtn = document.getElementById('ctrl-mute-btn');
+      const fullscreenBtn = document.getElementById('ctrl-fullscreen-btn');
 
-      // Candidates list in website folder:
-      const candidatePaths = ['./dish.glb', './model.glb', '/dish.glb', '/model.glb', './assets/dish.glb', './assets/model.glb'];
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return m + ':' + (s < 10 ? '0' : '') + s;
+      }
 
-      // Check candidate path loading
-      let pathIdx = 0;
-      viewer.addEventListener('error', (event) => {
-        console.warn('Could not load ' + candidatePaths[pathIdx] + ', trying next path...');
-        pathIdx++;
-        if (pathIdx < candidatePaths.length) {
-          viewer.src = candidatePaths[pathIdx];
+      function updatePlayState() {
+        if (!video) return;
+        if (video.paused) {
+          playBtnOverlay.style.display = 'flex';
+          ctrlPlayBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+        } else {
+          playBtnOverlay.style.display = 'none';
+          ctrlPlayBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
         }
-      });
+      }
 
-      viewer.addEventListener('load', () => {
-        console.log('3D GLB model loaded successfully from: ' + viewer.src);
-      });
+      function togglePlay() {
+        if (!video) return;
+        if (video.paused) {
+          video.play().catch(e => console.log('Odtwarzanie wideo:', e));
+        } else {
+          video.pause();
+        }
+        updatePlayState();
+      }
 
-      // Drag and Drop support to test any .glb file on the fly
-      const container = document.getElementById('viewer-container');
-      if (container) {
-        container.addEventListener('dragover', (e) => {
-          e.preventDefault();
-          container.style.opacity = '0.75';
+      if (video) {
+        videoWrapper.addEventListener('click', togglePlay);
+        ctrlPlayBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePlay();
         });
-        container.addEventListener('dragleave', () => {
-          container.style.opacity = '1';
+
+        video.addEventListener('play', updatePlayState);
+        video.addEventListener('pause', updatePlayState);
+        video.addEventListener('ended', () => {
+          updatePlayState();
+          progressBar.style.width = '100%';
         });
-        container.addEventListener('drop', (e) => {
-          e.preventDefault();
-          container.style.opacity = '1';
-          if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            const file = e.dataTransfer.files[0];
-            if (file.name.endsWith('.glb') || file.name.endsWith('.gltf')) {
-              const objectUrl = URL.createObjectURL(file);
-              viewer.src = objectUrl;
-              console.log('Loaded custom 3D model from dropped file:', file.name);
+
+        video.addEventListener('timeupdate', () => {
+          const current = video.currentTime;
+          const duration = video.duration || 30;
+          const pct = (current / duration) * 100;
+          progressBar.style.width = pct + '%';
+          timeDisplay.textContent = formatTime(current) + ' / ' + formatTime(duration);
+        });
+
+        video.addEventListener('loadedmetadata', () => {
+          timeDisplay.textContent = '0:00 / ' + formatTime(video.duration);
+        });
+
+        if (progressTrack) {
+          progressTrack.addEventListener('click', (e) => {
+            const rect = progressTrack.getBoundingClientRect();
+            const clickPos = (e.clientX - rect.left) / rect.width;
+            const duration = video.duration || 30;
+            video.currentTime = clickPos * duration;
+          });
+        }
+
+        if (muteBtn) {
+          muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            if (video.muted) {
+              muteBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+            } else {
+              muteBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
             }
+          });
+        }
+
+        if (fullscreenBtn) {
+          fullscreenBtn.addEventListener('click', () => {
+            if (video.requestFullscreen) {
+              video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+              video.webkitRequestFullscreen();
+            }
+          });
+        }
+      }
+
+      // 2. 3D GLB Model Viewer handling
+      const viewer = document.getElementById('dish-model-viewer');
+      if (viewer) {
+        const candidatePaths = ['./dish.glb', './model.glb', '/dish.glb', '/model.glb', './assets/dish.glb'];
+        let pathIdx = 0;
+        viewer.addEventListener('error', () => {
+          pathIdx++;
+          if (pathIdx < candidatePaths.length) {
+            viewer.src = candidatePaths[pathIdx];
           }
         });
       }
