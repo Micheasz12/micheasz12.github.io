@@ -1,196 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D GLB Viewer</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html, body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background-color: #ffffff;
-      }
-      #canvas-container {
-        width: 100%;
-        height: 100%;
-        display: block;
-        cursor: grab;
-      }
-      #canvas-container:active {
-        cursor: grabbing;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="canvas-container"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model 3D</title>
 
-    <script type="module">
-      import * as THREE from 'three';
-      import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-      import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-      import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-      import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-
-      let scene, camera, renderer, controls, currentModel = null, mixer = null;
-      const clock = new THREE.Clock();
-      const container = document.getElementById('canvas-container');
-
-      function init() {
-        // Scena i czyste białe tło
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xffffff);
-
-        // Kamera
-        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.05, 1000);
-        camera.position.set(0, 1.5, 3.5);
-
-        // Renderer
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, preserveDrawingBuffer: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.0;
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        container.appendChild(renderer.domElement);
-
-        // Środowisko PBR i oświetlenie
-        const pmremGenerator = new THREE.PMREMGenerator(renderer);
-        scene.environment = pmremGenerator.fromScene(new RoomEnvironment()).texture;
-        pmremGenerator.dispose();
-
-        const dirLight1 = new THREE.DirectionalLight(0xffffff, 2.0);
-        dirLight1.position.set(5, 10, 7.5);
-        scene.add(dirLight1);
-
-        const dirLight2 = new THREE.DirectionalLight(0xffffff, 1.0);
-        dirLight2.position.set(-5, 5, -5);
-        scene.add(dirLight2);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-        scene.add(ambientLight);
-
-        // Kontrola myszą i dotykiem (OrbitControls)
-        controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.maxDistance = 100;
-        controls.minDistance = 0.1;
-
-        // Obsługa zmiany rozmiaru okna
-        window.addEventListener('resize', onWindowResize);
-
-        // Obsługa przeciągania plików (opcjonalnie)
-        setupDragAndDrop();
-
-        // Wczytanie pliku test.glb
-        loadModel('/test.glb');
-
-        // Główna pętla renderowania
-        renderer.setAnimationLoop(animate);
-      }
-
-      function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      }
-
-      function loadModel(url) {
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/');
-
-        const loader = new GLTFLoader();
-        loader.setDRACOLoader(dracoLoader);
-
-        loader.load(
-          url,
-          (gltf) => {
-            if (currentModel) scene.remove(currentModel);
-            if (mixer) {
-              mixer.stopAllAction();
-              mixer = null;
-            }
-
-            currentModel = gltf.scene;
-
-            // Włącz cienie dla każdego elementu
-            currentModel.traverse((child) => {
-              if (child.isMesh) {
-                child.castShadow = true;
-                child.receiveShadow = true;
-              }
-            });
-
-            // Wyśrodkowanie i automatyczne dopasowanie kamery
-            const bbox = new THREE.Box3().setFromObject(currentModel);
-            const center = bbox.getCenter(new THREE.Vector3());
-            const size = bbox.getSize(new THREE.Vector3());
-
-            currentModel.position.x = -center.x;
-            currentModel.position.y = -center.y;
-            currentModel.position.z = -center.z;
-
-            scene.add(currentModel);
-
-            const maxDim = Math.max(size.x, size.y, size.z) || 2;
-            const fov = camera.fov * (Math.PI / 180);
-            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
-
-            camera.position.set(0, maxDim * 0.4, cameraZ);
-            controls.target.set(0, 0, 0);
-            camera.lookAt(0, 0, 0);
-            controls.update();
-
-            // Animacje (jeśli istnieją w modelu)
-            if (gltf.animations && gltf.animations.length > 0) {
-              mixer = new THREE.AnimationMixer(currentModel);
-              mixer.clipAction(gltf.animations[0]).play();
-            }
-          },
-          undefined,
-          (error) => {
-            // Próba załadowania z relatywnej ścieżki
-            if (url === '/test.glb') {
-              loader.load('./test.glb', (gltf) => {
-                if (currentModel) scene.remove(currentModel);
-                currentModel = gltf.scene;
-                scene.add(currentModel);
-              }, undefined, () => {});
-            }
-          }
-        );
-      }
-
-      function setupDragAndDrop() {
-        window.addEventListener('dragover', (e) => e.preventDefault());
-        window.addEventListener('drop', (e) => {
-          e.preventDefault();
-          const files = e.dataTransfer.files;
-          if (files && files.length > 0 && files[0].name.match(/\.(glb|gltf)$/i)) {
-            const reader = new FileReader();
-            reader.addEventListener('load', (event) => {
-              loadModel(event.target.result);
-            });
-            reader.readAsArrayBuffer(files[0]);
-          }
-        });
-      }
-
-      function animate() {
-        const delta = clock.getDelta();
-        if (mixer) mixer.update(delta);
-        controls.update();
-        renderer.render(scene, camera);
-      }
-
-      init();
+    <script type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
     </script>
-  </body>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <model-viewer
+        src="test.glb"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        exposure="1">
+    </model-viewer>
+
+</body>
 </html>
