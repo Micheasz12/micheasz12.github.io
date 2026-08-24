@@ -270,9 +270,11 @@
       margin-top: 6px;
     }
 
-    /* ANIMACJA OD BOKU (Horizontal Slide & Blur) */
+    /* ANIMACJA KASKADOWA: OD LEWEJ DO PRAWEJ, STOPNIOWO OD DOŁU */
     .sans-highlight {
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       font-family: var(--font-main);
       font-style: normal;
@@ -284,31 +286,53 @@
       left: 0;
       top: 0;
       right: 0;
-      opacity: 1;
-      transform: translateX(0) scale(1);
-      filter: blur(0px);
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
       white-space: nowrap;
     }
 
-    .sans-highlight.slide-out {
-      transform: translateX(-100%) scale(0.95);
-      opacity: 0;
-      filter: blur(10px);
+    .char-span {
+      display: inline-block;
+      opacity: 1;
+      transform: translateY(0%) translateX(0px) skewX(0deg);
+      filter: blur(0px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.3s ease, 
+                  filter 0.3s ease;
+      transition-delay: calc(var(--char-index, 0) * 18ms);
     }
 
-    .sans-highlight.slide-in-prep {
-      transform: translateX(100%) scale(0.95);
-      opacity: 0;
-      filter: blur(10px);
-      transition: none;
+    .char-space {
+      display: inline-block;
+      width: 0.3em;
     }
 
-    .sans-highlight.slide-in {
-      transform: translateX(0%) scale(1);
+    /* Wylot liter w górę w prawo z szybką falą */
+    .sans-highlight.wave-out .char-span {
+      transform: translateY(-120%) translateX(16px) skewX(-10deg);
+      opacity: 0;
+      filter: blur(8px);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1), 
+                  opacity 0.22s ease, 
+                  filter 0.22s ease;
+      transition-delay: calc(var(--char-index, 0) * 12ms);
+    }
+
+    /* Przygotowanie nowej frazy na dole po lewej stronie */
+    .sans-highlight.wave-prep .char-span {
+      transform: translateY(130%) translateX(-24px) skewX(12deg);
+      opacity: 0;
+      filter: blur(8px);
+      transition: none !important;
+    }
+
+    /* Wjazd liter od lewej do prawej, szybko i stopniowo od dołu */
+    .sans-highlight.wave-in .char-span {
+      transform: translateY(0%) translateX(0px) skewX(0deg);
       opacity: 1;
       filter: blur(0px);
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease, filter 0.55s ease;
+      transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.3s ease, 
+                  filter 0.3s ease;
+      transition-delay: calc(var(--char-index, 0) * 20ms);
     }
 
     .hero-description {
@@ -1696,7 +1720,7 @@
       <a href="#contact" class="mobile-nav-chip">Contact</a>
     </nav>
 
-    <!-- Nagłówek i CTA z zapętloną animacją tekstów -->
+    <!-- Nagłówek i CTA z zapętloną animacją kaskadowej fali liter -->
     <div class="hero-content">
       <h1 class="hero-title">
         Twoja restauracja w 360°
@@ -2420,7 +2444,7 @@
   <!-- Skrypt do menu, animacji rotatora tekstu i wideo -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Płynna, zapętlona animacja zmiany napisów (Horizontal Slide & Blur)
+      // 1. Płynna, kaskadowa animacja fali liter (od lewej do prawej, stopniowo od dołu)
       const phrases = [
         "Rzeczywistość rozszerzona",
         "Interaktywne menu 3D",
@@ -2430,27 +2454,48 @@
       let currentPhraseIdx = 0;
       const animatedEl = document.getElementById('animated-hero-phrase');
 
+      function renderSpans(container, text) {
+        container.innerHTML = '';
+        const chars = Array.from(text);
+        chars.forEach((char, idx) => {
+          if (char === ' ') {
+            const spaceSpan = document.createElement('span');
+            spaceSpan.className = 'char-space';
+            spaceSpan.innerHTML = '&nbsp;';
+            container.appendChild(spaceSpan);
+          } else {
+            const span = document.createElement('span');
+            span.className = 'char-span';
+            span.textContent = char;
+            span.style.setProperty('--char-index', idx);
+            container.appendChild(span);
+          }
+        });
+      }
+
       if (animatedEl) {
+        // Inicjalny podział na litery pierwszej frazy
+        renderSpans(animatedEl, phrases[0]);
+        animatedEl.classList.add('wave-in');
+
         setInterval(() => {
-          // Krok 1: Wypłynięcie w lewo i rozmycie (slide out to left)
-          animatedEl.classList.remove('slide-in');
-          animatedEl.classList.add('slide-out');
+          // Krok 1: Wylot liter w górę w prawo z szybką falą od lewej do prawej
+          animatedEl.classList.remove('wave-in');
+          animatedEl.classList.add('wave-out');
 
           setTimeout(() => {
-            // Krok 2: Zmiana tekstu i przestawienie na prawą stronę (slide-in-prep)
+            // Krok 2: Nowy tekst i natychmiastowe ustawienie liter na dole po lewej stronie
             currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
-            animatedEl.textContent = phrases[currentPhraseIdx];
-            animatedEl.classList.remove('slide-out');
-            animatedEl.classList.add('slide-in-prep');
+            renderSpans(animatedEl, phrases[currentPhraseIdx]);
+            animatedEl.className = 'sans-highlight wave-prep';
 
-            // Wymuszenie przeliczenia styli przez przeglądarkę
+            // Wymuszenie przeliczenia styli
             void animatedEl.offsetWidth;
 
-            // Krok 3: Płynne wpłynięcie od prawej na środek (slide in)
-            animatedEl.classList.remove('slide-in-prep');
-            animatedEl.classList.add('slide-in');
-          }, 450);
-        }, 3200); // zmiana co 3.2 sekundy
+            // Krok 3: Błyskawiczny, kaskadowy wjazd fali liter od lewej do prawej od dołu
+            animatedEl.className = 'sans-highlight wave-in';
+          }, 360);
+        }, 3400);
       }
 
       // 2. Menu mobilne
