@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gastro3D — Twoja restauracja w 360° | Rzeczywistość rozszerzona AR</title>
-  <meta name="description" content="Menu online, rezerwacje, zamówienia i płatności oraz interaktywne dania 3D w rzeczywistości rozszerzonej (AR)." />
+  <title>Gastro3D — Twoja restauracja w 360° | Rzeczywistość rozszerzona</title>
+  <meta name="description" content="Menu online, rezerwacje, zamówienia i płatności oraz interaktywne dania 3D w rzeczywistości rozszerzonej." />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -245,31 +245,69 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      max-width: 920px;
+      max-width: 940px;
       margin-top: 40px;
       padding: 0 20px;
     }
 
     .hero-title {
       font-family: var(--font-main);
-      font-size: clamp(2.3rem, 5.5vw, 4.3rem);
+      font-size: clamp(2.2rem, 5.2vw, 4.3rem);
       font-weight: 900;
       color: #ffffff;
-      line-height: 1.15;
+      line-height: 1.2;
       letter-spacing: -0.035em;
       margin-bottom: 16px;
     }
 
-    /* DOKŁADNIE TAKI SAM GRUBY, PROSTY KRÓJ BEZSZERYFOWY (JAK SŁOWO "YOUR") */
-    .hero-title .sans-highlight {
+    /* KONTENER NA CYKLICZNIE ZMIENIAJĄCY SIĘ NAPIS */
+    .animated-text-container {
       display: block;
+      height: 1.25em;
+      line-height: 1.25em;
+      position: relative;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .sans-highlight {
+      display: block;
+      width: 100%;
       font-family: var(--font-main);
       font-style: normal;
       font-weight: 900;
       color: #f59e0b;
       letter-spacing: -0.03em;
-      margin-top: 4px;
-      text-shadow: 0 2px 25px rgba(245, 158, 11, 0.25);
+      text-shadow: 0 2px 25px rgba(245, 158, 11, 0.35);
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      opacity: 1;
+      transform: translateY(0%);
+      filter: blur(0px);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+      white-space: nowrap;
+    }
+
+    .sans-highlight.slide-out {
+      transform: translateY(-110%);
+      opacity: 0;
+      filter: blur(8px);
+    }
+
+    .sans-highlight.slide-in-prep {
+      transform: translateY(110%);
+      opacity: 0;
+      filter: blur(8px);
+      transition: none;
+    }
+
+    .sans-highlight.slide-in {
+      transform: translateY(0%);
+      opacity: 1;
+      filter: blur(0px);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
     }
 
     .hero-description {
@@ -1657,12 +1695,14 @@
       <a href="#contact" class="mobile-nav-chip">Contact</a>
     </nav>
 
-    <!-- Nagłówek i CTA -->
+    <!-- Nagłówek i CTA z zapętloną animacją tekstów -->
     <div class="hero-content">
       <h1 class="hero-title">
         Twoja restauracja w 360°
-        <span class="sans-highlight">
-          Rzeczywistość rozszerzona
+        <span class="animated-text-container">
+          <span class="sans-highlight" id="animated-hero-phrase">
+            Rzeczywistość rozszerzona
+          </span>
         </span>
       </h1>
       <p class="hero-description">
@@ -2376,9 +2416,43 @@
     </div>
   </footer>
 
-  <!-- Skrypt do menu i wideo -->
+  <!-- Skrypt do menu, animacji rotatora tekstu i wideo -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Płynna, zapętlona animacja zmiany napisów (Text Rotator)
+      const phrases = [
+        "Rzeczywistość rozszerzona",
+        "Interaktywne menu 3D",
+        "Dania na Twoim stole",
+        "Większa sprzedaż i zyski"
+      ];
+      let currentPhraseIdx = 0;
+      const animatedEl = document.getElementById('animated-hero-phrase');
+
+      if (animatedEl) {
+        setInterval(() => {
+          // Krok 1: Wypłynięcie w górę i rozmycie (slide out)
+          animatedEl.classList.remove('slide-in');
+          animatedEl.classList.add('slide-out');
+
+          setTimeout(() => {
+            // Krok 2: Zmiana tekstu i przestawienie na dół poza widok bez animacji
+            currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
+            animatedEl.textContent = phrases[currentPhraseIdx];
+            animatedEl.classList.remove('slide-out');
+            animatedEl.classList.add('slide-in-prep');
+
+            // Wymuszenie przeliczenia styli przez przeglądarkę
+            void animatedEl.offsetWidth;
+
+            // Krok 3: Płynne wpłynięcie od dołu na środek (slide in)
+            animatedEl.classList.remove('slide-in-prep');
+            animatedEl.classList.add('slide-in');
+          }, 450);
+        }, 3200); // zmiana co 3.2 sekundy
+      }
+
+      // 2. Menu mobilne
       const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
       const mobileMenuBox = document.getElementById('mobile-menu-box');
       if (mobileToggleBtn && mobileMenuBox) {
@@ -2396,6 +2470,7 @@
         });
       }
 
+      // 3. Wideo
       const video = document.getElementById('feature-video');
       const videoWrapper = document.getElementById('video-wrapper');
       const playBtnOverlay = document.getElementById('feature-video-play-btn');
