@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu3D — Twoja restauracja w 360° Rzeczywistość rozszerzona (AR)</title>
-  <meta name="description" content="Online menu, reservations, orders and payments in 3D & Augmented reality for modern restaurants." />
+  <title>Gastro3D — Twoja restauracja w 360° | Rzeczywistość rozszerzona (AR)</title>
+  <meta name="description" content="Menu online, rezerwacje, zamówienia i płatności oraz interaktywne dania 3D w rzeczywistości rozszerzonej (AR)." />
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts z pełnym wsparciem dla języka polskiego (latin-ext) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&subset=latin,latin-ext&display=swap" rel="stylesheet">
 
-  <!-- Google Model-Viewer for 3D .GLB & Augmented Reality -->
+  <!-- Google Model-Viewer dla modeli 3D .GLB i AR -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
   <style>
@@ -26,16 +26,11 @@
 
     :root {
       --bg-dark: #0a0a0c;
-      --bg-dark-card: #151518;
-      --bg-dark-card-hover: #1e1e24;
       --accent-orange: #f59e0b;
-      --accent-orange-bright: #ff9800;
       --accent-orange-dark: #d97706;
-      --accent-gold: #eab308;
       --text-white: #ffffff;
       --text-muted: #9ca3af;
       --text-dark: #111827;
-      --text-body: #4b5563;
       --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-serif: 'Playfair Display', Georgia, serif;
       --radius-sm: 8px;
@@ -43,9 +38,8 @@
       --radius-lg: 20px;
       --radius-xl: 28px;
       --radius-pill: 9999px;
-      --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
-      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 0 1px 1px rgba(0, 0, 0, 0.04);
-      --shadow-gold: 0 0 35px -5px rgba(234, 179, 8, 0.35);
+      --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
     }
 
     html {
@@ -96,8 +90,8 @@
       min-height: 100vh;
       background-color: #070709;
       background-image: 
-        radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
-        linear-gradient(to bottom, rgba(5, 5, 8, 0.65) 0%, rgba(5, 5, 8, 0.85) 70%, #0a0a0c 100%),
+        radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 65%),
+        linear-gradient(to bottom, rgba(5, 5, 8, 0.68) 0%, rgba(5, 5, 8, 0.88) 70%, #0a0a0c 100%),
         url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=80');
       background-size: cover;
       background-position: center center;
@@ -110,7 +104,7 @@
       overflow: hidden;
     }
 
-    /* Floating Navbar Pill */
+    /* Pływający pasek nawigacji */
     .header-nav {
       position: relative;
       z-index: 50;
@@ -135,14 +129,13 @@
       text-decoration: none;
     }
 
-    /* IDEALNIE DOPASOWANE LOGO GASTRO3D */
     .brand-logo-img {
-      height: 50px;
+      height: 48px;
       width: auto;
-      max-width: 210px;
+      max-width: 200px;
       object-fit: contain;
       display: block;
-      transform: scale(1.1);
+      transform: scale(1.05);
       transform-origin: center left;
     }
 
@@ -164,7 +157,6 @@
       color: #ea580c;
     }
 
-    /* Przycisk Hamburger na telefon */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -175,7 +167,6 @@
       border-radius: 8px;
     }
 
-    /* Rozwijane menu mobilne */
     .mobile-dropdown-menu {
       display: none;
       position: absolute;
@@ -213,7 +204,6 @@
       color: #d97706;
     }
 
-    /* ZAWSZE WIDOCZNY POZIOMY PASEK ZAKŁADEK NA TELEFONIE */
     .mobile-nav-chips {
       display: none;
       width: 94%;
@@ -252,12 +242,12 @@
       color: #000000;
     }
 
-    /* Hero Content */
+    /* Hero Typography */
     .hero-content {
       position: relative;
       z-index: 10;
       text-align: center;
-      max-width: 860px;
+      max-width: 900px;
       margin-top: 40px;
       padding: 0 20px;
     }
@@ -266,27 +256,50 @@
       font-size: clamp(2.3rem, 5.5vw, 4.2rem);
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.15;
+      line-height: 1.18;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
+    /* POPRAWIONY, PRESTIŻOWY WYGLĄD NAPISU (Rzeczywistość rozszerzona AR) */
     .hero-title .serif-highlight {
       display: block;
       font-family: var(--font-serif);
       font-style: italic;
       font-weight: 600;
-      color: #f59e0b;
-      letter-spacing: -0.01em;
-      margin-top: 4px;
+      color: #fbbf24;
+      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.01em;
+      margin-top: 6px;
+      text-shadow: 0 2px 20px rgba(245, 158, 11, 0.25);
+    }
+
+    .hero-title .ar-badge {
+      display: inline-block;
+      font-family: var(--font-main);
+      font-style: normal;
+      font-weight: 800;
+      font-size: 0.68em;
+      letter-spacing: 0.04em;
+      vertical-align: middle;
+      margin-left: 8px;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      -webkit-text-fill-color: #fbbf24;
+      color: #fbbf24;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
     }
 
     .hero-description {
-      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       color: #d1d5db;
       max-width: 680px;
       margin: 0 auto 36px auto;
-      line-height: 1.6;
+      line-height: 1.65;
       font-weight: 400;
     }
 
@@ -296,20 +309,20 @@
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .btn-pill-light {
       background: #ffffff;
       color: #111827;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.95rem;
-      padding: 13px 28px;
+      padding: 13px 30px;
       border-radius: var(--radius-pill);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.18);
       border: 1px solid transparent;
       transition: all 0.25s ease;
       cursor: pointer;
@@ -317,18 +330,18 @@
 
     .btn-pill-light:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
       background: #f9fafb;
     }
 
     .btn-pill-dark {
       background: rgba(35, 35, 42, 0.75);
       color: #ffffff;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.95rem;
-      padding: 13px 28px;
+      padding: 13px 30px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
       transition: all 0.25s ease;
       cursor: pointer;
@@ -336,16 +349,16 @@
 
     .btn-pill-dark:hover {
       background: rgba(55, 55, 65, 0.9);
-      border-color: rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.4);
       transform: translateY(-2px);
     }
 
-    /* 3D GLB Food Platter Model */
+    /* 3D GLB Model Viewer */
     .hero-3d-showcase {
       position: relative;
       width: 100%;
       max-width: 680px;
-      margin: 10px auto 0 auto;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -382,41 +395,31 @@
       top: 14px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(245, 158, 11, 0.95);
+      background: #f59e0b;
       color: #000000;
       border: none;
       border-radius: var(--radius-pill);
-      padding: 8px 18px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      padding: 8px 20px;
+      font-size: 0.82rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       gap: 6px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.45);
       transition: all 0.2s ease;
       z-index: 10;
     }
 
     .btn-ar-launch:hover {
-      background: #f59e0b;
+      background: #fbbf24;
       transform: translateX(-50%) scale(1.05);
-    }
-
-    .model-loading-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      background: transparent;
     }
 
     .model-spinner {
       width: 38px;
       height: 38px;
-      border: 3px solid rgba(255, 255, 255, 0.12);
+      border: 3px solid rgba(255, 255, 255, 0.15);
       border-top-color: #f59e0b;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
@@ -454,7 +457,6 @@
       margin-bottom: 70px;
     }
 
-    /* Video Player Box */
     .video-player-card {
       background: #090a0f;
       border-radius: var(--radius-lg);
@@ -550,7 +552,6 @@
       transition: width 0.1s linear;
     }
 
-    /* Steps List */
     .steps-list {
       display: flex;
       flex-direction: column;
@@ -592,7 +593,6 @@
       line-height: 1.5;
     }
 
-    /* Big Typewriter News Video */
     .wide-video-banner {
       width: 100%;
       max-width: 860px;
@@ -1018,14 +1018,6 @@
       justify-content: center;
       flex-shrink: 0;
       margin-top: 2px;
-    }
-
-    .assistant-italic-note {
-      font-style: italic;
-      font-size: 0.88rem;
-      color: #6b7280;
-      margin-bottom: 28px;
-      line-height: 1.6;
     }
 
     .assistant-actions {
@@ -1660,13 +1652,11 @@
        SECTION 1: HERO & NAVIGATION
        ========================================================================== -->
   <section class="hero-wrapper" id="hero">
-    <!-- Floating Navigation Bar -->
     <header class="header-nav">
       <a href="#hero" class="brand-logo">
         <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
       </a>
 
-      <!-- Desktop Links -->
       <nav>
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
@@ -1678,7 +1668,6 @@
         </ul>
       </nav>
 
-      <!-- Mobile Hamburger Button -->
       <button class="mobile-menu-btn" id="mobile-toggle-btn" aria-label="Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -1688,7 +1677,6 @@
       </button>
     </header>
 
-    <!-- Mobile Dropdown Menu -->
     <div class="mobile-dropdown-menu" id="mobile-menu-box">
       <a href="#features">Features</a>
       <a href="#themes">Themes</a>
@@ -1698,7 +1686,7 @@
       <a href="#contact">Contact</a>
     </div>
 
-    <!-- Mobilny poziomy pasek zakładek (Zawsze widoczny na telefonie) -->
+    <!-- Mobilny poziomy pasek zakładek -->
     <nav class="mobile-nav-chips" aria-label="Mobile quick links">
       <a href="#features" class="mobile-nav-chip">Features</a>
       <a href="#themes" class="mobile-nav-chip">Themes</a>
@@ -1708,11 +1696,13 @@
       <a href="#contact" class="mobile-nav-chip">Contact</a>
     </nav>
 
-    <!-- Hero Content -->
+    <!-- Nagłówek i CTA -->
     <div class="hero-content">
       <h1 class="hero-title">
         Twoja restauracja w 360°
-        <span class="serif-highlight">Rzeczywistosc rozszerzona (AR)</span>
+        <span class="serif-highlight">
+          Rzeczywistość rozszerzona <span class="ar-badge">AR</span>
+        </span>
       </h1>
       <p class="hero-description">
         Menu online, rezerwacje, zamówienia i płatności. A do tego dania w 3D, które Twoi goście mogą umieścić na swoim stole, zanim jeszcze je zamówią.
@@ -1731,7 +1721,7 @@
         </a>
       </div>
 
-      <!-- 3D Platter Model Viewer -->
+      <!-- Model 3D -->
       <div class="hero-3d-showcase">
         <div class="model-viewer-wrapper" id="viewer-container">
           <model-viewer 
@@ -1752,13 +1742,13 @@
             ar-modes="webxr scene-viewer quick-look"
             loading="eager"
           >
-            <button slot="ar-button" class="btn-ar-launch" aria-label="View in Augmented Reality">
+            <button slot="ar-button" class="btn-ar-launch" aria-label="Zobacz w AR">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
               </svg>
               <span>AR 3D</span>
             </button>
-            <div slot="poster" class="model-loading-placeholder">
+            <div slot="poster" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
               <div class="model-spinner"></div>
             </div>
           </model-viewer>
@@ -1778,7 +1768,6 @@
       </div>
 
       <div class="works-grid">
-        <!-- Video Player -->
         <div class="video-player-card" id="main-video-card">
           <div class="video-preview-inner" id="video-wrapper">
             <video 
@@ -1820,7 +1809,6 @@
           </div>
         </div>
 
-        <!-- Steps -->
         <div class="steps-list">
           <div class="step-item">
             <div class="step-icon-badge badge-cyan">
@@ -1880,7 +1868,6 @@
         </div>
       </div>
 
-      <!-- Typewriter News Video -->
       <div class="wide-video-banner">
         <img class="wide-video-img" src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1400&q=80" alt="News Vintage Typewriter" />
         <div class="video-controls-bar">
@@ -2377,7 +2364,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#hero" class="footer-logo">
-            <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" style="transform: scale(1.05);" />
+            <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
           </a>
           <p>3D menus and augmented reality for restaurants that want to make an impression.</p>
           <div class="social-icons-row">
@@ -2428,10 +2415,9 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Skrypt do menu i wideo -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Mobile Menu Toggle
       const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
       const mobileMenuBox = document.getElementById('mobile-menu-box');
       if (mobileToggleBtn && mobileMenuBox) {
@@ -2449,7 +2435,6 @@
         });
       }
 
-      // 2. Video Player Logic
       const video = document.getElementById('feature-video');
       const videoWrapper = document.getElementById('video-wrapper');
       const playBtnOverlay = document.getElementById('feature-video-play-btn');
