@@ -89,7 +89,7 @@
     }
 
     /* ==========================================================================
-       SECTION 1: HERO & NAVIGATION (SCREENSHOT 1)
+       SECTION 1: HERO & NAVIGATION
        ========================================================================== */
     .hero-wrapper {
       position: relative;
@@ -131,27 +131,16 @@
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: #ffffff;
-      letter-spacing: -0.02em;
+      text-decoration: none;
     }
 
-    .brand-logo .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
-    }
-
-    .brand-logo span.highlight {
-      color: #f59e0b;
+    /* Własne logo graficzne */
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      max-width: 170px;
+      object-fit: contain;
+      display: block;
     }
 
     .nav-links {
@@ -347,7 +336,7 @@
     }
 
     /* ==========================================================================
-       SECTION 2: SEE HOW IT WORKS (SCREENSHOT 2)
+       SECTION 2: SEE HOW IT WORKS
        ========================================================================== */
     .section-works {
       padding: 100px 0 80px 0;
@@ -532,7 +521,7 @@
     }
 
     /* ==========================================================================
-       SECTION 3: STATS & DUAL FEATURE SHOWCASE (SCREENSHOT 3)
+       SECTION 3: STATS & DUAL FEATURE SHOWCASE
        ========================================================================== */
     .section-features-dual {
       padding: 60px 0 100px 0;
@@ -669,7 +658,7 @@
     }
 
     /* ==========================================================================
-       SECTION 4: 4 CARDS & AI CALL ASSISTANT (SCREENSHOT 4)
+       SECTION 4: 4 CARDS & AI CALL ASSISTANT
        ========================================================================== */
     .section-cards-and-assistant {
       padding: 40px 0 100px 0;
@@ -1037,7 +1026,7 @@
     }
 
     /* ==========================================================================
-       SECTION 5: THEMES SHOWCASE (SCREENSHOT 5)
+       SECTION 5: THEMES SHOWCASE
        ========================================================================== */
     .section-themes {
       background-color: #0b0b0e;
@@ -1270,7 +1259,7 @@
     }
 
     /* ==========================================================================
-       SECTION 6: CONTACT FORM & FOOTER (SCREENSHOT 6)
+       SECTION 6: CONTACT FORM & FOOTER
        ========================================================================== */
     .section-contact {
       background-color: #faf9f5;
@@ -1449,24 +1438,9 @@
     }
 
     .footer-brand .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: #ffffff;
+      display: inline-block;
       margin-bottom: 16px;
-    }
-
-    .footer-brand .footer-logo .logo-icon {
-      width: 30px;
-      height: 30px;
-      background: #f59e0b;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
+      text-decoration: none;
     }
 
     .footer-brand p {
@@ -1618,21 +1592,14 @@
 <body>
 
   <!-- ==========================================================================
-       SECTION 1: HERO & NAVIGATION (SCREENSHOT 1)
+       SECTION 1: HERO & NAVIGATION
        ========================================================================== -->
   <section class="hero-wrapper" id="hero">
     <!-- Floating Navigation Bar -->
     <header class="header-nav">
+      <!-- PODMIENIONE LOGO NA TWOJE WŁASNE (logo.png) -->
       <a href="#hero" class="brand-logo">
-        <div class="logo-icon">
-          <!-- 3D Cube Icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-          </svg>
-        </div>
-        <span>Menu<span class="highlight">3D</span></span>
+        <img src="logo.png" alt="Menu3D Logo" class="brand-logo-img" />
       </a>
 
       <nav>
@@ -1670,7 +1637,7 @@
         </a>
       </div>
 
-      <!-- 3D Platter Visual Model with Google Model-Viewer (.GLB file from website folder) -->
+      <!-- 3D Platter Visual Model with Google Model-Viewer -->
       <div class="hero-3d-showcase">
         <div class="model-viewer-wrapper" id="viewer-container">
           <model-viewer 
@@ -1711,7 +1678,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 2: SEE HOW IT WORKS (MINIATURKA POBIERANA BEZPOŚREDNIO Z filmik1.mp4)
+       SECTION 2: SEE HOW IT WORKS
        ========================================================================== -->
   <section class="section-works" id="features">
     <div class="container">
@@ -1720,7 +1687,7 @@
       </div>
 
       <div class="works-grid">
-        <!-- Left: Video Player pobierający filmik1.mp4 z miniaturką z pierwszej klatki filmu -->
+        <!-- Left: Video Player -->
         <div class="video-player-card" id="main-video-card">
           <div class="video-preview-inner" id="video-wrapper">
             <video 
@@ -1829,7 +1796,7 @@
         </div>
       </div>
 
-      <!-- Typewriter News Video Element (Screenshot 2 bottom) -->
+      <!-- Typewriter News Video Element -->
       <div class="wide-video-banner">
         <img class="wide-video-img" src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1400&q=80" alt="News Vintage Typewriter" />
         <div class="video-controls-bar">
@@ -1854,7 +1821,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 3: STATS & DUAL FEATURE SHOWCASE (SCREENSHOT 3)
+       SECTION 3: STATS & DUAL FEATURE SHOWCASE
        ========================================================================== -->
   <section class="section-features-dual">
     <div class="container">
@@ -1931,7 +1898,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 4: 4 CARDS & AI CALL ASSISTANT (SCREENSHOT 4)
+       SECTION 4: 4 CARDS & AI CALL ASSISTANT
        ========================================================================== -->
   <section class="section-cards-and-assistant">
     <div class="container">
@@ -1988,9 +1955,9 @@
         </div>
       </div>
 
-      <!-- AI Phone Assistant Feature (Polish Copy matching Screenshot 4) -->
+      <!-- AI Phone Assistant Feature -->
       <div class="assistant-section">
-        <!-- Left: Realistic Smartphone Mockup -->
+        <!-- Left: Smartphone Mockup -->
         <div class="phone-mockup-wrapper">
           <div class="phone-mockup">
             <div class="phone-screen">
@@ -2148,7 +2115,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 5: THEMES SHOWCASE (SCREENSHOT 5)
+       SECTION 5: THEMES SHOWCASE
        ========================================================================== -->
   <section class="section-themes" id="themes">
     <div class="container">
@@ -2399,7 +2366,7 @@
 
 
   <!-- ==========================================================================
-       SECTION 6: CONTACT FORM & FOOTER (SCREENSHOT 6)
+       SECTION 6: CONTACT FORM & FOOTER
        ========================================================================== -->
   <section class="section-contact" id="contact">
     <!-- Decorative vector circles in background -->
@@ -2455,15 +2422,9 @@
       <div class="footer-grid">
         <!-- Col 1: Brand & Socials -->
         <div class="footer-brand">
+          <!-- PODMIENIONE LOGO W STOPCE -->
           <a href="#hero" class="footer-logo">
-            <div class="logo-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-              </svg>
-            </div>
-            <span>Menu<span style="color: #f59e0b;">3D</span></span>
+            <img src="logo.png" alt="Menu3D Logo" class="brand-logo-img" />
           </a>
           <p>3D menus and augmented reality for restaurants that want to make an impression.</p>
           <div class="social-icons-row">
@@ -2529,7 +2490,7 @@
             <li>
               <span class="contact-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
               </span>
               <span>+32 493 75 30 28</span>
@@ -2559,7 +2520,7 @@
   <!-- Scripts: 3D Model Viewer & Video Player Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Video Player Logic dla filmik1.mp4 w Sekcji 2
+      // 1. Video Player Logic
       const video = document.getElementById('feature-video');
       const videoWrapper = document.getElementById('video-wrapper');
       const playBtnOverlay = document.getElementById('feature-video-play-btn');
