@@ -110,7 +110,7 @@
       overflow: hidden;
     }
 
-    /* Floating Navbar Pill - BIAŁY PASEK */
+    /* Floating Navbar Pill */
     .header-nav {
       position: relative;
       z-index: 50;
@@ -164,18 +164,106 @@
       color: #ea580c;
     }
 
+    /* Przycisk Hamburger na telefon */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #111827;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
+    }
+
+    /* Rozwijane menu mobilne */
+    .mobile-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      z-index: 100;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mobile-dropdown-menu.open {
+      display: flex;
+    }
+
+    .mobile-dropdown-menu a {
+      padding: 12px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1f2937;
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+
+    .mobile-dropdown-menu a:hover {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    /* ZAWSZE WIDOCZNY POZIOMY PASEK ZAKŁADEK NA TELEFONIE */
+    .mobile-nav-chips {
+      display: none;
+      width: 94%;
+      max-width: 980px;
+      margin-top: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 8px;
+      padding: 4px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      z-index: 45;
+    }
+
+    .mobile-nav-chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-nav-chip {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.94);
+      color: #1f2937;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-chip:active, .mobile-nav-chip:hover {
+      background: #f59e0b;
+      color: #000000;
+    }
+
     /* Hero Content */
     .hero-content {
       position: relative;
       z-index: 10;
       text-align: center;
       max-width: 860px;
-      margin-top: 50px;
+      margin-top: 40px;
       padding: 0 20px;
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+      font-size: clamp(2.3rem, 5.5vw, 4.2rem);
       font-weight: 800;
       color: #ffffff;
       line-height: 1.15;
@@ -252,7 +340,7 @@
       transform: translateY(-2px);
     }
 
-    /* 3D GLB Food Platter Model Representation & Model Viewer */
+    /* 3D GLB Food Platter Model */
     .hero-3d-showcase {
       position: relative;
       width: 100%;
@@ -504,7 +592,7 @@
       line-height: 1.5;
     }
 
-    /* Big Typewriter News Video Showcase */
+    /* Big Typewriter News Video */
     .wide-video-banner {
       width: 100%;
       max-width: 860px;
@@ -531,7 +619,6 @@
       background-color: #ffffff;
     }
 
-    /* Dark Stats Bar */
     .stats-card-dark {
       background: #191816;
       background-image: linear-gradient(180deg, #1c1b18 0%, #151412 100%);
@@ -585,7 +672,6 @@
       color: #9ca3af;
     }
 
-    /* 2 Column Feature Rows */
     .feature-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -668,7 +754,6 @@
       background-color: #ffffff;
     }
 
-    /* 4 Service Cards Grid */
     .services-cards-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -717,7 +802,7 @@
       line-height: 1.55;
     }
 
-    /* AI Phone Assistant Layout */
+    /* AI Phone Mockup */
     .assistant-section {
       display: grid;
       grid-template-columns: 0.95fr 1.2fr;
@@ -725,7 +810,6 @@
       align-items: center;
     }
 
-    /* Smartphone Frame */
     .phone-mockup-wrapper {
       display: flex;
       justify-content: center;
@@ -1071,7 +1155,6 @@
       line-height: 1.6;
     }
 
-    /* 5 Themes Gallery Carousel/Grid */
     .themes-gallery-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -1099,7 +1182,6 @@
       position: relative;
     }
 
-    /* Highlighted Matisse Theme */
     .theme-card-wrapper.active-theme .theme-phone-container {
       border: 2px solid #f59e0b;
       box-shadow: 0 0 35px rgba(245, 158, 11, 0.25), 0 20px 45px rgba(0, 0, 0, 0.6);
@@ -1117,27 +1199,11 @@
       justify-content: space-between;
     }
 
-    /* Specific Theme Screen Styles */
-    .screen-matisse {
-      background: #09090b;
-      color: #ffffff;
-    }
-    .screen-atelier {
-      background: #ffffff;
-      color: #111827;
-    }
-    .screen-domaine {
-      background: #fdfbf7;
-      color: #27272a;
-    }
-    .screen-urban {
-      background: #121214;
-      color: #ffffff;
-    }
-    .screen-botanical {
-      background: #062319;
-      color: #f0fdf4;
-    }
+    .screen-matisse { background: #09090b; color: #ffffff; }
+    .screen-atelier { background: #ffffff; color: #111827; }
+    .screen-domaine { background: #fdfbf7; color: #27272a; }
+    .screen-urban { background: #121214; color: #ffffff; }
+    .screen-botanical { background: #062319; color: #f0fdf4; }
 
     .theme-top-header {
       display: flex;
@@ -1201,22 +1267,9 @@
       font-size: 0.78rem;
     }
 
-    .item-left .item-name {
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .item-left .item-desc {
-      font-size: 0.65rem;
-      opacity: 0.65;
-      margin-top: 1px;
-    }
-
-    .item-price {
-      font-weight: 700;
-      margin-left: 4px;
-      white-space: nowrap;
-    }
+    .item-left .item-name { font-weight: 700; line-height: 1.2; }
+    .item-left .item-desc { font-size: 0.65rem; opacity: 0.65; margin-top: 1px; }
+    .item-price { font-weight: 700; margin-left: 4px; white-space: nowrap; }
 
     .btn-theme-action {
       width: 100%;
@@ -1233,16 +1286,13 @@
       transition: opacity 0.2s ease;
     }
 
-    .btn-theme-action:hover {
-      opacity: 0.9;
-    }
+    .btn-theme-action:hover { opacity: 0.9; }
 
     .btn-action-gold { background: #f59e0b; color: #111827; }
     .btn-action-dark { background: #1f2937; color: #ffffff; }
     .btn-action-orange { background: #ea580c; color: #ffffff; }
     .btn-action-emerald { background: #10b981; color: #ffffff; }
 
-    /* Bottom Label Under Theme Card */
     .theme-label-info {
       text-align: center;
       margin-top: 20px;
@@ -1271,7 +1321,6 @@
       overflow: hidden;
     }
 
-    /* Background Faint Decorative Outline Circles */
     .bg-circle-left {
       position: absolute;
       left: -120px;
@@ -1334,7 +1383,6 @@
       line-height: 1.6;
     }
 
-    /* Contact Form Card */
     .contact-card-box {
       max-width: 620px;
       margin: 0 auto;
@@ -1540,7 +1588,7 @@
     }
 
     /* ==========================================================================
-       RESPONSIVE DESIGN ADAPTATIONS
+       RESPONSIVE ADAPTATIONS
        ========================================================================== */
     @media (max-width: 1024px) {
       .themes-gallery-grid {
@@ -1558,14 +1606,24 @@
 
     @media (max-width: 768px) {
       .header-nav {
-        padding: 6px 16px;
+        padding: 6px 16px 6px 14px;
+        width: 94%;
       }
       .brand-logo-img {
         height: 44px;
-        transform: scale(1.05);
+        transform: scale(1.08);
       }
       .nav-links {
         display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .mobile-nav-chips {
+        display: flex;
+      }
+      .hero-content {
+        margin-top: 24px;
       }
       .works-grid, .feature-row, .assistant-section {
         grid-template-columns: 1fr;
@@ -1602,12 +1660,13 @@
        SECTION 1: HERO & NAVIGATION
        ========================================================================== -->
   <section class="hero-wrapper" id="hero">
-    <!-- Floating Navigation Bar (Biały pasek) -->
+    <!-- Floating Navigation Bar -->
     <header class="header-nav">
       <a href="#hero" class="brand-logo">
         <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
       </a>
 
+      <!-- Desktop Links -->
       <nav>
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
@@ -1618,7 +1677,36 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-btn" id="mobile-toggle-btn" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </header>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-dropdown-menu" id="mobile-menu-box">
+      <a href="#features">Features</a>
+      <a href="#themes">Themes</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Mobilny poziomy pasek zakładek (Zawsze widoczny na telefonie) -->
+    <nav class="mobile-nav-chips" aria-label="Mobile quick links">
+      <a href="#features" class="mobile-nav-chip">Features</a>
+      <a href="#themes" class="mobile-nav-chip">Themes</a>
+      <a href="#pricing" class="mobile-nav-chip">Pricing</a>
+      <a href="#faq" class="mobile-nav-chip">FAQ</a>
+      <a href="#blog" class="mobile-nav-chip">Blog</a>
+      <a href="#contact" class="mobile-nav-chip">Contact</a>
+    </nav>
 
     <!-- Hero Content -->
     <div class="hero-content">
@@ -1643,7 +1731,7 @@
         </a>
       </div>
 
-      <!-- 3D Platter Visual Model with Google Model-Viewer -->
+      <!-- 3D Platter Model Viewer -->
       <div class="hero-3d-showcase">
         <div class="model-viewer-wrapper" id="viewer-container">
           <model-viewer 
@@ -1664,15 +1752,12 @@
             ar-modes="webxr scene-viewer quick-look"
             loading="eager"
           >
-            <!-- Custom AR Button Slot -->
             <button slot="ar-button" class="btn-ar-launch" aria-label="View in Augmented Reality">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
               </svg>
               <span>AR 3D</span>
             </button>
-
-            <!-- Clean transparent poster while .glb is fetching -->
             <div slot="poster" class="model-loading-placeholder">
               <div class="model-spinner"></div>
             </div>
@@ -1693,7 +1778,7 @@
       </div>
 
       <div class="works-grid">
-        <!-- Left: Video Player -->
+        <!-- Video Player -->
         <div class="video-player-card" id="main-video-card">
           <div class="video-preview-inner" id="video-wrapper">
             <video 
@@ -1704,33 +1789,30 @@
               preload="auto"
             >
               <source src="filmik1.mp4#t=0.001" type="video/mp4">
-              <source src="./filmik1.mp4#t=0.001" type="video/mp4">
-              <source src="/filmik1.mp4#t=0.001" type="video/mp4">
-              Twoja przeglądarka nie obsługuje odtwarzacza wideo.
             </video>
-            <div class="video-play-btn" id="feature-video-play-btn" aria-label="Odtwórz wideo">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" id="play-btn-icon">
+            <div class="video-play-btn" id="feature-video-play-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </div>
           </div>
           <div class="video-controls-bar">
-            <button id="ctrl-play-pause-btn" class="ctrl-icon-btn" aria-label="Odtwórz / Pauza">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" id="ctrl-play-icon">
+            <button id="ctrl-play-pause-btn" class="ctrl-icon-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </button>
             <div class="progress-track" id="video-progress-track">
-              <div class="progress-filled" id="video-progress-bar" style="width: 0%;"></div>
+              <div class="progress-filled" id="video-progress-bar"></div>
             </div>
             <span id="video-time-display">0:00 / 0:30</span>
-            <button id="ctrl-mute-btn" class="ctrl-icon-btn" aria-label="Wycisz / Wyłącz wyciszenie">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="ctrl-sound-icon">
+            <button id="ctrl-mute-btn" class="ctrl-icon-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
               </svg>
             </button>
-            <button id="ctrl-fullscreen-btn" class="ctrl-icon-btn" aria-label="Pełny ekran">
+            <button id="ctrl-fullscreen-btn" class="ctrl-icon-btn">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
               </svg>
@@ -1738,12 +1820,11 @@
           </div>
         </div>
 
-        <!-- Right: 4 Steps Breakdown -->
+        <!-- Steps -->
         <div class="steps-list">
-          <!-- Step 1 -->
           <div class="step-item">
             <div class="step-icon-badge badge-cyan">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="7" height="7"></rect>
                 <rect x="14" y="3" width="7" height="7"></rect>
                 <rect x="14" y="14" width="7" height="7"></rect>
@@ -1756,10 +1837,9 @@
             </div>
           </div>
 
-          <!-- Step 2 -->
           <div class="step-item">
             <div class="step-icon-badge badge-amber">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
                 <line x1="12" y1="18" x2="12.01" y2="18"></line>
               </svg>
@@ -1770,10 +1850,9 @@
             </div>
           </div>
 
-          <!-- Step 3 -->
           <div class="step-item">
             <div class="step-icon-badge badge-lime">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
               </svg>
             </div>
@@ -1783,10 +1862,9 @@
             </div>
           </div>
 
-          <!-- Step 4 -->
           <div class="step-item">
             <div class="step-icon-badge badge-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="18" cy="5" r="3"></circle>
                 <circle cx="6" cy="12" r="3"></circle>
                 <circle cx="18" cy="19" r="3"></circle>
@@ -1802,7 +1880,7 @@
         </div>
       </div>
 
-      <!-- Typewriter News Video Element -->
+      <!-- Typewriter News Video -->
       <div class="wide-video-banner">
         <img class="wide-video-img" src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1400&q=80" alt="News Vintage Typewriter" />
         <div class="video-controls-bar">
@@ -1810,7 +1888,7 @@
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
           <div class="progress-track">
-            <div class="progress-filled" style="width: 10%;"></div>
+            <div class="progress-filled" style="width: 15%;"></div>
           </div>
           <span>0:00 / 0:30</span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1827,11 +1905,10 @@
 
 
   <!-- ==========================================================================
-       SECTION 3: STATS & DUAL FEATURE SHOWCASE
+       SECTION 3: STATS & FEATURES
        ========================================================================== -->
   <section class="section-features-dual">
     <div class="container">
-      <!-- Dark Stats Banner -->
       <div class="stats-card-dark">
         <div class="stat-col">
           <div class="stat-number">1st</div>
@@ -1841,7 +1918,7 @@
         <div class="stat-col">
           <div class="stat-number">+26%</div>
           <div class="stat-label">AVG. BASKET</div>
-          <div class="stat-sub">Source: Kabaq, 800+ restaurants</div>
+          <div class="stat-sub">Source: Kabaq, 800+ rest.</div>
         </div>
         <div class="stat-col">
           <div class="stat-number">10 000+</div>
@@ -1855,10 +1932,9 @@
         </div>
       </div>
 
-      <!-- Feature 1: What We Do -->
       <div class="feature-row">
         <div class="feature-media">
-          <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=800&q=80" alt="Delicious Pancakes with Syrup" />
+          <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=800&q=80" alt="Pancakes" />
         </div>
         <div class="feature-text">
           <h3>What we do</h3>
@@ -1867,7 +1943,7 @@
           </p>
           <a href="#contact" class="feature-link">
             <span>Learn More</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
@@ -1875,7 +1951,6 @@
         </div>
       </div>
 
-      <!-- Feature 2: Let us handle the tech -->
       <div class="feature-row">
         <div class="feature-text">
           <h3>Let us handle the tech.</h3>
@@ -1884,16 +1959,16 @@
           </p>
           <a href="#contact" class="feature-link">
             <span>Discover Services</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
         </div>
         <div class="feature-media">
-          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Atmospheric Restaurant Interior" />
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Interior" />
           <div class="golden-sparkle-overlay">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </div>
@@ -1908,9 +1983,7 @@
        ========================================================================== -->
   <section class="section-cards-and-assistant">
     <div class="container">
-      <!-- 4 Service Highlights Cards -->
       <div class="services-cards-grid">
-        <!-- Card 1 -->
         <div class="service-card">
           <div class="service-icon-wrapper" style="color: #f97316;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
@@ -1922,7 +1995,6 @@
           <p>Let customers explore 3D menu and preview dishes before ordering to boost confidence</p>
         </div>
 
-        <!-- Card 2 -->
         <div class="service-card">
           <div class="service-icon-wrapper" style="color: #06b6d4;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1935,7 +2007,6 @@
           <p>Digitize your menu with our QR code technology and let us help you create stunning 3D food models</p>
         </div>
 
-        <!-- Card 3 -->
         <div class="service-card">
           <div class="service-icon-wrapper" style="color: #10b981;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
@@ -1948,7 +2019,6 @@
           <p>We manage your digital marketing, social media, apps, and websites to increase sales.</p>
         </div>
 
-        <!-- Card 4 -->
         <div class="service-card">
           <div class="service-icon-wrapper" style="color: #14b8a6;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
@@ -1961,9 +2031,7 @@
         </div>
       </div>
 
-      <!-- AI Phone Assistant Feature -->
       <div class="assistant-section">
-        <!-- Left: Smartphone Mockup -->
         <div class="phone-mockup-wrapper">
           <div class="phone-mockup">
             <div class="phone-screen">
@@ -1971,20 +2039,16 @@
                 <span>19:45</span>
                 <span>5G • 98%</span>
               </div>
-
               <div class="phone-caller-info">
                 <div class="call-status">Dzwoni...</div>
                 <div class="caller-name">Klient</div>
                 <div class="caller-subtitle">Automatyczna asystentka AI</div>
               </div>
-
-              <!-- Notifications list of missed calls -->
               <div class="phone-notifications">
                 <div class="missed-call-card">
                   <div class="missed-call-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path>
-                      <line x1="23" y1="1" x2="1" y2="23"></line>
                     </svg>
                   </div>
                   <div class="missed-call-text">
@@ -1992,12 +2056,10 @@
                     <div class="time">5 minut temu</div>
                   </div>
                 </div>
-
                 <div class="missed-call-card">
                   <div class="missed-call-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path>
-                      <line x1="23" y1="1" x2="1" y2="23"></line>
                     </svg>
                   </div>
                   <div class="missed-call-text">
@@ -2005,22 +2067,7 @@
                     <div class="time">15 minut temu</div>
                   </div>
                 </div>
-
-                <div class="missed-call-card">
-                  <div class="missed-call-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path>
-                      <line x1="23" y1="1" x2="1" y2="23"></line>
-                    </svg>
-                  </div>
-                  <div class="missed-call-text">
-                    <div class="count">18 nieodebranych połączeń</div>
-                    <div class="time">37 minut temu</div>
-                  </div>
-                </div>
               </div>
-
-              <!-- Decline & Accept Call Buttons -->
               <div class="phone-action-buttons">
                 <div class="btn-call-decline">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -2037,7 +2084,6 @@
           </div>
         </div>
 
-        <!-- Right: Text Content & Audio Player -->
         <div class="assistant-details">
           <span class="pill-badge-orange">ASYSTENT POŁĄCZEŃ</span>
           <h2 class="assistant-heading">
@@ -2047,13 +2093,12 @@
             Skorzystaj z unikalnej usługi kompleksowego zarządzania połączeniami telefonicznymi.
           </p>
           <p class="assistant-sublead">
-            Dzięki temu Menu.pl stanie się również osobistą asystentką Twojej restauracji, która:
+            Dzięki temu Gastro3D stanie się również osobistą asystentką Twojej restauracji, która:
           </p>
-
           <ul class="assistant-checklist">
             <li>
               <div class="check-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </div>
@@ -2061,7 +2106,7 @@
             </li>
             <li>
               <div class="check-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </div>
@@ -2069,20 +2114,14 @@
             </li>
             <li>
               <div class="check-icon">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </div>
               <span><strong>Przyjmie zamówienia</strong> i rezerwacje od Twoich klientów prosto do systemu</span>
             </li>
           </ul>
-
-          <p class="assistant-italic-note">
-            Popraw komunikację z Twoimi klientami i przestań już kiedykolwiek tracić zamówienia przez nieodebrane połączenia telefoniczne.
-          </p>
-
           <div class="assistant-actions">
-            <!-- Waveform Audio Pill -->
             <div class="audio-player-pill">
               <div class="audio-play-icon">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -2096,19 +2135,13 @@
                   <div class="wave-bar" style="height: 12px;"></div>
                   <div class="wave-bar" style="height: 8px;"></div>
                   <div class="wave-bar" style="height: 14px;"></div>
-                  <div class="wave-bar" style="height: 10px;"></div>
-                  <div class="wave-bar" style="height: 6px;"></div>
-                  <div class="wave-bar" style="height: 12px;"></div>
-                  <div class="wave-bar" style="height: 4px;"></div>
                   <span class="wave-time">0:14 / 0:45</span>
                 </div>
               </div>
             </div>
-
-            <!-- CTA Button -->
             <a href="#contact" class="btn-blue-pill">
               <span>Dowiedz się więcej</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
@@ -2127,14 +2160,11 @@
     <div class="container">
       <div class="themes-header">
         <h2>Your menu, <span class="serif-gold">your digital signature</span></h2>
-        <p>
-          Five themes designed for every kind of restaurant — from fine dining to street food. And every theme is fully customizable: colors, fonts, copy, images. No limits.
-        </p>
+        <p>Five themes designed for every kind of restaurant — from fine dining to street food. And every theme is fully customizable.</p>
       </div>
 
-      <!-- 5 Phone Mockup Themes Horizontal Grid -->
       <div class="themes-gallery-grid">
-        <!-- 1. Matisse (Active / Gold border) -->
+        <!-- 1. Matisse -->
         <div class="theme-card-wrapper active-theme">
           <div class="theme-phone-container">
             <div class="theme-screen screen-matisse">
@@ -2143,40 +2173,30 @@
                   <span class="theme-brand-title brand-matisse">Matisse</span>
                   <span class="tag-3d-ar">3D AR</span>
                 </div>
-                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80" alt="Gourmet Meat Ribs" />
+                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80" alt="Gourmet Dish" />
                 <div class="theme-menu-items">
                   <div class="theme-menu-item">
                     <div class="item-left">
-                      <div class="item-name">Betterave de crapaudine</div>
-                      <div class="item-desc">Rôtie au sel, caviar Osciètre</div>
+                      <div class="item-name">Betterave crapaudine</div>
+                      <div class="item-desc">Rôtie au sel, caviar</div>
                     </div>
                     <div class="item-price">28 €</div>
                   </div>
                   <div class="theme-menu-item">
                     <div class="item-left">
-                      <div class="item-name">Saint-Jacques de plongée</div>
-                      <div class="item-desc">Mousseline de panais truffée</div>
-                    </div>
-                    <div class="item-price">38 €</div>
-                  </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
                       <div class="item-name">Bœuf pur-jus</div>
-                      <div class="item-desc">Filet de bœuf maturé 45 jours</div>
+                      <div class="item-desc">Filet de bœuf maturé</div>
                     </div>
                     <div class="item-price">52 €</div>
                   </div>
                 </div>
               </div>
-              <button class="btn-theme-action btn-action-gold">
-                <span>Open 3D Menu Demo</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
+              <button class="btn-theme-action btn-action-gold">Open 3D Menu Demo</button>
             </div>
           </div>
           <div class="theme-label-info">
             <div class="name">Matisse</div>
-            <div class="desc">Luxury • Black & Gold • Fine dining</div>
+            <div class="desc">Luxury • Black & Gold</div>
           </div>
         </div>
 
@@ -2189,40 +2209,23 @@
                   <span class="theme-brand-title brand-atelier">ATELIER</span>
                   <span class="tag-3d-ar">3D AR</span>
                 </div>
-                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80" alt="Bright Minimal Cafe" />
+                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80" alt="Cafe Dish" />
                 <div class="theme-menu-items">
                   <div class="theme-menu-item">
                     <div class="item-left">
-                      <div class="item-name">Avocado Tartine & Burrata</div>
-                      <div class="item-desc">Artisanal sourdough, bio seeds</div>
+                      <div class="item-name">Avocado Tartine</div>
+                      <div class="item-desc">Artisanal sourdough</div>
                     </div>
                     <div class="item-price">16 €</div>
                   </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">Yellowfin Tuna Poké</div>
-                      <div class="item-desc">Ponzu glaze, organic edamame</div>
-                    </div>
-                    <div class="item-price">22 €</div>
-                  </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">Matcha Soufflé Glacé</div>
-                      <div class="item-desc">Uji matcha, yuzu reduction</div>
-                    </div>
-                    <div class="item-price">12 €</div>
-                  </div>
                 </div>
               </div>
-              <button class="btn-theme-action btn-action-dark">
-                <span>Open 3D Menu Demo</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
+              <button class="btn-theme-action btn-action-dark">Open 3D Menu Demo</button>
             </div>
           </div>
           <div class="theme-label-info">
             <div class="name">ATELIER</div>
-            <div class="desc">Minimalist • Clean Contemporary</div>
+            <div class="desc">Minimalist • Contemporary</div>
           </div>
         </div>
 
@@ -2235,35 +2238,18 @@
                   <span class="theme-brand-title brand-domaine">Domaine</span>
                   <span class="tag-3d-ar">3D AR</span>
                 </div>
-                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=400&q=80" alt="Warm Bistro Wine Bar" />
+                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=400&q=80" alt="Bistro Dish" />
                 <div class="theme-menu-items">
                   <div class="theme-menu-item">
                     <div class="item-left">
-                      <div class="item-name">Le steak de pré</div>
-                      <div class="item-desc">Beurre persillé & frites maison</div>
+                      <div class="item-name">Steak de pré</div>
+                      <div class="item-desc">Frites maison</div>
                     </div>
                     <div class="item-price">14 €</div>
                   </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">Terrine de canard</div>
-                      <div class="item-desc">Pain de campagne toasté</div>
-                    </div>
-                    <div class="item-price">11 €</div>
-                  </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">Salade de brie</div>
-                      <div class="item-desc">Noix torréfiées et miel de thym</div>
-                    </div>
-                    <div class="item-price">13 €</div>
-                  </div>
                 </div>
               </div>
-              <button class="btn-theme-action btn-action-dark">
-                <span>Open 3D Menu Demo</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
+              <button class="btn-theme-action btn-action-dark">Open 3D Menu Demo</button>
             </div>
           </div>
           <div class="theme-label-info">
@@ -2282,42 +2268,25 @@
                   <span class="tag-3d-ar">3D AR</span>
                 </div>
                 <div style="position: relative;">
-                  <img class="theme-dish-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" alt="Delicious Smash Burgers" />
+                  <img class="theme-dish-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" alt="Burgers" />
                   <div class="urban-badge">EAT LOUD.</div>
                 </div>
                 <div class="theme-menu-items">
                   <div class="theme-menu-item">
                     <div class="item-left">
                       <div class="item-name">THE BIG SMASH</div>
-                      <div class="item-desc">Double wagyu, smoked bacon, BBQ</div>
+                      <div class="item-desc">Double wagyu & BBQ</div>
                     </div>
                     <div class="item-price">14 €</div>
                   </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">CRISPY BOT</div>
-                      <div class="item-desc">Fried buttermilk chicken, jalapeños</div>
-                    </div>
-                    <div class="item-price">12 €</div>
-                  </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">LOADED FRIES</div>
-                      <div class="item-desc">Cheddar melt & crispy onions</div>
-                    </div>
-                    <div class="item-price">7 €</div>
-                  </div>
                 </div>
               </div>
-              <button class="btn-theme-action btn-action-orange">
-                <span>Open 3D Menu Demo</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
+              <button class="btn-theme-action btn-action-orange">Open 3D Menu Demo</button>
             </div>
           </div>
           <div class="theme-label-info">
             <div class="name">URBAN</div>
-            <div class="desc">EAT LOUD • Neon Street Food</div>
+            <div class="desc">EAT LOUD • Street Food</div>
           </div>
         </div>
 
@@ -2330,40 +2299,23 @@
                   <span class="theme-brand-title brand-botanical">Botanical</span>
                   <span class="tag-3d-ar">3D AR</span>
                 </div>
-                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80" alt="Gourmet Sushi Roll Platter" />
+                <img class="theme-dish-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80" alt="Sushi" />
                 <div class="theme-menu-items">
                   <div class="theme-menu-item">
                     <div class="item-left">
-                      <div class="item-name">Dragon Roll Supreme</div>
-                      <div class="item-desc">Unagi, avocado, tempura prawn</div>
+                      <div class="item-name">Dragon Roll</div>
+                      <div class="item-desc">Unagi & tempura</div>
                     </div>
                     <div class="item-price">24 €</div>
                   </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">Miso Black Cod</div>
-                      <div class="item-desc">Caramelized saikyo miso glaze</div>
-                    </div>
-                    <div class="item-price">32 €</div>
-                  </div>
-                  <div class="theme-menu-item">
-                    <div class="item-left">
-                      <div class="item-name">Yuzu Cheesecake</div>
-                      <div class="item-desc">Graham cracker crust, gold leaf</div>
-                    </div>
-                    <div class="item-price">11 €</div>
-                  </div>
                 </div>
               </div>
-              <button class="btn-theme-action btn-action-emerald">
-                <span>Open 3D Menu Demo</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
+              <button class="btn-theme-action btn-action-emerald">Open 3D Menu Demo</button>
             </div>
           </div>
           <div class="theme-label-info">
             <div class="name">Botanical</div>
-            <div class="desc">Fresh • Organic & Asian Fusion</div>
+            <div class="desc">Fresh • Organic Asian</div>
           </div>
         </div>
       </div>
@@ -2372,13 +2324,11 @@
 
 
   <!-- ==========================================================================
-       SECTION 6: CONTACT FORM & FOOTER
+       SECTION 6: CONTACT & FOOTER
        ========================================================================== -->
   <section class="section-contact" id="contact">
-    <!-- Decorative vector circles in background -->
     <div class="bg-circle-left"></div>
     <div class="bg-circle-right"></div>
-
     <div class="container">
       <div class="contact-header">
         <span class="pill-badge-kontakt">KONTAKT</span>
@@ -2386,7 +2336,6 @@
         <p>A question, a demo request, or want to learn more? Fill out the form and we'll get back to you within 24 hours.</p>
       </div>
 
-      <!-- Contact Form Card -->
       <div class="contact-card-box">
         <form onsubmit="event.preventDefault(); alert('Dziękujemy! Wiadomość została wysłana.');">
           <div class="form-grid">
@@ -2411,7 +2360,7 @@
           </div>
 
           <button type="submit" class="btn-send-message">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="22" y1="2" x2="11" y2="13"></line>
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>
@@ -2426,7 +2375,6 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <!-- Col 1: Brand & Socials -->
         <div class="footer-brand">
           <a href="#hero" class="footer-logo">
             <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" style="transform: scale(1.05);" />
@@ -2434,87 +2382,45 @@
           <p>3D menus and augmented reality for restaurants that want to make an impression.</p>
           <div class="social-icons-row">
             <a href="#" class="social-btn" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
             <a href="#" class="social-btn" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="TikTok">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path></svg>
             </a>
           </div>
         </div>
 
-        <!-- Col 2: Product -->
         <div class="footer-column" id="pricing">
           <h5>PRODUCT</h5>
           <ul class="footer-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#themes">Themes</a></li>
             <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#docs">Documentation</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#blog">Blog</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Legal -->
         <div class="footer-column">
           <h5>LEGAL</h5>
           <ul class="footer-links">
             <li><a href="#">Terms of Service</a></li>
             <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Legal Notice</a></li>
-            <li><a href="#">Accessibility</a></li>
-            <li><a href="#">Report content</a></li>
             <li><a href="#">Manage cookies</a></li>
           </ul>
         </div>
 
-        <!-- Col 4: Contact -->
         <div class="footer-column">
           <h5>CONTACT</h5>
           <ul class="footer-contact-list">
-            <li>
-              <span class="contact-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </span>
-              <span>15, Rue de la Pépinière 5000 Namur</span>
-            </li>
-            <li>
-              <span class="contact-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-              </span>
-              <span>+32 493 75 30 28</span>
-            </li>
-            <li>
-              <span class="contact-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-              </span>
-              <span>support@menu.cool</span>
-            </li>
+            <li><span>15, Rue de la Pépinière 5000 Namur</span></li>
+            <li><span>+32 493 75 30 28</span></li>
+            <li><span>support@menu.cool</span></li>
             <li class="vat-number">N° TVA: BE 1284.459.308</li>
           </ul>
         </div>
       </div>
 
-      <!-- Copyright Sub-bar -->
       <div class="footer-bottom-bar">
         <div>© 2026 Gastro3D Technologies. All rights reserved.</div>
         <div>Powered by 3D WebGL & Augmented Reality</div>
@@ -2522,10 +2428,28 @@
     </div>
   </footer>
 
-  <!-- Scripts: 3D Model Viewer & Video Player Logic -->
+  <!-- Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Video Player Logic
+      // 1. Mobile Menu Toggle
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenuBox = document.getElementById('mobile-menu-box');
+      if (mobileToggleBtn && mobileMenuBox) {
+        mobileToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileMenuBox.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+          if (!mobileMenuBox.contains(e.target) && !mobileToggleBtn.contains(e.target)) {
+            mobileMenuBox.classList.remove('open');
+          }
+        });
+        mobileMenuBox.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => mobileMenuBox.classList.remove('open'));
+        });
+      }
+
+      // 2. Video Player Logic
       const video = document.getElementById('feature-video');
       const videoWrapper = document.getElementById('video-wrapper');
       const playBtnOverlay = document.getElementById('feature-video-play-btn');
@@ -2536,101 +2460,46 @@
       const muteBtn = document.getElementById('ctrl-mute-btn');
       const fullscreenBtn = document.getElementById('ctrl-fullscreen-btn');
 
-      function formatTime(seconds) {
-        const m = Math.floor(seconds / 60);
-        const s = Math.floor(seconds % 60);
-        return m + ':' + (s < 10 ? '0' : '') + s;
-      }
-
-      function updatePlayState() {
-        if (!video) return;
-        if (video.paused) {
-          playBtnOverlay.style.display = 'flex';
-          ctrlPlayBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
-        } else {
-          playBtnOverlay.style.display = 'none';
-          ctrlPlayBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
-        }
+      function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
       }
 
       function togglePlay() {
         if (!video) return;
         if (video.paused) {
-          video.play().catch(e => console.log('Odtwarzanie wideo:', e));
+          video.play();
+          playBtnOverlay.style.display = 'none';
         } else {
           video.pause();
+          playBtnOverlay.style.display = 'flex';
         }
-        updatePlayState();
       }
 
       if (video) {
         videoWrapper.addEventListener('click', togglePlay);
-        ctrlPlayBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          togglePlay();
-        });
-
-        video.addEventListener('play', updatePlayState);
-        video.addEventListener('pause', updatePlayState);
-        video.addEventListener('ended', () => {
-          updatePlayState();
-          progressBar.style.width = '100%';
-        });
-
+        ctrlPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
         video.addEventListener('timeupdate', () => {
           const current = video.currentTime;
           const duration = video.duration || 30;
-          const pct = (current / duration) * 100;
-          progressBar.style.width = pct + '%';
+          progressBar.style.width = (current / duration) * 100 + '%';
           timeDisplay.textContent = formatTime(current) + ' / ' + formatTime(duration);
         });
-
-        video.addEventListener('loadedmetadata', () => {
-          timeDisplay.textContent = '0:00 / ' + formatTime(video.duration);
-        });
-
         if (progressTrack) {
           progressTrack.addEventListener('click', (e) => {
             const rect = progressTrack.getBoundingClientRect();
-            const clickPos = (e.clientX - rect.left) / rect.width;
-            const duration = video.duration || 30;
-            video.currentTime = clickPos * duration;
+            video.currentTime = ((e.clientX - rect.left) / rect.width) * (video.duration || 30);
           });
         }
-
         if (muteBtn) {
-          muteBtn.addEventListener('click', () => {
-            video.muted = !video.muted;
-            if (video.muted) {
-              muteBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
-            } else {
-              muteBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
-            }
-          });
+          muteBtn.addEventListener('click', () => { video.muted = !video.muted; });
         }
-
         if (fullscreenBtn) {
           fullscreenBtn.addEventListener('click', () => {
-            if (video.requestFullscreen) {
-              video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) {
-              video.webkitRequestFullscreen();
-            }
+            if (video.requestFullscreen) video.requestFullscreen();
           });
         }
-      }
-
-      // 2. 3D GLB Model Viewer handling
-      const viewer = document.getElementById('dish-model-viewer');
-      if (viewer) {
-        const candidatePaths = ['./dish.glb', './model.glb', '/dish.glb', '/model.glb', './assets/dish.glb'];
-        let pathIdx = 0;
-        viewer.addEventListener('error', () => {
-          pathIdx++;
-          if (pathIdx < candidatePaths.length) {
-            viewer.src = candidatePaths[pathIdx];
-          }
-        });
       }
     });
   </script>
