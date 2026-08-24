@@ -115,13 +115,14 @@
       position: relative;
       z-index: 50;
       width: 92%;
-      max-width: 960px;
-      background: rgba(255, 255, 255, 0.95);
+      max-width: 980px;
+      min-height: 64px;
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.95);
       border-radius: var(--radius-pill);
-      padding: 6px 28px;
+      padding: 4px 30px 4px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -132,16 +133,19 @@
       display: flex;
       align-items: center;
       text-decoration: none;
-      padding: 2px 0;
+      height: 56px;
     }
 
-    /* Własne logo graficzne - POWIĘKSZONE I DOBRZE WIDOCZNE */
+    /* DUŻE, WYRAŹNE LOGO GASTRO3D */
     .brand-logo-img {
-      height: 56px;        /* jeśli nadal chcesz większe, zmień np. na 62px */
+      height: 85px;             /* powiększona wysokość bazowa */
       width: auto;
-      max-width: 220px;
+      max-width: 280px;
       object-fit: contain;
       display: block;
+      margin: -15px 0 -15px 0;   /* niweluje pusty margines pliku graficznego */
+      transform: scale(1.4);    /* mocne powiększenie wizualne napisu */
+      transform-origin: center left;
     }
 
     .nav-links {
@@ -1559,7 +1563,8 @@
         padding: 6px 16px;
       }
       .brand-logo-img {
-        height: 46px;
+        height: 60px;
+        transform: scale(1.25);
       }
       .nav-links {
         display: none;
@@ -1599,7 +1604,7 @@
        SECTION 1: HERO & NAVIGATION
        ========================================================================== -->
   <section class="hero-wrapper" id="hero">
-    <!-- Floating Navigation Bar (Biały pasek) -->
+    <!-- Floating Navigation Bar (Biały pasek z dużym, wyraźnym logo) -->
     <header class="header-nav">
       <a href="#hero" class="brand-logo">
         <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
@@ -2426,7 +2431,7 @@
         <!-- Col 1: Brand & Socials -->
         <div class="footer-brand">
           <a href="#hero" class="footer-logo">
-            <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
+            <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" style="transform: scale(1.2);" />
           </a>
           <p>3D menus and augmented reality for restaurants that want to make an impression.</p>
           <div class="social-icons-row">
@@ -2492,7 +2497,7 @@
             <li>
               <span class="contact-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
               </span>
               <span>+32 493 75 30 28</span>
