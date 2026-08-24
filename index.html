@@ -110,22 +110,22 @@
       overflow: hidden;
     }
 
-    /* Floating Navbar Pill */
+    /* Floating Navbar Pill - BIAŁY PASEK */
     .header-nav {
       position: relative;
       z-index: 50;
       width: 90%;
       max-width: 920px;
-      background: rgba(18, 18, 22, 0.65);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
       border-radius: var(--radius-pill);
       padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .brand-logo {
@@ -151,14 +151,14 @@
     }
 
     .nav-links a {
-      color: #d1d5db;
+      color: #374151;
       font-size: 0.925rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: #ffffff;
+      color: #ea580c;
     }
 
     /* Hero Content */
@@ -337,7 +337,7 @@
 
     /* ==========================================================================
        SECTION 2: SEE HOW IT WORKS
-       ========================================================================== */
+       ========================================================================= */
     .section-works {
       padding: 100px 0 80px 0;
       background-color: #ffffff;
@@ -1595,9 +1595,8 @@
        SECTION 1: HERO & NAVIGATION
        ========================================================================== -->
   <section class="hero-wrapper" id="hero">
-    <!-- Floating Navigation Bar -->
+    <!-- Floating Navigation Bar (Biały pasek) -->
     <header class="header-nav">
-      <!-- PODMIENIONE LOGO NA TWOJE WŁASNE (logo.png) -->
       <a href="#hero" class="brand-logo">
         <img src="logo.png" alt="Menu3D Logo" class="brand-logo-img" />
       </a>
@@ -2422,7 +2421,6 @@
       <div class="footer-grid">
         <!-- Col 1: Brand & Socials -->
         <div class="footer-brand">
-          <!-- PODMIENIONE LOGO W STOPCE -->
           <a href="#hero" class="footer-logo">
             <img src="logo.png" alt="Menu3D Logo" class="brand-logo-img" />
           </a>
