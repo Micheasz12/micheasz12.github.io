@@ -270,6 +270,7 @@
       margin-top: 6px;
     }
 
+    /* ANIMACJA OD BOKU (Horizontal Slide & Blur) */
     .sans-highlight {
       display: block;
       width: 100%;
@@ -284,30 +285,30 @@
       top: 0;
       right: 0;
       opacity: 1;
-      transform: translateY(0%);
+      transform: translateX(0) scale(1);
       filter: blur(0px);
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
       white-space: nowrap;
     }
 
     .sans-highlight.slide-out {
-      transform: translateY(-110%);
+      transform: translateX(-100%) scale(0.95);
       opacity: 0;
-      filter: blur(8px);
+      filter: blur(10px);
     }
 
     .sans-highlight.slide-in-prep {
-      transform: translateY(110%);
+      transform: translateX(100%) scale(0.95);
       opacity: 0;
-      filter: blur(8px);
+      filter: blur(10px);
       transition: none;
     }
 
     .sans-highlight.slide-in {
-      transform: translateY(0%);
+      transform: translateX(0%) scale(1);
       opacity: 1;
       filter: blur(0px);
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease, filter 0.55s ease;
     }
 
     .hero-description {
@@ -2419,7 +2420,7 @@
   <!-- Skrypt do menu, animacji rotatora tekstu i wideo -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Płynna, zapętlona animacja zmiany napisów (Text Rotator)
+      // 1. Płynna, zapętlona animacja zmiany napisów (Horizontal Slide & Blur)
       const phrases = [
         "Rzeczywistość rozszerzona",
         "Interaktywne menu 3D",
@@ -2431,12 +2432,12 @@
 
       if (animatedEl) {
         setInterval(() => {
-          // Krok 1: Wypłynięcie w górę i rozmycie (slide out)
+          // Krok 1: Wypłynięcie w lewo i rozmycie (slide out to left)
           animatedEl.classList.remove('slide-in');
           animatedEl.classList.add('slide-out');
 
           setTimeout(() => {
-            // Krok 2: Zmiana tekstu i przestawienie na dół poza widok bez animacji
+            // Krok 2: Zmiana tekstu i przestawienie na prawą stronę (slide-in-prep)
             currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
             animatedEl.textContent = phrases[currentPhraseIdx];
             animatedEl.classList.remove('slide-out');
@@ -2445,7 +2446,7 @@
             // Wymuszenie przeliczenia styli przez przeglądarkę
             void animatedEl.offsetWidth;
 
-            // Krok 3: Płynne wpłynięcie od dołu na środek (slide in)
+            // Krok 3: Płynne wpłynięcie od prawej na środek (slide in)
             animatedEl.classList.remove('slide-in-prep');
             animatedEl.classList.add('slide-in');
           }, 450);
