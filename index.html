@@ -114,31 +114,32 @@
     .header-nav {
       position: relative;
       z-index: 50;
-      width: 90%;
-      max-width: 920px;
-      background: rgba(255, 255, 255, 0.94);
+      width: 92%;
+      max-width: 960px;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: var(--radius-pill);
-      padding: 10px 24px;
+      padding: 6px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
       text-decoration: none;
+      padding: 2px 0;
     }
 
-    /* Własne logo graficzne */
+    /* Własne logo graficzne - POWIĘKSZONE I DOBRZE WIDOCZNE */
     .brand-logo-img {
-      height: 38px;
+      height: 56px;        /* jeśli nadal chcesz większe, zmień np. na 62px */
       width: auto;
-      max-width: 170px;
+      max-width: 220px;
       object-fit: contain;
       display: block;
     }
@@ -151,8 +152,8 @@
     }
 
     .nav-links a {
-      color: #374151;
-      font-size: 0.925rem;
+      color: #1f2937;
+      font-size: 0.95rem;
       font-weight: 600;
       transition: all 0.2s ease;
     }
@@ -337,7 +338,7 @@
 
     /* ==========================================================================
        SECTION 2: SEE HOW IT WORKS
-       ========================================================================= */
+       ========================================================================== */
     .section-works {
       padding: 100px 0 80px 0;
       background-color: #ffffff;
@@ -1555,7 +1556,10 @@
 
     @media (max-width: 768px) {
       .header-nav {
-        padding: 8px 16px;
+        padding: 6px 16px;
+      }
+      .brand-logo-img {
+        height: 46px;
       }
       .nav-links {
         display: none;
@@ -1598,7 +1602,7 @@
     <!-- Floating Navigation Bar (Biały pasek) -->
     <header class="header-nav">
       <a href="#hero" class="brand-logo">
-        <img src="logo.png" alt="Menu3D Logo" class="brand-logo-img" />
+        <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
       </a>
 
       <nav>
@@ -2422,7 +2426,7 @@
         <!-- Col 1: Brand & Socials -->
         <div class="footer-brand">
           <a href="#hero" class="footer-logo">
-            <img src="logo.png" alt="Menu3D Logo" class="brand-logo-img" />
+            <img src="logo.png" alt="Gastro3D Logo" class="brand-logo-img" />
           </a>
           <p>3D menus and augmented reality for restaurants that want to make an impression.</p>
           <div class="social-icons-row">
@@ -2488,7 +2492,7 @@
             <li>
               <span class="contact-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
               </span>
               <span>+32 493 75 30 28</span>
@@ -2509,7 +2513,7 @@
 
       <!-- Copyright Sub-bar -->
       <div class="footer-bottom-bar">
-        <div>© 2026 Menu3D Technologies. All rights reserved.</div>
+        <div>© 2026 Gastro3D Technologies. All rights reserved.</div>
         <div>Powered by 3D WebGL & Augmented Reality</div>
       </div>
     </div>
